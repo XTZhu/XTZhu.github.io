@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>0213_刷面试题第一天 · pipipig的无名小站</title>
+    <title>JAVA 虚拟机 课堂笔记 · pipipig的无名小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">XTZhu&#39;s Tree hole.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">0213_刷面试题第一天</a>
+                <a href="#" class="post-name">JAVA 虚拟机 课堂笔记</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            0213_刷面试题第一天
+            JAVA 虚拟机 课堂笔记
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="虚拟机">虚拟机</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.8k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">503</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/02/13</span>
+                    <span class="post-intro-time">2019/02/10</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,96 +401,25 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#第一天 2019-02-13 19:05:58</p>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><ol>
-<li><strong>面向对象的特征有哪些方面？ </strong></li>
-<li><strong>访问修饰符public,private,protected,以及不写（默认）时的区别？ </strong></li>
-<li><strong>String 是最基本的数据类型吗？</strong></li>
-<li><strong>float f=3.4;是否正确？</strong></li>
-<li><strong>short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗？</strong></li>
-<li><strong>Java有没有goto？</strong></li>
-<li><strong>int和Integer有什么区别？</strong></li>
-<li><strong>&amp;和&amp;&amp;的区别？</strong></li>
-<li><strong>解释内存中的栈(stack)、堆(heap)和方法区(method area)的用法。</strong></li>
-<li><strong>Math.round(11.5) 等于多少？Math.round(-11.5)等于多少？</strong></li>
-</ol>
+        <h1 id="JAVA虚拟机"><a href="#JAVA虚拟机" class="headerlink" title="JAVA虚拟机"></a>JAVA虚拟机</h1><h3 id="1-什么是java虚拟机？"><a href="#1-什么是java虚拟机？" class="headerlink" title="1.什么是java虚拟机？"></a>1.什么是java虚拟机？</h3><p>指以软件的方式模拟具有完整硬件系统功能、运行在一个完全隔离环境中的完整计算机系统，是物理机的软件实现。</p>
+<p>Class files =&gt;     类加载子系统 =&gt;  运行时数据区（内存）</p>
+<p>内存： 堆、Java栈、本地方法栈、方法区、程序计数器。</p>
 <blockquote>
-<p>博客原文：<a href="https://blog.csdn.net/jackfrued/article/details/44921941" target="_blank" rel="noopener">https://blog.csdn.net/jackfrued/article/details/44921941</a> </p>
+<p>堆、方法区：</p>
 </blockquote>
-<h3 id="大佬的答案"><a href="#大佬的答案" class="headerlink" title="大佬的答案"></a>大佬的答案</h3><p>1.答：面向对象的特征主要有以下几个方面： </p>
+<blockquote>
+<p>Java栈、本地方法栈、程序计数器：</p>
+</blockquote>
 <ul>
-<li><strong>抽象</strong>：抽象是将一类对象的共同特征总结出来构造类的过程，包括数据抽象和行为抽象两方面。抽象只关注对象有哪些属性和行为，并不关注这些行为的细节是什么。 </li>
-<li><strong>继承</strong>：<code>继承是从已有类得到继承信息创建新类的过程</code>。提供继承信息的类被称为父类（超类、基类）；得到继承信息的类被称为子类（派生类）。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的重要手段<em>（如果不能理解请阅读阎宏博士的《Java与模式》或《设计模式精解》中关于桥梁模式的部分）</em>。 </li>
-<li><strong>封装</strong>：通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装；我们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程接口<code>*（可以想想普通洗衣机和全自动洗衣机的差别，明显全自动洗衣机封装更好因此操作起来更简单；我们现在使用的智能手机也是封装得足够好的，因为几个按键就搞定了所有的事情）*</code>。 </li>
-<li><strong>多态性</strong>：多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外界提供的服务，那么运行时的多态性可以解释为：当A系统访问B系统提供的服务时，B系统有多种提供服务的方式，但一切对A系统来说都是透明的<code>*（就像电动剃须刀是A系统，它的供电系统是B系统，B系统可以使用电池供电或者用交流电，甚至还有可能是太阳能，A系统只会通过B类对象调用供电的方法，但并不知道供电系统的底层实现是什么，究竟通过何种方式获得了动力）*</code>。方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：1). 方法重写（子类继承父类并重写父类中已有的或抽象的方法）；2). 对象造型（用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。</li>
+<li><strong>本地方法栈（线程私有）</strong>：登记native方法，在Execution Engine执行时加载本地方法库</li>
+<li><strong>程序计数器（线程私有）</strong>：就是一个指针，指向方法区中的方法字节码（用来存储指向下一条指令的地址，也即将要执行的指令代码），由执行引擎读取下一条指令，是一个非常小的内存空间，几乎可以忽略不计。</li>
+<li><strong>方法区（线程共享）</strong>：类的所有字段和方法字节码，以及一些特殊方法如构造函数，接口代码也在此定义。简单说，所有定义的方法的信息都保存在该区域，<strong>静态变量+常量+类方法（构造函数/接口定义）+运行时常量池都存在方法区中</strong></li>
+<li><strong>Java栈（线程私有）</strong>：Java线程执行方法的内存模型，一个线程对应一个栈，每个方法在执行的同时都会创建一个栈帧（用于存储局部变量表看，操作数栈，动态链接，方法出口等信息）不存在垃圾回收问题，只要线程一结束该栈就释放，生命周期与线程一致。</li>
+<li><p>JVM对该区域规范了两种异常：</p>
+<p>  1）线程请求的栈深度大于虚拟机栈所允许的深度，将抛出StackOverFlowError异常</p>
+<p>  2）若虚拟机栈可动态拓展，当无法申请到足够内存空间时将抛出OutOfMemoryError，通过jvm参数-Xss指定栈空间，空间大小决定函数调用的深度</p>
+</li>
 </ul>
-<p>2.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">范围</th>
-<th style="text-align:right">public</th>
-<th style="text-align:center">protected</th>
-<th style="text-align:center">default(默认)</th>
-<th style="text-align:center">private</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">当前类</td>
-<td style="text-align:right">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-</tr>
-<tr>
-<td style="text-align:left">同包</td>
-<td style="text-align:right">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">×</td>
-</tr>
-<tr>
-<td style="text-align:left">子类</td>
-<td style="text-align:right">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-</tr>
-<tr>
-<td style="text-align:left">其他包</td>
-<td style="text-align:right">√</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">x</td>
-</tr>
-</tbody>
-</table>
-<p>Java中，外部类的修饰符只能是public或默认，类的成员（包括内部类）的修饰符可以是以上四种</p>
-<p>3.除了基本类型（primitive type），剩下的都是引用类型（reference type），Java 5以后引入的枚举类型也算是一种比较特殊的引用类型。</p>
-<p>4.不正确。3.4是双精度数，将双精度型（double）赋值给浮点型（float）属于下转型（down-casting，也称为窄化）会造成精度损失，因此需要强制类型转换float f =(float)3.4; 或者写成float f =3.4F</p>
-<p>5.对于short s1 = 1; s1 = s1 + 1;由于1是int类型，因此s1+1运算结果也是int 型，需要强制转换类型才能赋值给short型。而short s1 = 1; s1 += 1;可以正确编译，因为s1+= 1;相当于s1 = (short)(s1 + 1);其中有<strong>隐含的强制类型转换</strong>。</p>
-<p>6.goto 是Java中的保留字，在目前版本的Java中没有使用。（根据James Gosling（Java之父）编写的《The Java Programming Language》一书的附录中给出了一个Java关键字列表，其中有goto和const，但是这两个是目前无法使用的关键字，因此有些地方将其称之为保留字，其实保留字这个词应该有更广泛的意义，因为熟悉C语言的程序员都知道，在系统类库中使用过的有特殊意义的单词或单词的组合都被视为保留字）</p>
-<p>7.Java是一个近乎纯洁的面向对象编程语言，但是为了编程的方便还是引入了基本数据类型，但是为了能够将这些基本数据类型当成对象操作，Java为每一个基本数据类型都引入了对应的包装类型（wrapper class），int的包装类就是Integer，从Java 5开始引入了自动装箱/拆箱机制，使得二者可以相互转换。<br>Java 为每个原始类型提供了包装类型： </p>
-<ul>
-<li>原始类型: boolean，char，byte，short，int，long，float，double </li>
-<li>包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoUnboxingTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer a = <span class="keyword">new</span> Integer(<span class="number">3</span>);</span><br><span class="line">        Integer b = <span class="number">3</span>;                  <span class="comment">// 将3自动装箱成Integer类型</span></span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">3</span>;</span><br><span class="line">        System.out.println(a == b);     <span class="comment">// false 两个引用没有引用同一对象</span></span><br><span class="line">        System.out.println(a == c);     <span class="comment">// true a自动拆箱成int类型再和c比较</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最近还遇到一个面试题，也是和自动装箱和拆箱有点关系的，代码如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer f1 = <span class="number">100</span>, f2 = <span class="number">100</span>, f3 = <span class="number">150</span>, f4 = <span class="number">150</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(f1 == f2);</span><br><span class="line">        System.out.println(f3 == f4);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果不明就里很容易认为两个输出要么都是true要么都是false。首先需要注意的是f1、f2、f3、f4四个变量都是Integer对象引用，所以下面的==运算比较的不是值而是引用。装箱的本质是什么呢？当我们给一个Integer对象赋一个int值的时候，会调用Integer类的静态方法valueOf，如果看看valueOf的源代码就知道发生了什么。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>简单的说，如果整型字面量的值在-128到127之间，那么不会new新的Integer对象，而是直接引用常量池中的Integer对象，所以上面的面试题中f1==f2的结果是true，而f3==f4的结果是false。</p>
-<blockquote>
-<p>提醒：越是貌似简单的面试题其中的玄机就越多，需要面试者有相当深厚的功力。</p>
-</blockquote>
-<p>8.&amp;运算符有两种用法：(1)按位与；(2)逻辑与。&amp;&amp;运算符是短路与运算。逻辑与跟短路与的差别是非常巨大的，虽然二者都要求运算符左右两端的布尔值都是true整个表达式的值才是true。&amp;&amp;之所以称为短路运算是因为，如果&amp;&amp;左边的表达式的值是false，右边的表达式会被直接短路掉，不会进行运算。很多时候我们可能都需要用&amp;&amp;而不是&amp;，例如在验证用户登录时判定用户名不是null而且不是空字符串，应当写为：username != null &amp;&amp;!username.equals(“”)，二者的顺序不能交换，更不能用&amp;运算符，因为第一个条件如果不成立，根本不能进行字符串的equals比较，否则会产生NullPointerException异常。注意：逻辑或运算符（|）和短路或运算符（||）的差别也是如此。</p>
-<p>9.答：通常我们定义一个基本数据类型的变量，一个对象的引用，还有就是函数调用的现场保存都使用JVM中的栈空间；而通过new关键字和构造器创建的对象则放在堆空间，堆是垃圾收集器管理的主要区域，由于现在的垃圾收集器都采用分代收集算法，所以堆空间还可以细分为新生代和老生代，再具体一点可以分为Eden、Survivor（又可分为From Survivor和To Survivor）、Tenured；方法区和堆都是各个线程共享的内存区域，用于存储已经被JVM加载的类信息、常量、静态变量、JIT编译器编译后的代码等数据；程序中的字面量（literal）如直接书写的100、”hello”和常量都是放在常量池中，常量池是方法区的一部分，。栈空间操作起来最快但是栈很小，通常大量的对象都是放在堆空间，栈和堆的大小都可以通过JVM的启动参数来进行调整，栈空间用光了会引发StackOverflowError，而堆和常量池空间不足则会引发OutOfMemoryError。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>上面的语句中变量str放在栈上，用new创建出来的字符串对象放在堆上，而”hello”这个字面量是放在方法区的。</p>
-<blockquote>
-<p>补充1：较新版本的Java（从Java 6的某个更新开始）中，由于JIT编译器的发展和”逃逸分析”技术的逐渐成熟，栈上分配、标量替换等优化技术使得对象一定分配在堆上这件事情已经变得不那么绝对了。</p>
-</blockquote>
-<p>补充2：运行时常量池相当于Class文件常量池具有动态性，Java语言并不要求常量一定只有编译期间才能产生，运行期间也可以将新的常量放入池中，String类的intern()方法就是这样的<br>看看下面代码的执行结果是什么并且比较一下Java 7以前和以后的运行结果是否一致。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> StringBuilder(<span class="string">"go"</span>)</span><br><span class="line">    .append(<span class="string">"od"</span>).toString();</span><br><span class="line">System.out.println(s1.intern() == s1);</span><br><span class="line">String s2 = <span class="keyword">new</span> StringBuilder(<span class="string">"ja"</span>)</span><br><span class="line">    .append(<span class="string">"va"</span>).toString();</span><br><span class="line">System.out.println(s2.intern() == s2);</span><br></pre></td></tr></table></figure></p>
-<p>10.Math.round(11.5)的返回值是12，Math.round(-11.5)的返回值是-11。四舍五入的原理是在参数上加0.5然后进行下取整</p>
 
     </article>
     <!-- license  -->
@@ -500,17 +429,12 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/02/13/关于junit发现的jar包问题/" title="关于junit发现的jar包问题">
-                    <div class="nextTitle">关于junit发现的jar包问题</div>
+                <a href="/2019/02/10/Hello world/" title="Hello world">
+                    <div class="nextTitle">Hello world</div>
                 </a>
             
         </li>
         <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/02/10/Hello world/" title="Hello world">
-                    <div class="prevTitle">Hello world</div>
-                </a>
             
         </li>
     </ul>
@@ -621,7 +545,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大佬的答案"><span class="toc-number">2.</span> <span class="toc-text">大佬的答案</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA虚拟机"><span class="toc-number">1.</span> <span class="toc-text">JAVA虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是java虚拟机？"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.什么是java虚拟机？</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
