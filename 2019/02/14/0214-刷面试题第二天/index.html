@@ -471,11 +471,9 @@ height:50vh;
 <li>对String对象的任何改变都不影响到原对象，相关的任何change操作都会生成新的对象。</li>
 <li>通过new来创建对象，创建出的一定是不同的对象，即使字符串的内容是相同的</li>
 <li>StringBuilder和StringBuffer类拥有的成员属性以及成员方法基本相同，区别是StringBuffer类的成员方法前面多了一个关键字：<code>synchronized</code>，不用多说，这个关键字是在多线程访问时起到安全保护作用的,也就是说StringBuffer是线程安全的</li>
-<li>执行效率:StringBuilder &gt; StringBuffer &gt; String.    当然这个是相对的，不一定在所有情况下都是这样,比如<code>String str = &quot;hello&quot;+ &quot;world&quot;</code>的效率就比<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder st  = <span class="keyword">new</span> StringBuilder().append(<span class="string">"hello"</span>).append(<span class="string">"world"</span>)</span><br></pre></td></tr></table></figure>
-</li>
+<li>执行效率:StringBuilder &gt; StringBuffer &gt; String.    当然这个是相对的，不一定在所有情况下都是这样,比如<strong>String str = “hello”+ “world”</strong>的效率就比<strong>StringBuilder st  = new StringBuilder().append(“hello”).append(“world”)</strong>要高</li>
 </ul>
 </blockquote>
-<p>要高</p>
 <p>看到了一个帖子,分析了String、StringBuffer、 StringBuilder三者区别</p>
 <blockquote>
 <p>地址：<a href="https://www.cnblogs.com/dolphin0520/p/3778589.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3778589.html</a></p>
@@ -631,10 +629,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
