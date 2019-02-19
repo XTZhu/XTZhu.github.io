@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>pipipig的无名小站</title>
+    <title>浅析session,cookie,sessionStorage,localStorage的区别及应用场景 · pipipig的无名小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">XTZhu&#39;s Tree hole.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">浅析session,cookie,sessionStorage,localStorage的区别及应用场景</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">XTZhu's Tree hole.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            浅析session,cookie,sessionStorage,localStorage的区别及应用场景
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/02/19</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,163 +393,103 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/19/0219-刷面试题第七天/">
-            
-                <span>0219_刷面试题第七天</span>
-        </a>
-        <div class="abstract-content">
-            0219_刷面试题第七天题目
-日期和时间(java.util.Calendar)
-打印昨天的当前时刻。
-比较一下Java和JavaSciprt。
-什么时候用断言（assert）？
-Error和Exception有什么区别？
-try{}里有一个return语句，那么紧跟在这个try后的finally{}里的代码会不会被执行，什么时候被执行，在return前还是后?
-Java语言如何进行异常处理，关键字：throws、throw、try、catch、finally分别如何使用？
-运行时异常与受检异常有何异同？
-列出一些你常见的运行时异常？
-阐述final、finally、finalize的区...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>浏览器的缓存机制提供了可以将用户数据存储在客户端上的方式，可以利用cookie,session等跟服务端进行数据交互。</p>
+<h2 id="一、cookie和session"><a href="#一、cookie和session" class="headerlink" title="一、cookie和session"></a>一、cookie和session</h2><p>cookie和session都是用来跟踪浏览器用户身份的会话方式。</p>
+<font color="orange">区别：</font>
+
+<p>1、<font color="orange">保持状态：</font><font color="blue">cookie</font>保存在浏览器端，<font color="blue">session</font>保存在服务器端</p>
+<p>2、使用方式：</p>
+<p>（1）cookie机制：如果不在浏览器中设置过期时间，cookie被保存在内存中，生命周期随浏览器的关闭而结束，这种cookie简称会话cookie。如果在浏览器中设置了cookie的过期时间，cookie被保存在硬盘中，关闭浏览器后，cookie数据仍然存在，直到过期时间结束才消失。</p>
+<pre><code>Cookie是服务器发给客户端的特殊信息，cookie是以文本的方式保存在客户端，每次请求时都带上它
+</code></pre><p>（2）session机制：当服务器收到请求需要创建session对象时，首先会检查客户端请求中是否包含sessionid。如果有sessionid，服务器将根据该id返回对应session对象。如果客户端请求中没有sessionid，服务器会创建新的session对象，并把sessionid在本次响应中返回给客户端。通常使用cookie方式存储sessionid到客户端，在交互中浏览器按照规则将sessionid发送给服务器。如果用户禁用cookie，则要使用URL重写，可以通过response.encodeURL(url) 进行实现；API对encodeURL的结束为，当浏览器支持Cookie时，url不做任何处理；当浏览器不支持Cookie的时候，将会重写URL将SessionID拼接到访问地址后。</p>
+<p>3、存储内容：cookie只能保存字符串类型，以文本的方式；session通过类似与Hashtable的数据结构来保存，能支持任何类型的对象(session中可含有多个对象)</p>
+<p>4、存储的大小：cookie：单个cookie保存的数据不能超过4kb；session大小没有限制。</p>
+<p>5、安全性：cookie：针对cookie所存在的攻击：Cookie欺骗，Cookie截获；session的安全性大于cookie。</p>
+<p>　　　　　　原因如下：（1）sessionID存储在cookie中，若要攻破session首先要攻破cookie；</p>
+<p>　　　　　　　　　　　（2）sessionID是要有人登录，或者启动session_start才会有，所以攻破cookie也不一定能得到sessionID；</p>
+<p>　　　　　　　　　　　（3）第二次启动session_start后，前一次的sessionID就是失效了，session过期后，sessionID也随之失效。</p>
+<p>　　　　　　　　　　　（4）sessionID是加密的</p>
+<p>　　　　　　　　　　　（5）综上所述，攻击者必须在短时间内攻破加密的sessionID，这很难。</p>
+<p>6、应用场景：</p>
+<p>cookie：（1）判断用户是否登陆过网站，以便下次登录时能够实现自动登录（或者记住密码）。如果我们删除cookie，则每次登录必须从新填写登录的相关信息。</p>
+<p>　　　　（2）保存上次登录的时间等信息。</p>
+<p>　　　　（3）保存上次查看的页面</p>
+<p>　　　　（4）浏览计数</p>
+<p><img src="../imgs/20190219-01.png" alt="示例"></p>
+<p>session：Session用于保存每个用户的专用信息，变量的值保存在服务器端，通过SessionID来区分不同的客户。</p>
+<p>　　（1）网上商城中的购物车</p>
+<p>　　（2）保存用户登录信息</p>
+<p>　　（3）将某些数据放入session中，供同一用户的不同页面使用</p>
+<p>　　（4）防止用户非法登录</p>
+<p> 7、缺点：cookie：（1）大小受限</p>
+<p>　　　　　　　　（2）用户可以操作（禁用）cookie，使功能受限</p>
+<p>　　　　　　　　（3）安全性较低</p>
+<p>　　　　　　　　（4）有些状态不可能保存在客户端。</p>
+<p>　　　　　　　　（5）每次访问都要传送cookie给服务器，浪费带宽。</p>
+<p>　　　　　　　　（6）cookie数据有路径（path）的概念，可以限制cookie只属于某个路径下。</p>
+<p> 　　　　session：（1）Session保存的东西越多，就越占用服务器内存，对于用户在线人数较多的网站，服务器的内存压力会比较大。</p>
+<p>　　　　　　　　（2）依赖于cookie（sessionID保存在cookie），如果禁用cookie，则要使用URL重写，不安全</p>
+<p>　　　　　　　　（3）创建Session变量有很大的随意性，可随时调用，不需要开发者做精确地处理，所以，过度使用session变量将会导致代码不可读而且不好维护。</p>
+<h2 id="二、WebStorage"><a href="#二、WebStorage" class="headerlink" title="二、WebStorage"></a>二、WebStorage</h2><p>WebStorage的目的是克服由cookie所带来的一些限制，当数据需要被严格控制在客户端时，不需要持续的将数据发回服务器。</p>
+<p>WebStorage两个主要目标：（1）提供一种在cookie之外存储会话数据的路径。（2）提供一种存储大量可以跨会话存在的数据的机制。</p>
+<p>HTML5的WebStorage提供了两种API：localStorage（本地存储）和sessionStorage（会话存储）。</p>
+<p>1、生命周期：localStorage:localStorage的生命周期是永久的，关闭页面或浏览器之后localStorage中的数据也不会消失。localStorage除非主动删除数据，否则数据永远不会消失。</p>
+<p>　　　　　　  sessionStorage的生命周期是在仅在当前会话下有效。sessionStorage引入了一个“浏览器窗口”的概念，sessionStorage是在同源的窗口中始终存在的数据。只要这个浏览器窗口没有关闭，即使刷新页面或者进入同源另一个页面，数据依然存在。但是sessionStorage在关闭了浏览器窗口后就会被销毁。同时独立的打开同一个窗口同一个页面，sessionStorage也是不一样的。</p>
+<p>2、存储大小：localStorage和sessionStorage的存储数据大小一般都是：5MB</p>
+<p>3、存储位置：localStorage和sessionStorage都保存在客户端，不与服务器进行交互通信。</p>
+<p>4、存储内容类型：localStorage和sessionStorage只能存储字符串类型，对于复杂的对象可以使用ECMAScript提供的JSON对象的stringify和parse来处理</p>
+<p>5、获取方式：localStorage：window.localStorage;；sessionStorage：window.sessionStorage;。</p>
+<p>6、应用场景：localStoragese：常用于长期登录（+判断用户是否已登录），适合长期保存在本地的数据。sessionStorage：敏感账号一次性登录；</p>
+<p>WebStorage的优点：</p>
+<p>（1）存储空间更大：cookie为4KB，而WebStorage是5MB；</p>
+<p>（2）节省网络流量：WebStorage不会传送到服务器，存储在本地的数据可以直接获取，也不会像cookie一样美词请求都会传送到服务器，所以减少了客户端和服务器端的交互，节省了网络流量；</p>
+<p>（3）对于那种只需要在用户浏览一组页面期间保存而关闭浏览器后就可以丢弃的数据，sessionStorage会非常方便；</p>
+<p>（4）快速显示：有的数据存储在WebStorage上，再加上浏览器本身的缓存。获取数据时可以从本地获取会比从服务器端获取快得多，所以速度更快；</p>
+<p>（5）安全性：WebStorage不会随着HTTP header发送到服务器端，所以安全性相对于cookie来说比较高一些，不会担心截获，但是仍然存在伪造问题；</p>
+<p>（6）WebStorage提供了一些方法，数据操作比cookie方便；</p>
+<pre><code>setItem (key, value) ——  保存数据，以键值对的方式储存信息。
+
+getItem (key) ——  获取数据，将键值传入，即可获取到对应的value值。
+
+removeItem (key) ——  删除单个数据，根据键值移除对应的信息。
+
+clear () ——  删除所有的数据
+
+key (index) —— 获取某个索引的key
+</code></pre>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/16/0216-刷面试题第四天/">
-            
-                <span>0216_刷面试题第四天</span>
-        </a>
-        <div class="abstract-content">
-            题目
-描述一下JVM加载class文件的原理机制？  
-char 型变量中能不能存贮一个中文汉字，为什么？  
-抽象类（abstract class）和接口（interface）有什么异同？
-静态嵌套类(Static Nested Class)和内部类（Inner Class）的不同？
-Java 中会存在内存泄漏吗，请简单描述。 **
-抽象的（abstract）方法是否可同时是静态的（static）,是否可同时是本地方法（native），是否可同时被synchronized修饰？
-阐述静态变量和实例变量的区别。
-是否可以从一个静态（static）方法内部发出对非静态（non-static...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/14/0214-刷面试题第二天/">
-            
-                <span>0214_刷面试题第二天</span>
-        </a>
-        <div class="abstract-content">
-            #第二天 2019-02-14 21:03:58
-题目
-switch 是否能作用在byte 上，是否能作用在long 上，是否能作用在String上？ 
-用最有效率的方法计算2乘以8？ 
-数组有没有length()方法？String有没有length()方法？ 
-在Java中，如何跳出当前的多重嵌套循环？ 
-构造器（constructor）是否可被重写（override）？ 
-两个对象值相同(x.equals(y) == true)，但却可有不同的hash code，这句话对不对？
-是否可以继承String类？ 
-当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/13/0213-刷面试题第一天/">
-            
-                <span>0213_刷面试题第一天</span>
-        </a>
-        <div class="abstract-content">
-            第一天 2019-02-13 19:05:58题目
-面向对象的特征有哪些方面？
-访问修饰符public,private,protected,以及不写（默认）时的区别？
-String 是最基本的数据类型吗？
-float f=3.4;是否正确？
-short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗？
-Java有没有goto？
-int和Integer有什么区别？
-&amp;和&amp;&amp;的区别？
-解释内存中的栈(stack)、堆(heap)和方法区(method area)的用法。
-Math.round(11.5) 等于多少？M...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/02/19/初级脚本算法/" title="初级脚本算法">
+                    <div class="prevTitle">初级脚本算法</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -572,6 +567,24 @@ Math.round(11.5) 等于多少？M...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、cookie和session"><span class="toc-number">1.</span> <span class="toc-text">一、cookie和session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、WebStorage"><span class="toc-number">2.</span> <span class="toc-text">二、WebStorage</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -827,6 +840,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
