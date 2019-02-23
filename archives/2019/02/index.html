@@ -346,6 +346,48 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/02/23/java8的JVM持久代——何去何从？/">
+            
+                <span>java8的JVM持久代--何去何从？</span>
+        </a>
+        <div class="abstract-content">
+            
+原帖地址： https://blog.csdn.net/yechaodechuntian/article/details/40341975
+
+基础知识JVM只不过是运行在你系统上的另一个进程而已，这一切的魔法始于一个java命令。正如任何一个操作系统进程那样，JVM也需要内存来完成它的运行时操作。记住——JVM本身是硬件的一层软件抽象，在这之上才能够运行Java程序，也才有了我们所吹嘘的平台独立性以及WORA（一次编写，处处运行）。
+快速过一遍JVM的内存结构正如虚拟机规范所说的那样，JVM中的内存分为5个虚拟的区域。
+
+堆
+方法区（非堆）
+JVM栈
+本地栈
+PC寄存器
+
+堆
+你的Ja...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JVM java8">JVM java8</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/02/20/初级脚本算法-2/">
             
                 <span>初级脚本算法-2</span>
@@ -559,6 +601,31 @@ switch 是否能作用在byte 上，是否能作用在long 上，是否能作用
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/02/13/关于junit发现的jar包问题/">
+            
+                <span>关于junit发现的jar包问题</span>
+        </a>
+        <div class="abstract-content">
+            关于junit发现的jar包问题首先需要引入junit的jar包1import org.junit.Test;
+然后在需要进行单元测试的方法上加上注解 @Test
+但是在Run junit的时候，却报了以下异常123456789101112131415161718192021222324252627282930313233343536373839java.lang.NoClassDefFoundError: org/hamcrest/SelfDescribing	at java.lang.ClassLoader.defineClass1(Native Method)	at java.la...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/13</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/02/13/0213-面试题1-10/">
             
                 <span>0213_面试题1-10</span>
@@ -598,31 +665,6 @@ Math.round(11.5) 等于多少？M...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/02/13/关于junit发现的jar包问题/">
-            
-                <span>关于junit发现的jar包问题</span>
-        </a>
-        <div class="abstract-content">
-            关于junit发现的jar包问题首先需要引入junit的jar包1import org.junit.Test;
-然后在需要进行单元测试的方法上加上注解 @Test
-但是在Run junit的时候，却报了以下异常123456789101112131415161718192021222324252627282930313233343536373839java.lang.NoClassDefFoundError: org/hamcrest/SelfDescribing	at java.lang.ClassLoader.defineClass1(Native Method)	at java.la...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/13</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2019/02/10/Hello world/">
             
                 <span>Hello world</span>
@@ -646,47 +688,11 @@ stay hungry， stay foolish.
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/10/JAVA虚拟机/">
-            
-                <span>JAVA 虚拟机 课堂笔记</span>
-        </a>
-        <div class="abstract-content">
-            JAVA虚拟机1.什么是java虚拟机？指以软件的方式模拟具有完整硬件系统功能、运行在一个完全隔离环境中的完整计算机系统，是物理机的软件实现。
-Class files =&gt;     类加载子系统 =&gt;  运行时数据区（内存）
-内存： 堆、Java栈、本地方法栈、方法区、程序计数器。
-
-堆、方法区：
-
-
-Java栈、本地方法栈、程序计数器：
-
-
-本地方法栈（线程私有）：登记native方法，在Execution Engine执行时加载本地方法库
-程序计数器（线程私有）：就是一个指针，指向方法区中的方法字节码（用来存储指向下一条指令的地址，也即将要执行的指令代码），由执行引擎读取...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="虚拟机">虚拟机</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/02/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/02/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -897,10 +903,9 @@ Java栈、本地方法栈、程序计数器：
     
     
     
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 10
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -913,6 +918,11 @@ Java栈、本地方法栈、程序计数器：
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/2019/02/23/java8的JVM持久代——何去何从？/">java8的JVM持久代--何去何从？</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -946,12 +956,12 @@ Java栈、本地方法栈、程序计数器：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/关于junit发现的jar包问题/">关于junit发现的jar包问题</a>
+            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/0213-面试题1-10/">0213_面试题1-10</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/0213-面试题1-10/">0213_面试题1-10</a>
+            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/关于junit发现的jar包问题/">关于junit发现的jar包问题</a>
         </li>
     
     
@@ -970,6 +980,8 @@ Java栈、本地方法栈、程序计数器：
     <div class="sidebar-tags-name">
     
         <span class="sidebar-tag-name" data-tags="java面试题"><span class="iconfont-archer">&#xe606;</span>java面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="JVM java8"><span class="iconfont-archer">&#xe606;</span>JVM java8</span>
     
         <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
     
