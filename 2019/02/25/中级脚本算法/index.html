@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>pipipig的无名小站</title>
+    <title>中级脚本算法 · pipipig的无名小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">XTZhu&#39;s Tree hole.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">中级脚本算法</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">XTZhu's Tree hole.</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            中级脚本算法
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">152</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/02/25</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,147 +399,48 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/13/关于junit发现的jar包问题/">
-            
-                <span>关于junit发现的jar包问题</span>
-        </a>
-        <div class="abstract-content">
-            关于junit发现的jar包问题首先需要引入junit的jar包1import org.junit.Test;
-然后在需要进行单元测试的方法上加上注解 @Test
-但是在Run junit的时候，却报了以下异常123456789101112131415161718192021222324252627282930313233343536373839java.lang.NoClassDefFoundError: org/hamcrest/SelfDescribing	at java.lang.ClassLoader.defineClass1(Native Method)	at java.la...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/13</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="中级脚本算法"><a href="#中级脚本算法" class="headerlink" title="中级脚本算法"></a>中级脚本算法</h1><h2 id="1-区间求值算法挑战"><a href="#1-区间求值算法挑战" class="headerlink" title="1. 区间求值算法挑战"></a>1. 区间求值算法挑战</h2><p>我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。</p>
+<p>最小的数字并非总在最前面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> num1 = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> num2 = arr[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(num1&gt;num2)&#123;</span><br><span class="line">        snum = num1-num2;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      snum = num2-num1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (num1+num2)*(snum+<span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">sumAll([<span class="number">1</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = <span class="built_in">Math</span>.min(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> newArr = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=max-min;i++)&#123;</span><br><span class="line">newArr[i] = min+i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> newArr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a+b;&#125;);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">sumAll([<span class="number">1</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/13/0213-面试题1-10/">
-            
-                <span>0213_面试题1-10</span>
-        </a>
-        <div class="abstract-content">
-            第一天 2019-02-13 19:05:58题目
-面向对象的特征有哪些方面？
-访问修饰符public,private,protected,以及不写（默认）时的区别？
-String 是最基本的数据类型吗？
-float f=3.4;是否正确？
-short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗？
-Java有没有goto？
-int和Integer有什么区别？
-&amp;和&amp;&amp;的区别？
-解释内存中的栈(stack)、堆(heap)和方法区(method area)的用法。
-Math.round(11.5) 等于多少？M...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/10/JAVA虚拟机/">
-            
-                <span>JAVA 虚拟机 课堂笔记</span>
-        </a>
-        <div class="abstract-content">
-            JAVA虚拟机1.什么是java虚拟机？指以软件的方式模拟具有完整硬件系统功能、运行在一个完全隔离环境中的完整计算机系统，是物理机的软件实现。
-Class files =&gt;     类加载子系统 =&gt;  运行时数据区（内存）
-内存： 堆、Java栈、本地方法栈、方法区、程序计数器。
-
-堆、方法区：
-
-
-Java栈、本地方法栈、程序计数器：
-
-
-本地方法栈（线程私有）：登记native方法，在Execution Engine执行时加载本地方法库
-程序计数器（线程私有）：就是一个指针，指向方法区中的方法字节码（用来存储指向下一条指令的地址，也即将要执行的指令代码），由执行引擎读取...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="虚拟机">虚拟机</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/10/Hello world/">
-            
-                <span>Hello world</span>
-        </a>
-        <div class="abstract-content">
-            Hello world
-stay hungry， stay foolish.
-
-求知若饥 虚心若愚
-
-这里是pipipig的无名小站！谢谢你来这里。
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/02/25/0225-面试题50-60/" title="0225_面试题50-60">
+                    <div class="nextTitle">0225_面试题50-60</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/02/25/初级脚本算法-3/" title="初级脚本算法-3">
+                    <div class="prevTitle">初级脚本算法-3</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -556,6 +518,24 @@ stay hungry， stay foolish.
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#中级脚本算法"><span class="toc-number">1.</span> <span class="toc-text">中级脚本算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-区间求值算法挑战"><span class="toc-number">1.1.</span> <span class="toc-text">1. 区间求值算法挑战</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -887,6 +867,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
