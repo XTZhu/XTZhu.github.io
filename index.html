@@ -359,9 +359,60 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/03/20/0320-70-80/">
+        <a class="abstract-title" href="/2019/04/08/TCP三次握手与四次挥手/">
             
-                <span>0320_61-80</span>
+                <span>TCP三次握手与四次挥手</span>
+        </a>
+        <div class="abstract-content">
+            TCP的连接建立是一个三次握手过程，目的是为了通信双方确认开始序号，以便后续通信的有序进行。主要步骤如下：
+
+
+连接开始时，连接建立方(Client)发送SYN包，并包含了自己的初始序号a；
+
+
+
+连接接受方(Server)收到SYN包以后会回复一个SYN包，其中包含了对上一个a包
+
+
+
+的回应信息ACK，回应的序号为下一个希望收到包的序号，即a＋1，然后还包含
+了自己的初始序号b；
+
+
+连接建立方(Client)收到回应的SYN包以后，回复一个ACK包做响应，其中包含了
+
+
+
+下一个希望收到包的序号即b＋1。
+TCP终止连接的四次握手过程如下：
+
+首先进行关闭的一方（即发送第一个FIN...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TCP">TCP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/03/20/面试题70-80/">
+            
+                <span>面试题61-80</span>
         </a>
         <div class="abstract-content">
             题目
@@ -377,7 +428,7 @@ Java中有几种类型的流？
 写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。
 如何用Java代码列出一个目录下所有的文件？
 用Java的套接字编程实现一个多线程的回显（echo）服务器？
-阐述...
+XM...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -661,43 +712,6 @@ Java语言如何进行异常处理，关键字：throws、throw、try、catch、
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/16/0216-面试题20-40/">
-            
-                <span>0216_面试题20-40</span>
-        </a>
-        <div class="abstract-content">
-            题目
-描述一下JVM加载class文件的原理机制？  
-char 型变量中能不能存贮一个中文汉字，为什么？  
-抽象类（abstract class）和接口（interface）有什么异同？
-静态嵌套类(Static Nested Class)和内部类（Inner Class）的不同？
-Java 中会存在内存泄漏吗，请简单描述。 **
-抽象的（abstract）方法是否可同时是静态的（static）,是否可同时是本地方法（native），是否可同时被synchronized修饰？
-阐述静态变量和实例变量的区别。
-是否可以从一个静态（static）方法内部发出对非静态（non-static...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/16</span>
             </div>
             <!-- tags  -->
             
@@ -1071,9 +1085,20 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 15
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -1089,7 +1114,12 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/0320-70-80/">0320_61-80</a>
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2019/04/08/TCP三次握手与四次挥手/">TCP三次握手与四次挥手</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href="/2019/03/20/面试题70-80/">面试题61-80</a>
         </li>
     
     
@@ -1144,22 +1174,22 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/0213-面试题1-10/">0213_面试题1-10</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/关于junit发现的jar包问题/">关于junit发现的jar包问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
+            <span class="archive-post-date">02/13</span><a class="archive-post-title" href="/2019/02/13/0213-面试题1-10/">0213_面试题1-10</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/Hello world/">Hello world</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
         </li>
     
     </ul></div>
@@ -1171,9 +1201,11 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
         <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
     
+        <span class="sidebar-tag-name" data-tags="JVM java8"><span class="iconfont-archer">&#xe606;</span>JVM java8</span>
+    
         <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
     
-        <span class="sidebar-tag-name" data-tags="JVM java8"><span class="iconfont-archer">&#xe606;</span>JVM java8</span>
+        <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
