@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>0214_面试题10-20 · pipipig的无名小站</title>
+    <title>数据库事务(Transaction) · pipipig的无名小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">XTZhu&#39;s Tree hole.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">0214_面试题10-20</a>
+                <a href="#" class="post-name">数据库事务(Transaction)</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            0214_面试题10-20
+            数据库事务(Transaction)
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,22 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据库">数据库</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MySQL/Orcale">MySQL/Orcale</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="事务">事务</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.3k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/02/14</span>
+                    <span class="post-intro-time">2019/04/14</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,99 +405,203 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>#第二天 2019-02-14 21:03:58</p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol>
-<li><strong>switch 是否能作用在byte 上，是否能作用在long 上，是否能作用在String上？ </strong></li>
-<li><strong>用最有效率的方法计算2乘以8？ </strong></li>
-<li><strong>数组有没有length()方法？String有没有length()方法？ </strong></li>
-<li><strong>在Java中，如何跳出当前的多重嵌套循环？ </strong></li>
-<li><strong>构造器（constructor）是否可被重写（override）？ </strong></li>
-<li><strong>两个对象值相同(x.equals(y) == true)，但却可有不同的hash code，这句话对不对？</strong></li>
-<li><strong>是否可以继承String类？ </strong></li>
-<li><strong>当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底是值传递还是引用传递？ </strong></li>
-<li><strong>String和StringBuilder、StringBuffer的区别？ </strong></li>
-<li><strong>重载（Overload）和重写（Override）的区别。重载的方法能否根据返回类型进行区分？ </strong></li>
+        <h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><ul>
+<li><em>Transaction</em></li>
+<li><blockquote>
+<p>数据库事务(transaction)就是一组SQL语句，这组SQL语句是一个<strong>逻辑工作单元</strong>(logical unit of work). 可以认为事务就是一组不可分割的SQL语句，其结果应该作为整体永久性地修改数据库的内容，或者作为整体取消对数据库的修改。                    </p>
+<blockquote>
+<p>(精通Oracle Database 12c SQL&amp;PL/SQL编程 269)</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>数据库事务的一个例子就是将钱从一个银行账户转到另一个银行账户中去。此时通常包含两个操作：一条UPDATE语句负责从一个银行账户的总额中减去一定的钱数，另一条UPDATE语句负责向另一个银行账户中增加相应的钱数。减少和增加这两个操作必须永久性的记录到数据库中，否则钱就会丢失。如果钱的转账有问题，就必须同时取消减少和增加 这两个操作。这个简单的例子只使用了两条UPDATE语句，然而事务可以包含多条INSERT、UPDATE、和DELETE语句。</p>
+</li>
+<li><p>换言之，事务可以概括为：一个最小的不可再分的工作单元；通常一个事务对应一个完整的业务(例如银行账户转账业务，该业务就是一个最小的工作单元)</p>
+</li>
+<li><p>一个完整的业务需要批量的DML(<code>insert</code>、<code>update</code>、<code>delete</code>)语句共同联合完成</p>
+</li>
+<li>事务只和DML语句有关，或者说DML语句才有事务。这个和业务逻辑有关，业务逻辑不同，DML语句的个数不同</li>
+</ul>
+<h2 id="事务的提交和回滚"><a href="#事务的提交和回滚" class="headerlink" title="事务的提交和回滚"></a>事务的提交和回滚</h2><p>要永久性的记录事务中的SQL语句的结果，需要执行<code>COMMIT</code>语句。<br>要取消SQL语句的结果，需要执行<code>ROLLBACK</code>语句，将所有行重新设置为原始状态。</p>
+<h2 id="事务的开始与结束"><a href="#事务的开始与结束" class="headerlink" title="事务的开始与结束"></a>事务的开始与结束</h2><p>事务是用来分割SQL语句的逻辑工作单元。事务既有起点，也有终点；<br><strong>当下列事件之一发生时，事务就开始了：</strong></p>
+<ul>
+<li>连接到数据库，并执行一条DML语句(INSERT、UPDATE、或DELETE)。注意，<code>MERGE</code>也是DML语句。</li>
+<li>前一个事务结束后，由输入了另一条DML语句。</li>
+</ul>
+<p><strong>当下列事件之一发生时，事务就结束了：</strong></p>
+<ul>
+<li>执行<code>COMMIT</code>或<code>ROLLBACK</code>语句。</li>
+<li>执行一条<code>DDL</code>语句，例如<code>CREATE TABLE</code>语句；在这种情况下，会自动执行COMMIT语句。</li>
+<li>执行一条<code>DCL</code>语句，例如<code>GRANT</code>语句；在这种情况下会自动执行COMMIT语句。<blockquote>
+<p>注意： 自动的<em>COMMIT</em>语句被加在<em>DDL</em>和<em>DCL</em>语句前，因此即使<em>DDL</em>和<em>DCL</em>语句没有成功，也会执行<em>COMMIT</em>语句。</p>
+</blockquote>
+</li>
+<li>断开数据库的连接。断开连接时会执行<code>COMMIT</code>语句，但是当意外中止(如程序崩溃)时，会自动执行<code>ROLLBACK</code>语句。这适用于任何可能访问数据库的程序。例如，如果编写了一个可以访问数据库的Java程序，而这个程序崩溃了，就会自动执行ROLLBACK语句。</li>
+<li>执行了一条<code>DML</code>语句，该语句却失败了；在这种情况下，会自动为这条无效的DML语句执行ROLLBACK语句。</li>
+</ul>
+<p><strong>提示 ：</strong><br>    <em>不显式提交或回滚被认为是不好的编程习惯，因此确保在每个事务后面都要执行COMMIT或者ROLLBACK语句。</em></p>
+<h2 id="保存点"><a href="#保存点" class="headerlink" title="保存点"></a>保存点</h2><p>在事务中的任何地方都可以设置<strong>保存点(savepoint)</strong>，这样可以将修改回滚到保存点处。如果 有一个很大的事务，这将非常有用，因为这样如果在保存点后进行了误操作，并不需要将整个事务一直回滚到最开头。但是保存点不能肆意乱用；最好是重新调整一下事务的结构，将其转换为较小的事务。</p>
+<h2 id="事务与数据库底层数据"><a href="#事务与数据库底层数据" class="headerlink" title="事务与数据库底层数据"></a>事务与数据库底层数据</h2><p>在事务进行过程中，未结束之前，DML语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事物结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据</p>
+<h1 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h1><p>在前面我们将事务定义为逻辑工作单元，即一组相关的SQL语句，它们要么作为一个单位被<strong>提交</strong>，要么作为一个单位被<strong>回滚</strong>。数据库理论对事务采用了更严格的定义，说明事务有4个基本的特征，称为ACID特性。</p>
+<ul>
+<li><strong>原子性(Atomic)：</strong>    事务是原子的，这就是说事务中包含的所有SQL语句组成一个工作单元。</li>
+<li><strong>一致性(Consist)：</strong>    事务必须确保数据的状态保持一致，这就是说事务开始时，数据库的状态是一致的；在事务结束后，数据库的状态也必须是一致的。</li>
+<li><strong>隔离性(Isolated)：</strong>  多个事务可以独立运行，而不会彼此产生影响。</li>
+<li><strong>持久性(Durable)：</strong>    一旦事务被提交之后，数据库的变化就会被永久保存下来，即使运行数据库的软件的机器后来崩溃也是如此。</li>
+</ul>
+<h1 id="并发事务"><a href="#并发事务" class="headerlink" title="并发事务"></a>并发事务</h1><p>Oracle数据库软件支持多个用户同时与数据库进行交互，每个用户都可以同时运行自己的事务。这种事务就称为并发事务(concurrent transaction)。</p>
+<p>如果用户同时运行多个事务，而这些事务都对同一个表产生影响，那么这些事务的影响都是独立的，知道执行一条COMMIT语句时才会彼此产生影响。</p>
+<p>下面两个事务T1和T2都会访问customers表，看下面这个例子展示事务的隔离性：</p>
+<pre><code>1. T1和T2分别执行SELECT语句，检索customers表的所有行
+2. T1执行INSERT语句，向customers表中插入数据，但此时T1并不执行COMMIT语句。
+3. T2再执行一条SELECT语句，检索结果和步骤1中相同，T2没有“看到”T1在步骤2中插入的新行。
+4. T1最后执行COMMIT语句，永久性的保存了插入的新行。
+5. T2执行一条SELECT语句，最终看到了T1插入的新行。
+</code></pre><p>以上过程可以归纳如下： 知道T1提交自己对数据库所做的修改之后，T2才能看得到T1对数据库所做的修改。这是事务间隔离性的默认级别。<strong><em>隔离性级别可以修改</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>事务T1</th>
+<th>事务T2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1) <strong>SELECT * FROM customers;</strong></td>
+<td>(2) <strong>SELECT * FROM customers;</strong></td>
+</tr>
+<tr>
+<td>(3) <strong>INSERT INTO customers(xx, xx, xx) VALUES (XX, XX, XX);</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>(4)<strong>UPDATE customers SET xx = XX WHERE customer_xx = X;</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>(5) <strong>SELECT * FROM customers;</strong>返回的结果集中包含新插入的行和修改后的行</td>
+<td>(6) <strong>SELECT * FROM customers;</strong>返回的结果集中不包含事务T1插入和修改后的行，而是在步骤2中检索出来的原来的行</td>
+</tr>
+<tr>
+<td>(7) <strong>COMMIT;</strong>提交新行和所做的修改</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(8)<strong>SELECT * FROM customers;</strong> 返回的结果集中包含T1在步骤3和步骤4中插入和修改的行</td>
+</tr>
+</tbody>
+</table>
+<h1 id="事务锁"><a href="#事务锁" class="headerlink" title="事务锁"></a>事务锁</h1><p>要实现并发事务，Oracle 数据库软件必须确保表中的数据一直有效。这可以通过<strong>锁(lock)</strong>来实现。下面这个例子：事务T1和T2都试图修改customers表中的顾客#1：</p>
+<ol>
+<li>T1执行一条UPDATE语句，修改顾客#1,但是T1并没有执行COMMIT语句。此时就称T1对该行“加锁”了。</li>
+<li>T2也试图执行一条UPDATE语句，修改顾客#1，但是由于该行早已被T1加锁了，因此T2现在就不能获得该行的锁。T2的UPDATE语句必须一直等待，直到T1结束并释放该行上的锁为止。</li>
+<li>T1执行COMMIT语句并结束，从而释放该行上的锁。</li>
+<li>T2获得该行上的锁，并执行UPDATE语句。T2在获得该行上的锁后一直持有，直到T2结束为止。</li>
 </ol>
+<p>以上过程概括为： 当一个事务已经拥有某一行上的锁时，另外一个事务不能获得该行上的锁。</p>
 <blockquote>
-<p>博客原文：<a href="https://blog.csdn.net/jackfrued/article/details/44921941" target="_blank" rel="noopener">https://blog.csdn.net/jackfrued/article/details/44921941</a> </p>
+<p><strong>注意：</strong><br>理解默认加锁机制的最简单方法如下：<code>读程序(reader)</code>不会阻碍<code>读程序</code>；<code>写程序(writer)</code>不会阻碍<code>读程序</code>；只有在试图对相同的行进行修改时，<code>写程序</code>才会阻碍<code>写程序</code>。</p>
 </blockquote>
-<h1 id="大佬的答案"><a href="#大佬的答案" class="headerlink" title="大佬的答案"></a>大佬的答案</h1><p>1.在Java 5以前，switch(expr)中，expr只能是byte、short、char、int。从Java 5开始，Java中引入了枚举类型，expr也可以是enum类型，从Java 7开始，expr还可以是字符串（String）</p>
-<blockquote>
-<p>但是长整型（long）在目前所有的版本中都是不可以的。</p>
-</blockquote>
-<p>2.移位运算 <code>2 &lt;&lt; 3</code></p>
-<blockquote>
-<p>0000 0010  =&gt; 0001 0000 </p>
-</blockquote>
-<blockquote>
-<p>左移相当于乘以2的3次方， 右移是除以</p>
-</blockquote>
-<blockquote>
-<p>补充：我们为编写的类重写hashCode方法时，可能会看到如下所示的代码，其实我们不太理解为什么要使用这样的乘法运算来产生哈希码（散列码），而且为什么这个数是个素数，为什么通常选择31这个数？前两个问题的答案你可以自己百度一下，选择31是因为可以用移位和减法运算来代替乘法，从而得到更好的性能。说到这里你可能已经想到了：31 * num 等价于(num &lt;&lt; 5) - num，左移5位相当于乘以2的5次方再减去自身就相当于乘以31，现在的VM都能自动完成这个优化</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneNumber</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> areaCode;</span><br><span class="line">    <span class="keyword">private</span> String prefix;</span><br><span class="line">    <span class="keyword">private</span> String lineNumber;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> prime = <span class="number">31</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        result = prime * result + areaCode;</span><br><span class="line">        result = prime * result</span><br><span class="line">                + ((lineNumber == <span class="keyword">null</span>) ? <span class="number">0</span> : lineNumber.hashCode());</span><br><span class="line">        result = prime * result + ((prefix == <span class="keyword">null</span>) ? <span class="number">0</span> : prefix.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == obj)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (getClass() != obj.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        PhoneNumber other = (PhoneNumber) obj;</span><br><span class="line">        <span class="keyword">if</span> (areaCode != other.areaCode)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (lineNumber == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (other.lineNumber != <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!lineNumber.equals(other.lineNumber))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (prefix == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (other.prefix != <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!prefix.equals(other.prefix))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.数组没有<code>length()</code>方法，只有<code>length</code>属性，String是有<code>length()</code>方法的。JavaScript中，获得字符串的长度是通过length属性得到的，这一点容易和Java混淆。</p>
-<p>4.在最外层定义一个标记如A，用<code>break</code>可以跳出多重循环。</p>
-<blockquote>
-<p>（Java中支持带标签的<code>break</code>和<code>continue</code>语句，作用有点类似于C和C++中的goto语句，但是就像要避免使用goto一样，应该避免使用带标签的<code>break</code>和<code>continue</code>，因为它不会让你的程序变得更优雅，很多时候甚至有相反的作用，所以这种语法其实不知道更好）</p>
-</blockquote>
-<p>5.构造器不可以被继承，所以不能被重写，但是可以被重载</p>
-<p>6.不对，如果两个对象x和y满足  <em>x.equals(y)==true</em><br>那么他们的哈希码（hash code）应该相同。</p>
-<p>Java对于eqauls方法和hashCode方法是这样规定的：(1)如果两个对象相同（equals方法返回true），那么它们的hashCode值一定要相同；(2)如果两个对象的hashCode相同，它们并不一定相同。当然，你未必要按照要求去做，但是如果你违背了上述原则就会发现在使用容器时，相同的对象可以出现在Set集合中，同时增加新元素的效率会大大下降（对于使用哈希存储的系统，如果哈希码频繁的冲突将会造成存取性能急剧下降）。</p>
-<blockquote>
-<p>补充：关于equals和hashCode方法，很多Java程序都知道，但很多人也就是仅仅知道而已，在Joshua Bloch的大作《Effective Java》（很多软件公司，《Effective Java》、《Java编程思想》以及《重构：改善既有代码质量》是Java程序员必看书籍，如果你还没看过，那就赶紧去亚马逊买一本吧）中是这样介绍equals方法的：首先equals方法必须满足自反性（x.equals(x)必须返回true）、对称性（x.equals(y)返回true时，y.equals(x)也必须返回true）、传递性（x.equals(y)和y.equals(z)都返回true时，x.equals(z)也必须返回true）和一致性（当x和y引用的对象信息没有被修改时，多次调用x.equals(y)应该得到同样的返回值），而且对于任何非null值的引用x，x.equals(null)必须返回false。实现高质量的equals方法的诀窍包括：1. 使用==操作符检查”参数是否为这个对象的引用”；2. 使用instanceof操作符检查”参数是否为正确的类型”；3. 对于类中的关键属性，检查参数传入对象的属性是否与之相匹配；4. 编写完equals方法后，问自己它是否满足对称性、传递性、一致性；5. 重写equals时总是要重写hashCode；6. 不要将equals方法参数中的Object对象替换为其他的类型，在重写时不要忘掉<code>@Override</code>注解。</p>
-</blockquote>
-<p>7.不可以，因为String 类是final类，不可以被继承。</p>
-<blockquote>
-<p>补充：继承String本身就是一个错误的行为，对String类型最好的重用方式是关联关系（Has-A）和依赖关系（Use-A）而不是继承关系（Is-A）。</p>
-</blockquote>
-<p>8.是值传递。Java语言的方法调用只支持参数的值传递。当一个对象实例作为一个参数被传递到方法中时，参数的值就是对该对象的引用。对象的属性可以在被调用过程中被改变，但对对象引用的改变是不会影响到调用者的。C++和C#中可以通过传引用或传输出参数来改变传入的参数的值。在C#中可以编写如下所示的代码，但是在Java中却做不到。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace CS01 &#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Program</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(ref <span class="keyword">int</span> x, ref <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = x;</span><br><span class="line">            x = y;</span><br><span class="line">            y = temp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span> <span class="params">(string[] args)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">10</span>;</span><br><span class="line">            swap (ref a, ref b);</span><br><span class="line">            <span class="comment">// a = 10, b = 5;</span></span><br><span class="line">            Console.WriteLine (<span class="string">"a = &#123;0&#125;, b = &#123;1&#125;"</span>, a, b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>说明：Java中没有传引用实在是非常的不方便，这一点在Java 8中仍然没有得到改进，正是如此在Java编写的代码中才会出现大量的Wrapper类（将需要通过方法调用修改的引用置于一个Wrapper类中，再将Wrapper对象传入方法），这样的做法只会让代码变得臃肿，尤其是让从C和C++转型为Java程序员的开发者无法容忍。</p>
-</blockquote>
-<p>9.<br>Java平台提供了两种类型的字符串：<code>String</code>和<code>StringBuffer</code>/<code>StringBuilder</code>，它们可以储存和操作字符串。其中String是只读字符串，也就意味着String引用的字符串内容是不能被改变的。而<strong>StringBuffer</strong>/<strong>StringBuilder</strong>类表示的字符串对象可以直接进行修改。<strong>StringBuilder</strong>是Java 5中引入的，它和<strong>StringBuffer</strong>的方法完全相同，区别在于它是在单线程环境下使用的，因为它的所有方面都没有被<code>synchronized</code>修饰，因此它的效率也比<strong>StringBuffer</strong>要高。</p>
-<blockquote>
-<p>面试题1 - 什么情况下用+运算符进行字符串连接比调用StringBuffer/StringBuilder对象的append方法连接字符串性能更好？</p>
-</blockquote>
-<blockquote>
-<p>面试题2 - 请说出下面程序的输出。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringEqualTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s1 = <span class="string">"Programming"</span>;</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">"Programming"</span>);</span><br><span class="line">        String s3 = <span class="string">"Program"</span>;</span><br><span class="line">        String s4 = <span class="string">"ming"</span>;</span><br><span class="line">        String s5 = <span class="string">"Program"</span> + <span class="string">"ming"</span>;</span><br><span class="line">        String s6 = s3 + s4;</span><br><span class="line">        System.out.println(s1 == s2);</span><br><span class="line">        System.out.println(s1 == s5);</span><br><span class="line">        System.out.println(s1 == s6);</span><br><span class="line">        System.out.println(s1 == s6.intern());</span><br><span class="line">        System.out.println(s2 == s2.intern());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>补充：解答上面的面试题需要清除两点：</p>
+<h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>在SQL的标准中，定义了四种隔离级别。每一种级别都规定了，在一个事务中所做的修改，哪些在事务内和事务间是可见的，哪些是不可见的。低级别的隔离可以执行更高级别的并发，性能好，但是会出现脏读和幻读的现象。首先，我们从三个基础的概念说起：</p>
 <ul>
-<li>String对象的intern方法会得到字符串对象在常量池中对应的版本的引用（如果常量池中有一个字符串与String对象的equals结果是true），如果常量池中没有对应的字符串，则该字符串将被添加到常量池中，然后返回常量池中字符串的引用；</li>
-<li>字符串的+操作其本质是创建了StringBuilder对象进行<code>append</code>操作，然后将拼接后的StringBuilder对象用<code>toString</code>方法处理成String对象，这一点可以用<code>javap -c StringEqualTest.class</code>命令获得class文件对应的JVM字节码指令就可以看出来。</li>
+<li><p><strong>脏读（dirty read）：</strong>两个事务，一个事务读取到了另一个事务未提交的数据，这便是脏读。</p>
+</li>
+<li><p><strong>幻读（phantom read）：</strong>两个事务，事务A与事务B，事务A在自己执行的过程中，执行了两次相同查询，第一次查询事务B未提交，第二次查询事务B已提交，从而造成两次查询结果不一样，这个其实被称为不可重复读；如果事务B是一个会影响查询结果的insert操作，则好像新多出来的行像幻觉一样，因此被称为幻读。其他事务的提交会影响在同一个事务中的重复查询结果。</p>
+</li>
+<li><p><strong>不可重复读（nonrepeatable read）：</strong>两个事务，事务T1读取一行，紧接着事务T2修改了T1刚才读取的那一行的内容。然后T1又读取了这一行，发现它与刚才读取的结果不同了。这种现象称为“不可重复读”，因为T1原来读取的那一行已经发生了变化。</p>
+</li>
 </ul>
-</blockquote>
-<h5 id="以下是个人补充，资料源自网络"><a href="#以下是个人补充，资料源自网络" class="headerlink" title="以下是个人补充，资料源自网络"></a>以下是个人补充，资料源自网络</h5><blockquote>
-<p>补充：</p>
+<p>下面简单描述一下SQL中定义的四种标准隔离级别：</p>
+<ol>
+<li><strong>READ UNCOMMITTED (未提交读) ：</strong></li>
+</ol>
 <ul>
-<li>String类是被final修饰的，String类是final类，也即意味着String类不能被继承，并且它的成员方法都默认为final方法</li>
-<li>String类其实是通过char数组来保存字符串的。</li>
-<li>对String对象的任何改变都不影响到原对象，相关的任何change操作都会生成新的对象。</li>
-<li>通过new来创建对象，创建出的一定是不同的对象，即使字符串的内容是相同的</li>
-<li>StringBuilder和StringBuffer类拥有的成员属性以及成员方法基本相同，区别是StringBuffer类的成员方法前面多了一个关键字：<code>synchronized</code>，不用多说，这个关键字是在多线程访问时起到安全保护作用的,也就是说StringBuffer是线程安全的</li>
-<li>执行效率:StringBuilder &gt; StringBuffer &gt; String.    当然这个是相对的，不一定在所有情况下都是这样,比如<strong>String str = “hello”+ “world”</strong>的效率就比<strong>StringBuilder st  = new StringBuilder().append(“hello”).append(“world”)</strong>要高</li>
+<li>隔离级别：0. </li>
+<li>事物A和事物B，事物A未提交的数据，事物B可以读取到</li>
+<li>可以读取未提交的记录。</li>
+<li>会出现脏读。</li>
+<li>这种隔离级别最低，这种级别一般是在理论上存在，数据库隔离级别一般都高于该级别</li>
 </ul>
-</blockquote>
-<p>看到了一个帖子,分析了String、StringBuffer、 StringBuilder三者区别</p>
-<blockquote>
-<p>地址：<a href="https://www.cnblogs.com/dolphin0520/p/3778589.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3778589.html</a></p>
-</blockquote>
-<p>又从这个帖子里挖出了更深的一个问题，膜拜一下，是一道常常遇到的笔试题，题目是：</p>
-<blockquote>
-<p><code>String s = new String(&quot;xyz&quot;);</code>创建了几个String Object？</p>
-</blockquote>
-<blockquote>
-<p>原帖地址： <a href="https://rednaxelafx.iteye.com/blog/774673/" target="_blank" rel="noopener">https://rednaxelafx.iteye.com/blog/774673/</a></p>
-</blockquote>
-<p>10.</p>
+<ol>
+<li><strong>READ COMMITTED (提交读) ：</strong></li>
+</ol>
 <ul>
-<li>方法的重载和重写都是实现多态的方式，区别在于前者实现的是编译时的多态性，而后者实现的是运行时的多态性。</li>
-<li>重载发生在一个类中，同名的方法如果有不同的参数列表（参数类型不同、参数个数不同或者二者都不同）则视为重载；</li>
-<li>重写发生在子类与父类之间，重写要求子类被重写方法与父类被重写方法有相同的返回类型，比父类被重写方法更好访问，不能比父类被重写方法声明更多的异常（里氏代换原则）。重载对返回类型没有特殊的要求。</li>
+<li>隔离级别：1. </li>
+<li>事物A和事物B，事物A提交的数据，事物B才能读取到</li>
+<li>事务中只能看到已提交的修改。</li>
+<li>不可重复读，会出现幻读。（在InnoDB中，会加行所，但是不会加间隙锁）</li>
+<li>该隔离级别是大多数数据库系统(如Oracle)的默认隔离级别，但是MySQL的则是RR。</li>
 </ul>
+<ol>
+<li><strong>REPEATABLE READ (可重复读) ：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：2. </li>
+<li>事务A和事务B，事务A提交之后的数据，事务B读取不到</li>
+<li>事务B是可重复读取数据</li>
+<li>换句话说，对方提交之后的数据，我还是读取不到</li>
+<li>MySQL默认级别</li>
+<li>在InnoDB中是这样的：RR隔离级别保证对读取到的记录加锁 (记录锁)，同时保证对读取的范围加锁，新的满足查询条件的记录不能够插入 (间隙锁)，因此不存在幻读现象。但是标准的RR只能保证在同一事务中多次读取同样记录的结果是一致的，而无法解决幻读问题。</li>
+<li>InnoDB的幻读解决是依靠MVCC的实现机制做到的。</li>
+</ul>
+<ol>
+<li><strong>SERIALIZABLE （可串行化）：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：3. </li>
+<li>事务A和事务B，事务A在操作数据库时，事务B只能排队等待</li>
+<li>这种隔离级别很少使用，吞吐量太低，用户体验差</li>
+<li>这种级别可以避免“幻像读”，每一次读取的都是数据库中真实存在数据，事务A与事务B串行，而不并发</li>
+<li>该隔离级别会在读取的每一行数据上都加上锁，退化为基于锁的并发控制，即LBCC。
+　　<blockquote>
+<p>需要注意的是，MVCC只在RC和RR两个隔离级别下工作，其他两个隔离级别都和MVCC不兼容。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="设置事务隔离级别"><a href="#设置事务隔离级别" class="headerlink" title="设置事务隔离级别"></a>设置事务隔离级别</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><ul>
+<li>可以在my.ini文件中使用transaction-isolation选项来设置服务器的缺省事务隔离级别。</li>
+<li><p>该选项值可以是</p>
+<pre><code>– READ-UNCOMMITTED
+– READ-COMMITTED
+– REPEATABLE-READ
+– SERIALIZABLE
+
+•   例如：
+[mysqld]
+transaction-isolation = READ-COMMITTED
+</code></pre></li>
+</ul>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><ul>
+<li>通过命令动态设置隔离级别<ul>
+<li>隔离级别也可以在运行的服务器中动态设置，应使用SET TRANSACTION ISOLATION LEVEL语句。</li>
+<li>其语法模式为：<pre><code>SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL &lt;isolation-level&gt;
+其中的&lt;isolation-level&gt;可以是：
+–   READ UNCOMMITTED
+–   READ COMMITTED
+–   REPEATABLE READ
+–   SERIALIZABLE
+•   例如： SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="隔离级别的作用范围"><a href="#隔离级别的作用范围" class="headerlink" title="隔离级别的作用范围"></a>隔离级别的作用范围</h2><pre><code>•   事务隔离级别的作用范围分为两种： 
+–   全局级：对所有的会话有效 
+–   会话级：只对当前的会话有效 
+•   例如，设置会话级隔离级别为READ COMMITTED ：
+mysql&gt; SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+或：
+mysql&gt; SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
+•   设置全局级隔离级别为READ COMMITTED ： 
+mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
+</code></pre><h2 id="查看隔离级别"><a href="#查看隔离级别" class="headerlink" title="查看隔离级别"></a>查看隔离级别</h2><pre><code>select @@global.tx_isolation, @@tx_isolation 和 show variables like &apos;%isolation%&apos;
+</code></pre><blockquote>
+<p>关于事务隔离级别，锁，以及并发控制与加锁分析，可参考的技术博客<br>    <a href="https://xtzhu.github.io/2019/03/20/%E9%9D%A2%E8%AF%95%E9%A2%9870-80/#20">事务隔离级别</a><br>    <a href="https://www.cnblogs.com/yelbosh/p/5813865.html" target="_blank" rel="noopener">并发控制与加锁分析</a><br>    <a href="https://note.youdao.com/ynoteshare1/index.html?id=daad612052801c77458ee3fa5b366e20&amp;type=note&amp;from=timeline&amp;isappinstalled=0#/" target="_blank" rel="noopener">MySQL 加锁处理分析</a></p>
+</blockquote>
+<blockquote>
+<p>引用的技术博客<br>    <a href="https://blog.csdn.net/w_linux/article/details/79666086" target="_blank" rel="noopener">MySQL——事务(Transaction)详解</a></p>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -503,16 +611,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/02/16/0216-面试题20-40/" title="0216_面试题20-40">
-                    <div class="nextTitle">0216_面试题20-40</div>
+                <a href="/2019/04/14/一些感触/" title="一些感触">
+                    <div class="nextTitle">一些感触</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/02/13/关于junit发现的jar包问题/" title="关于junit发现的jar包问题">
-                    <div class="prevTitle">关于junit发现的jar包问题</div>
+                <a href="/2019/04/08/TCP三次握手与四次挥手/" title="TCP三次握手与四次挥手">
+                    <div class="prevTitle">TCP三次握手与四次挥手</div>
                 </a>
             
         </li>
@@ -624,7 +732,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#大佬的答案"><span class="toc-number">2.</span> <span class="toc-text">大佬的答案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#以下是个人补充，资料源自网络"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">以下是个人补充，资料源自网络</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是事务？"><span class="toc-number">1.</span> <span class="toc-text">什么是事务？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务的提交和回滚"><span class="toc-number">1.1.</span> <span class="toc-text">事务的提交和回滚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务的开始与结束"><span class="toc-number">1.2.</span> <span class="toc-text">事务的开始与结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#保存点"><span class="toc-number">1.3.</span> <span class="toc-text">保存点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务与数据库底层数据"><span class="toc-number">1.4.</span> <span class="toc-text">事务与数据库底层数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务的ACID特性"><span class="toc-number">2.</span> <span class="toc-text">事务的ACID特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#并发事务"><span class="toc-number">3.</span> <span class="toc-text">并发事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务锁"><span class="toc-number">4.</span> <span class="toc-text">事务锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事务的隔离级别"><span class="toc-number">5.</span> <span class="toc-text">事务的隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#设置事务隔离级别"><span class="toc-number">5.1.</span> <span class="toc-text">设置事务隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一"><span class="toc-number">5.1.1.</span> <span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二"><span class="toc-number">5.1.2.</span> <span class="toc-text">方式二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隔离级别的作用范围"><span class="toc-number">5.2.</span> <span class="toc-text">隔离级别的作用范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看隔离级别"><span class="toc-number">5.3.</span> <span class="toc-text">查看隔离级别</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
