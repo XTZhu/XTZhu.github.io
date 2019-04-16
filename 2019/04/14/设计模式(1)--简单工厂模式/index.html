@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">0</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">544</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,13 +401,31 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <p>在Mybatis中比如SqlSessionFactory使用的是工厂模式，该工厂没有那么复杂的逻辑，是一个简单工厂模式。</p>
+<p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/idea64_pNfdoCW73P.png" alt=""></p>
+<p>SqlSession可以认为是一个<a href="https://mp.weixin.qq.com/s/EzkQHVmW2deBXlmj9jIOAg" target="_blank" rel="noopener">Mybatis</a>工作的核心的接口，通过这个接口可以执行执行SQL语句、获取Mappers、管理事务。类似于连接MySQL的Connection对象。从 0 开始手写一个 Mybatis 框架，这个我推荐你看下。</p>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/idea64_OWJhevdvRs.png" alt=""></p>
+<p>可以看到，该Factory的openSession方法重载了很多个，分别支持autoCommit、Executor、Transaction等参数的输入，来构建核心的SqlSession对象。</p>
+<p>在DefaultSqlSessionFactory的默认工厂实现里，有一个方法可以看出工厂怎么产出一个产品：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> SqlSession <span class="title">openSessionFromDataSource</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level,</span></span></span><br><span class="line"><span class="function"><span class="params">     <span class="keyword">boolean</span> autoCommit)</span> </span>&#123;</span><br><span class="line">   Transaction tx = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="keyword">final</span> Environment environment = configuration.getEnvironment();</span><br><span class="line">     <span class="keyword">final</span> TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);</span><br><span class="line">     tx = transactionFactory.newTransaction(environment.getDataSource(), level, autoCommit);</span><br><span class="line">     <span class="keyword">final</span> Executor executor = configuration.newExecutor(tx, execType);</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> DefaultSqlSession(configuration, executor, autoCommit);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">     closeTransaction(tx); <span class="comment">// may have fetched a connection so lets call</span></span><br><span class="line">                 <span class="comment">// close()</span></span><br><span class="line">     <span class="keyword">throw</span> ExceptionFactory.wrapException(<span class="string">"Error opening session.  Cause: "</span> + e, e);</span><br><span class="line">   &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">     ErrorContext.instance().reset();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> 这是一个openSession调用的底层方法，该方法先从configuration读取对应的环境配置，然后初始化TransactionFactory获得一个Transaction对象，然后通过Transaction获取一个Executor对象，最后通过configuration、Executor、是否autoCommit三个参数构建了SqlSession。</p>
+<p> 在这里其实也可以看到端倪，SqlSession的执行，其实是委托给对应的Executor来进行的。</p>
+<p> 而对于LogFactory，它的实现代码:</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFactory</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Constructor&lt;? extends Log&gt; logConstructor;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">LogFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// disable construction</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Log <span class="title">getLog</span><span class="params">(Class&lt;?&gt; aClass)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getLog(aClass.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这里有个特别的地方，是Log变量的的类型是Constructor&lt;? extends Log&gt;，也就是说该工厂生产的不只是一个产品，而是具有Log公共接口的一系列产品，比如Log4jImpl、Slf4jImpl等很多具体的Log。</p>
+
     </article>
     <!-- license  -->
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/16/java到底是解释性语言还是编译型语言？/" title="java到底是解释性语言还是编译型语言？">
+                    <div class="nextTitle">java到底是解释性语言还是编译型语言？</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -776,9 +794,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -794,12 +829,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/java到底是解释性语言还是编译型语言？/">java到底是解释性语言还是编译型语言？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/一些感触/">一些感触</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
         </li>
     
     
@@ -819,12 +859,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/0225-面试题50-60/">0225_面试题50-60</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/中级脚本算法/">中级脚本算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/中级脚本算法/">中级脚本算法</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/0225-面试题50-60/">0225_面试题50-60</a>
         </li>
     
     
@@ -894,23 +934,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="java面试题"><span class="iconfont-archer">&#xe606;</span>java面试题</span>
     
-        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
-    
         <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
+    
+        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
     
         <span class="sidebar-tag-name" data-tags="JVM java8"><span class="iconfont-archer">&#xe606;</span>JVM java8</span>
     
         <span class="sidebar-tag-name" data-tags="闲聊"><span class="iconfont-archer">&#xe606;</span>闲聊</span>
     
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
         <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL/Orcale"><span class="iconfont-archer">&#xe606;</span>MySQL/Orcale</span>
     
         <span class="sidebar-tag-name" data-tags="事务"><span class="iconfont-archer">&#xe606;</span>事务</span>
-    
-        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

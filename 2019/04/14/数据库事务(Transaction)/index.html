@@ -426,7 +426,7 @@ height:50vh;
 <h2 id="事务的开始与结束"><a href="#事务的开始与结束" class="headerlink" title="事务的开始与结束"></a>事务的开始与结束</h2><p>事务是用来分割SQL语句的逻辑工作单元。事务既有起点，也有终点；<br><strong>当下列事件之一发生时，事务就开始了：</strong></p>
 <ul>
 <li>连接到数据库，并执行一条DML语句(INSERT、UPDATE、或DELETE)。注意，<code>MERGE</code>也是DML语句。</li>
-<li>前一个事务结束后，由输入了另一条DML语句。</li>
+<li>前一个事务结束后，又输入了另一条DML语句。</li>
 </ul>
 <p><strong>当下列事件之一发生时，事务就结束了：</strong></p>
 <ul>
@@ -440,8 +440,8 @@ height:50vh;
 <li>执行了一条<code>DML</code>语句，该语句却失败了；在这种情况下，会自动为这条无效的DML语句执行ROLLBACK语句。</li>
 </ul>
 <p><strong>提示 ：</strong><br>    <em>不显式提交或回滚被认为是不好的编程习惯，因此确保在每个事务后面都要执行COMMIT或者ROLLBACK语句。</em></p>
-<h2 id="保存点"><a href="#保存点" class="headerlink" title="保存点"></a>保存点</h2><p>在事务中的任何地方都可以设置<strong>保存点(savepoint)</strong>，这样可以将修改回滚到保存点处。如果 有一个很大的事务，这将非常有用，因为这样如果在保存点后进行了误操作，并不需要将整个事务一直回滚到最开头。但是保存点不能肆意乱用；最好是重新调整一下事务的结构，将其转换为较小的事务。</p>
-<h2 id="事务与数据库底层数据"><a href="#事务与数据库底层数据" class="headerlink" title="事务与数据库底层数据"></a>事务与数据库底层数据</h2><p>在事务进行过程中，未结束之前，DML语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事物结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据</p>
+<h2 id="保存点"><a href="#保存点" class="headerlink" title="保存点"></a>保存点</h2><p>在事务中的任何地方都可以设置<strong>保存点(savepoint)</strong>，这样可以将修改回滚到保存点处。如果有一个很大的事务，这将非常有用，因为这样如果在保存点后进行了误操作，并不需要将整个事务一直回滚到最开头。但是保存点不能肆意乱用；最好是重新调整一下事务的结构，将其转换为较小的事务。</p>
+<h2 id="事务与数据库底层数据"><a href="#事务与数据库底层数据" class="headerlink" title="事务与数据库底层数据"></a>事务与数据库底层数据</h2><p>在事务进行过程中，未结束之前，DML语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事物结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据。</p>
 <h1 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h1><p>在前面我们将事务定义为逻辑工作单元，即一组相关的SQL语句，它们要么作为一个单位被<strong>提交</strong>，要么作为一个单位被<strong>回滚</strong>。数据库理论对事务采用了更严格的定义，说明事务有4个基本的特征，称为ACID特性。</p>
 <ul>
 <li><strong>原子性(Atomic)：</strong>    事务是原子的，这就是说事务中包含的所有SQL语句组成一个工作单元。</li>
@@ -450,14 +450,14 @@ height:50vh;
 <li><strong>持久性(Durable)：</strong>    一旦事务被提交之后，数据库的变化就会被永久保存下来，即使运行数据库的软件的机器后来崩溃也是如此。</li>
 </ul>
 <h1 id="并发事务"><a href="#并发事务" class="headerlink" title="并发事务"></a>并发事务</h1><p>Oracle数据库软件支持多个用户同时与数据库进行交互，每个用户都可以同时运行自己的事务。这种事务就称为并发事务(concurrent transaction)。</p>
-<p>如果用户同时运行多个事务，而这些事务都对同一个表产生影响，那么这些事务的影响都是独立的，知道执行一条COMMIT语句时才会彼此产生影响。</p>
+<p>如果用户同时运行多个事务，而这些事务都对同一个表产生影响，那么这些事务的影响都是独立的，直到执行一条COMMIT语句时才会彼此产生影响。</p>
 <p>下面两个事务T1和T2都会访问customers表，看下面这个例子展示事务的隔离性：</p>
 <pre><code>1. T1和T2分别执行SELECT语句，检索customers表的所有行
 2. T1执行INSERT语句，向customers表中插入数据，但此时T1并不执行COMMIT语句。
 3. T2再执行一条SELECT语句，检索结果和步骤1中相同，T2没有“看到”T1在步骤2中插入的新行。
 4. T1最后执行COMMIT语句，永久性的保存了插入的新行。
 5. T2执行一条SELECT语句，最终看到了T1插入的新行。
-</code></pre><p>以上过程可以归纳如下： 知道T1提交自己对数据库所做的修改之后，T2才能看得到T1对数据库所做的修改。这是事务间隔离性的默认级别。<strong><em>隔离性级别可以修改</em></strong></p>
+</code></pre><p>以上过程可以归纳如下： 直到T1提交自己对数据库所做的修改之后，T2才能看得到T1对数据库所做的修改。这是事务间隔离性的默认级别。<strong><em>隔离性级别可以修改</em></strong></p>
 <table>
 <thead>
 <tr>
@@ -982,9 +982,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1000,12 +1017,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href="/2019/04/16/java到底是解释性语言还是编译型语言？/">java到底是解释性语言还是编译型语言？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/一些感触/">一些感触</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
         </li>
     
     
@@ -1025,12 +1047,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/0225-面试题50-60/">0225_面试题50-60</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/中级脚本算法/">中级脚本算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/中级脚本算法/">中级脚本算法</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/2019/02/25/0225-面试题50-60/">0225_面试题50-60</a>
         </li>
     
     
@@ -1100,23 +1122,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="java面试题"><span class="iconfont-archer">&#xe606;</span>java面试题</span>
     
-        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
-    
         <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
+    
+        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
     
         <span class="sidebar-tag-name" data-tags="JVM java8"><span class="iconfont-archer">&#xe606;</span>JVM java8</span>
     
         <span class="sidebar-tag-name" data-tags="闲聊"><span class="iconfont-archer">&#xe606;</span>闲聊</span>
     
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
         <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL/Orcale"><span class="iconfont-archer">&#xe606;</span>MySQL/Orcale</span>
     
         <span class="sidebar-tag-name" data-tags="事务"><span class="iconfont-archer">&#xe606;</span>事务</span>
-    
-        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
