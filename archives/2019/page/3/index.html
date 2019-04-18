@@ -346,25 +346,34 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/02/25/中级脚本算法/">
+        <a class="abstract-title" href="/2019/02/10/JAVA虚拟机/">
             
-                <span>中级脚本算法</span>
+                <span>JAVA 虚拟机 课堂笔记</span>
         </a>
         <div class="abstract-content">
-            中级脚本算法1. 区间求值算法挑战我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。
-最小的数字并非总在最前面。
-1234567891011function sumAll(arr) &#123;    var num1 = arr[0];    var num2 = arr[1];    if(num1&gt;num2)&#123;        snum = num1-num2;    &#125;else &#123;      snum = num2-num1;    &#125;    return (num1+num2)*(snum+1)/2&#125...
+            JAVA虚拟机1.什么是java虚拟机？指以软件的方式模拟具有完整硬件系统功能、运行在一个完全隔离环境中的完整计算机系统，是物理机的软件实现。
+Class files =&gt;     类加载子系统 =&gt;  运行时数据区（内存）
+内存： 堆、Java栈、本地方法栈、方法区、程序计数器。
+
+堆、方法区：
+
+
+Java栈、本地方法栈、程序计数器：
+
+
+本地方法栈（线程私有）：登记native方法，在Execution Engine执行时加载本地方法库
+程序计数器（线程私有）：就是一个指针，指向方法区中的方法字节码（用来存储指向下一条指令的地址，也即将要执行的指令代码），由执行引擎读取...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/25</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/10</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="虚拟机">虚拟机</a>
     
 </div>
             
@@ -377,99 +386,34 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/02/25/初级脚本算法-3/">
+        <a class="abstract-title" href="/2019/02/10/Hello world/">
             
-                <span>初级脚本算法-3</span>
+                <span>Hello world</span>
         </a>
         <div class="abstract-content">
-            初级脚本算法-310. 数组分割算法挑战编写一个函数,把一个数组arr按照指定的数组大小size分割成若干个数组块。
-123456789function chunk(arr, size) &#123;// Break it up.  var newArr = [];  for(var i = 0;i &lt; arr.length;i = i + size)&#123;    newArr.push(arr.slice(i,i+size));  &#125;  return newArr;&#125;chunk(["a", "b", "c", "d"], 2);
-11. 数组截断算法挑战...
+            Hello world
+stay hungry， stay foolish.
+
+求知若饥 虚心若愚
+
+这里是pipipig的无名小站！谢谢你来这里。
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/25</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/10</span>
             </div>
             <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/20/初级脚本算法-2/">
-            
-                <span>初级脚本算法-2</span>
-        </a>
-        <div class="abstract-content">
-            初级脚本算法-25. 设置首字母大写算法挑战返回一个字符串,确保字符串的每个单词首字母都大写，其余部分小写。
-像’the’和’of’这样的连接符同理。
-123456789function titleCase(str) &#123;  var arr = str.toLowerCase().split(" ");  for(i=0;i&lt;arr.length;i++)&#123;    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1,arr[i].length);  &#125;  return arr.join(" ");&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/19/初级脚本算法/">
-            
-                <span>初级脚本算法</span>
-        </a>
-        <div class="abstract-content">
-            初级脚本算法1. 实战翻转字符串算法
-你可以先把字符串转化成数组，再借助数组的reverse方法翻转数组顺序，然后把数组转化成字符串。
-
-
-提示:你的结果必须得是一个字符串
-
-123456function reverseString(str) &#123;    str = str.split("").reverse().join("");    return str;&#125;reverseString("hello");
-1234function reverseString(str) &#123;    return str&amp;&amp;reverseString(str.s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
             
         </div>
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
     
 </main>
             <!-- profile -->

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>pipipig的无名小站</title>
+    <title>Ajax跨域（转载） · pipipig的无名小站</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">XTZhu&#39;s Tree hole.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Ajax跨域（转载）</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">XTZhu's Tree hole.</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Ajax跨域（转载）
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="ajax">ajax</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/18</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,139 +399,141 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/25/中级脚本算法/">
-            
-                <span>中级脚本算法</span>
-        </a>
-        <div class="abstract-content">
-            中级脚本算法1. 区间求值算法挑战我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。
-最小的数字并非总在最前面。
-1234567891011function sumAll(arr) &#123;    var num1 = arr[0];    var num2 = arr[1];    if(num1&gt;num2)&#123;        snum = num1-num2;    &#125;else &#123;      snum = num2-num1;    &#125;    return (num1+num2)*(snum+1)/2&#125...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/25/初级脚本算法-3/">
-            
-                <span>初级脚本算法-3</span>
-        </a>
-        <div class="abstract-content">
-            初级脚本算法-310. 数组分割算法挑战编写一个函数,把一个数组arr按照指定的数组大小size分割成若干个数组块。
-123456789function chunk(arr, size) &#123;// Break it up.  var newArr = [];  for(var i = 0;i &lt; arr.length;i = i + size)&#123;    newArr.push(arr.slice(i,i+size));  &#125;  return newArr;&#125;chunk(["a", "b", "c", "d"], 2);
-11. 数组截断算法挑战...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/20/初级脚本算法-2/">
-            
-                <span>初级脚本算法-2</span>
-        </a>
-        <div class="abstract-content">
-            初级脚本算法-25. 设置首字母大写算法挑战返回一个字符串,确保字符串的每个单词首字母都大写，其余部分小写。
-像’the’和’of’这样的连接符同理。
-123456789function titleCase(str) &#123;  var arr = str.toLowerCase().split(" ");  for(i=0;i&lt;arr.length;i++)&#123;    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1,arr[i].length);  &#125;  return arr.join(" ");&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/19/初级脚本算法/">
-            
-                <span>初级脚本算法</span>
-        </a>
-        <div class="abstract-content">
-            初级脚本算法1. 实战翻转字符串算法
-你可以先把字符串转化成数组，再借助数组的reverse方法翻转数组顺序，然后把数组转化成字符串。
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>转载自<br>    <a href="https://segmentfault.com/a/1190000012469713" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012469713</a><br>    <a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a><br>    <a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
+</blockquote>
+<h1 id="什么是同源政策？"><a href="#什么是同源政策？" class="headerlink" title="什么是同源政策？"></a>什么是同源政策？</h1><p>说起跨域，就必须先了解“同源政策”。浏览器安全的基石是”同源政策”（same-origin policy）。很多开发者都知道这一点，但了解得不全面。</p>
+<h2 id="同源政策的含义"><a href="#同源政策的含义" class="headerlink" title="同源政策的含义"></a>同源政策的含义</h2><p>1995年，<code>同源政策</code>由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策。</p>
+<p>最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页”同源”。所谓<strong>同源</strong>指的是”三个相同”。</p>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ul>
+<p>举例来说，<code>http://www.example.com/dir/page.html</code>这个网址，协议是<code>http://</code>，域名是<code>www.example.com</code>，端口是<code>80</code>（默认端口可以省略）。它的同源情况如下。</p>
+<pre><code>- http://www.example.com/dir2/other.html：同源
+- http://example.com/dir/other.html：不同源（域名不同）
+- http://v2.www.example.com/dir/other.html：不同源（域名不同）
+- http://www.example.com:81/dir/other.html：不同源（端口不同）
+</code></pre><h2 id="同源政策的目的"><a href="#同源政策的目的" class="headerlink" title="同源政策的目的"></a>同源政策的目的</h2><p>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？</p>
+<p>很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制。</p>
+<p>由此可见，”同源政策”是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。</p>
+<h2 id="同源政策的限制范围"><a href="#同源政策的限制范围" class="headerlink" title="同源政策的限制范围"></a>同源政策的限制范围</h2><p>随着互联网的发展，”同源政策”越来越严格。目前，如果非同源，共有三种行为受到限制。</p>
+<p>（1） Cookie、LocalStorage 和 IndexDB 无法读取。<br>（2） DOM 无法获得。<br>（3） AJAX 请求不能发送。</p>
+<p>在这里我们主要讨论AJAX的跨域问题。</p>
+<h1 id="AJAX的跨域"><a href="#AJAX的跨域" class="headerlink" title="AJAX的跨域"></a>AJAX的跨域</h1><p>同源政策规定，AJAX请求只能发给同源的网址，否则就报错。</p>
+<p>除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。</p>
+<ul>
+<li>JSONP</li>
+<li>WebSocket</li>
+<li>CORS</li>
+</ul>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>(现在已经几乎不会再使用JSONP了，所以JSONP了解下即可)</p>
+<p>jsonp解决跨域问题是一个比较古老的方案(实际中不推荐使用),这里做简单介绍(实际项目中如果要使用JSONP,一般会使用JQ等对JSONP进行了封装的类库来进行ajax请求)</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>JSONP之所以能够用来解决跨域方案,主要是因为<code>&lt;script&gt;</code>脚本拥有跨域能力,而JSONP正是利用这一点来实现。具体原理如图</p>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20190418-1_articlex.png" alt="JSONP"></p>
+<h3 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h3><p>JSONP的实现步骤大致如下</p>
+<ul>
+<li>客户端网页网页通过添加一个<code>&lt;script&gt;</code>元素，向服务器请求JSON数据，这种做法不受同源政策限制</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">  script.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</span><br><span class="line">  script.src = src;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  addScriptTag(<span class="string">'http://example.com/ip?callback=foo'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'response data: '</span> + <span class="built_in">JSON</span>.stringify(data));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>请求时,接口地址是作为构建出的脚本标签的src的,这样,当脚本标签构建出来时,最终的src是接口返回的内容</p>
+<ul>
+<li><p>服务端对应的接口在返回参数外面添加函数包裹层</p>
+<p>  foo({</p>
+<pre><code>&quot;test&quot;: &quot;testData&quot;
+</code></pre><p>  }); </p>
+</li>
+<li><p>由于<code>&lt;script&gt;</code>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了foo函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用JSON.parse的步骤。</p>
+</li>
+</ul>
+<p>注意,一般的JSONP接口和普通接口返回数据是有区别的,所以接口如果要做JSONO兼容,需要进行判断是否有对应callback关键字参数,如果有则是JSONP请求,返回JSONP数据,否则返回普通数据</p>
+<blockquote>
+<p><strong>使用注意:</strong> 基于JSONP的实现原理,所以JSONP只能是“GET”请求,不能进行较为复杂的POST和其它请求,所以遇到那种情况,就得参考下面的CORS解决跨域了(所以如今它也基本被淘汰了)</p>
+</blockquote>
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>WebSocket是一种通信协议，使用<code>ws://</code>（非加密）和<code>wss://</code>（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
+<p>下面是一个例子，浏览器发出的WebSocket请求的头信息</p>
+<pre><code>GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+Origin: http://example.com
+</code></pre><p>上面代码中，有一个字段是<code>Origin</code>，表示该请求的请求源（origin），即发自哪个域名。</p>
+<p>正是因为有了<code>Origin</code>这个字段，所以WebSocket才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。如果该域名在白名单内，服务器就会做出如下回应。</p>
+<pre><code>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+Sec-WebSocket-Protocol: chat
+</code></pre><h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。</p>
+<p>它允许浏览器向跨源服务器，发出<code>XMLHttpRequest</code>请求，从而克服了AJAX只能同源使用的限制。</p>
+<h3 id="CORS简介"><a href="#CORS简介" class="headerlink" title="CORS简介"></a>CORS简介</h3><p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
+<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
+<p>基本上目前所有的浏览器都实现了CORS标准,其实目前几乎所有的浏览器ajax请求都是基于CORS机制的,只不过可能平时前端开发人员并不关心而已(所以说其实现在CORS解决方案主要是考虑后台该如何实现的问题)。</p>
+<p>这里也整理了一个实现原理图(简化版)</p>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20190418-2_articlex.png" alt="CORS"></p>
+<h3 id="如何判断是否是简单请求"><a href="#如何判断是否是简单请求" class="headerlink" title="如何判断是否是简单请求?"></a>如何判断是否是简单请求?</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。只要同时满足以下两大条件，就属于简单请求</p>
+<p>（1) 请求方法是以下三种方法之一：</p>
+<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+<p>（2）HTTP的头信息不超出以下几种字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/- form-data、text/plain</li>
+</ul>
+<p>凡是不同时满足上面两个条件，就属于非简单请求。</p>
+<p>浏览器对这两种请求的处理，是不一样的。</p>
+<p><em>待续。。</em></p>
 
-
-提示:你的结果必须得是一个字符串
-
-123456function reverseString(str) &#123;    str = str.split("").reverse().join("");    return str;&#125;reverseString("hello");
-1234function reverseString(str) &#123;    return str&amp;&amp;reverseString(str.s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="脚本算法">脚本算法</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/18/react生命周期/" title="react生命周期（转载）">
+                    <div class="nextTitle">react生命周期（转载）</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/16/java到底是解释性语言还是编译型语言？/" title="java到底是解释性语言还是编译型语言？">
+                    <div class="prevTitle">java到底是解释性语言还是编译型语言？</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -548,6 +611,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是同源政策？"><span class="toc-number">1.</span> <span class="toc-text">什么是同源政策？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源政策的含义"><span class="toc-number">1.1.</span> <span class="toc-text">同源政策的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源政策的目的"><span class="toc-number">1.2.</span> <span class="toc-text">同源政策的目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源政策的限制范围"><span class="toc-number">1.3.</span> <span class="toc-text">同源政策的限制范围</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AJAX的跨域"><span class="toc-number">2.</span> <span class="toc-text">AJAX的跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSONP"><span class="toc-number">2.1.</span> <span class="toc-text">JSONP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现原理"><span class="toc-number">2.1.1.</span> <span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现流程"><span class="toc-number">2.1.2.</span> <span class="toc-text">实现流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSocket"><span class="toc-number">2.2.</span> <span class="toc-text">WebSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CORS"><span class="toc-number">2.3.</span> <span class="toc-text">CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS简介"><span class="toc-number">2.3.1.</span> <span class="toc-text">CORS简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何判断是否是简单请求"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何判断是否是简单请求?</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1065,6 +1146,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
