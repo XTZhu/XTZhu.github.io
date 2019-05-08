@@ -359,6 +359,53 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/08/TCP三次握手与四次挥手/">
+            
+                <span>TCP三次握手与四次挥手</span>
+        </a>
+        <div class="abstract-content">
+            三次握手TCP的连接建立是一个三次握手过程，目的是为了通信双方确认开始序号，以便后续
+
+通信的有序进行。主要步骤如下：
+
+连接开始时，连接建立方(Client)发送SYN包，并包含了自己的初始序号a；
+
+连接接受方(Server)收到SYN包以后会回复一个SYN包，其中包含了对上一个a包
+
+
+的回应信息ACK，回应的序号为下一个希望收到包的序号，即a＋1，然后还包含
+了自己的初始序号b；
+
+连接建立方(Client)收到回应的SYN包以后，回复一个ACK包做响应，其中包含了
+
+下一个希望收到包的序号即b＋1。
+四次挥手TCP终止连接的四次挥手过程如下：
+
+
+首先进行关闭的一方（即发送第一...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="TCP">TCP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/03/20/面试题70-80/">
             
                 <span>面试题61-80</span>
@@ -669,43 +716,6 @@ Java语言如何进行异常处理，关键字：throws、throw、try、catch、
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="java面试题">java面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/16/0216-面试题20-40/">
-            
-                <span>0216_面试题20-40</span>
-        </a>
-        <div class="abstract-content">
-            题目
-描述一下JVM加载class文件的原理机制？  
-char 型变量中能不能存贮一个中文汉字，为什么？  
-抽象类（abstract class）和接口（interface）有什么异同？
-静态嵌套类(Static Nested Class)和内部类（Inner Class）的不同？
-Java 中会存在内存泄漏吗，请简单描述。 **
-抽象的（abstract）方法是否可同时是静态的（static）,是否可同时是本地方法（native），是否可同时被synchronized修饰？
-阐述静态变量和实例变量的区别。
-是否可以从一个静态（static）方法内部发出对非静态（non-static...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/16</span>
             </div>
             <!-- tags  -->
             
@@ -1228,10 +1238,9 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     
     
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -1244,6 +1253,11 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href="/2019/05/08/Rest-参数与-Spread-操作符/">Rest 参数与 Spread 操作符</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1362,12 +1376,12 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/Hello world/">Hello world</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/Hello world/">Hello world</a>
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
         </li>
     
     </ul></div>
@@ -1377,6 +1391,12 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
         <span class="sidebar-tag-name" data-tags="java面试题"><span class="iconfont-archer">&#xe606;</span>java面试题</span>
     
+        <span class="sidebar-tag-name" data-tags="javaScript"><span class="iconfont-archer">&#xe606;</span>javaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="ES6"><span class="iconfont-archer">&#xe606;</span>ES6</span>
+    
+        <span class="sidebar-tag-name" data-tags="闭包"><span class="iconfont-archer">&#xe606;</span>闭包</span>
+    
         <span class="sidebar-tag-name" data-tags="ajax"><span class="iconfont-archer">&#xe606;</span>ajax</span>
     
         <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
@@ -1385,29 +1405,23 @@ Java 中会存在内存泄漏吗，请简单描述。 **
     
         <span class="sidebar-tag-name" data-tags="java8"><span class="iconfont-archer">&#xe606;</span>java8</span>
     
-        <span class="sidebar-tag-name" data-tags="javaScript"><span class="iconfont-archer">&#xe606;</span>javaScript</span>
-    
-        <span class="sidebar-tag-name" data-tags="ES6"><span class="iconfont-archer">&#xe606;</span>ES6</span>
-    
-        <span class="sidebar-tag-name" data-tags="闭包"><span class="iconfont-archer">&#xe606;</span>闭包</span>
-    
         <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
-    
-        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="闲聊"><span class="iconfont-archer">&#xe606;</span>闲聊</span>
     
-        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL/Orcale"><span class="iconfont-archer">&#xe606;</span>MySQL/Orcale</span>
     
         <span class="sidebar-tag-name" data-tags="事务"><span class="iconfont-archer">&#xe606;</span>事务</span>
-    
-        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
         <span class="sidebar-tag-name" data-tags="cookie/session"><span class="iconfont-archer">&#xe606;</span>cookie/session</span>
     
