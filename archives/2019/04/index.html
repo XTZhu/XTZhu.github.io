@@ -563,25 +563,14 @@ Transaction
                 <span>TCP三次握手与四次挥手</span>
         </a>
         <div class="abstract-content">
-            三次握手TCP的连接建立是一个三次握手过程，目的是为了通信双方确认开始序号，以便后续
+            
+参考资料：https://blog.csdn.net/sinat_36629696/article/details/80740678https://blog.csdn.net/qq_38950316/article/details/81087809
 
-通信的有序进行。主要步骤如下：
+TCP协议TCP协议全称: 传输控制协议, 顾名思义, 就是要对数据的传输进行一定的控制.我们来分析分析每部分的含义和作用
 
-连接开始时，连接建立方(Client)发送SYN包，并包含了自己的初始序号a；
-
-连接接受方(Server)收到SYN包以后会回复一个SYN包，其中包含了对上一个a包
-
-
-的回应信息ACK，回应的序号为下一个希望收到包的序号，即a＋1，然后还包含
-了自己的初始序号b；
-
-连接建立方(Client)收到回应的SYN包以后，回复一个ACK包做响应，其中包含了
-
-下一个希望收到包的序号即b＋1。
-四次挥手TCP终止连接的四次挥手过程如下：
-
-
-首先进行关闭的一方（即发送第一...
+源端口号/目的端口号: 表示数据从哪个进程来, 到哪个进程去.
+32位序号:
+ 序列号seq：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1013,9 +1002,71 @@ Transaction
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1028,6 +1079,16 @@ Transaction
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/在浏览器中输入url后发生了什么/">在浏览器中输入url后发生了什么?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2019/05/09/ajax工作原理/">ajax工作原理</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1051,12 +1112,12 @@ Transaction
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/react生命周期/">react生命周期（转载）</a>
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/Ajax跨域/">Ajax跨域（转载）</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/Ajax跨域/">Ajax跨域（转载）</a>
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href="/2019/04/18/react生命周期/">react生命周期（转载）</a>
         </li>
     
     
@@ -1066,12 +1127,12 @@ Transaction
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/一些感触/">一些感触</a>
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/设计模式(1)--简单工厂模式/">设计模式(1)--简单工厂模式</a>
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href="/2019/04/14/一些感触/">一些感触</a>
         </li>
     
     
@@ -1151,12 +1212,12 @@ Transaction
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/Hello world/">Hello world</a>
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/JAVA虚拟机/">JAVA 虚拟机 课堂笔记</a>
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href="/2019/02/10/Hello world/">Hello world</a>
         </li>
     
     </ul></div>
@@ -1166,31 +1227,29 @@ Transaction
     
         <span class="sidebar-tag-name" data-tags="java面试题"><span class="iconfont-archer">&#xe606;</span>java面试题</span>
     
+        <span class="sidebar-tag-name" data-tags="ajax"><span class="iconfont-archer">&#xe606;</span>ajax</span>
+    
+        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
+    
+        <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
+    
         <span class="sidebar-tag-name" data-tags="javaScript"><span class="iconfont-archer">&#xe606;</span>javaScript</span>
     
         <span class="sidebar-tag-name" data-tags="ES6"><span class="iconfont-archer">&#xe606;</span>ES6</span>
     
         <span class="sidebar-tag-name" data-tags="闭包"><span class="iconfont-archer">&#xe606;</span>闭包</span>
     
-        <span class="sidebar-tag-name" data-tags="ajax"><span class="iconfont-archer">&#xe606;</span>ajax</span>
-    
-        <span class="sidebar-tag-name" data-tags="虚拟机"><span class="iconfont-archer">&#xe606;</span>虚拟机</span>
-    
         <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
         <span class="sidebar-tag-name" data-tags="java8"><span class="iconfont-archer">&#xe606;</span>java8</span>
     
-        <span class="sidebar-tag-name" data-tags="TCP"><span class="iconfont-archer">&#xe606;</span>TCP</span>
-    
-        <span class="sidebar-tag-name" data-tags="闲聊"><span class="iconfont-archer">&#xe606;</span>闲聊</span>
-    
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
-    
-        <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
     
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
-        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
+        <span class="sidebar-tag-name" data-tags="闲聊"><span class="iconfont-archer">&#xe606;</span>闲聊</span>
+    
+        <span class="sidebar-tag-name" data-tags="脚本算法"><span class="iconfont-archer">&#xe606;</span>脚本算法</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
@@ -1199,6 +1258,8 @@ Transaction
         <span class="sidebar-tag-name" data-tags="事务"><span class="iconfont-archer">&#xe606;</span>事务</span>
     
         <span class="sidebar-tag-name" data-tags="cookie/session"><span class="iconfont-archer">&#xe606;</span>cookie/session</span>
+    
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
