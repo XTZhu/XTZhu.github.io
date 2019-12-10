@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="参考资料：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c1dfc6caa520推荐阅读：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;34873227深度阅读：https:&#x2F;&#x2F;www.html5rocks.com&#x2F;zh&#x2F;tutorials&#x2F;internals&#x2F;howbrowserswork&#x2F;https:&#x2F;&#x2F;kb.cnblogs.com&#x2F;page&#x2F;129756&#x2F;https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在浏览器中输入url后发生了什么?">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;05&#x2F;09&#x2F;%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&#x2F;index.html">
+<meta property="og:site_name" content="PPPig&#39;s TreeHole">
+<meta property="og:description" content="参考资料：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c1dfc6caa520推荐阅读：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;34873227深度阅读：https:&#x2F;&#x2F;www.html5rocks.com&#x2F;zh&#x2F;tutorials&#x2F;internals&#x2F;howbrowserswork&#x2F;https:&#x2F;&#x2F;kb.cnblogs.com&#x2F;page&#x2F;129756&#x2F;https:">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-3afda32a13a68c6b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;fuoSKIi4fj.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;9383-1210799666.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-1f2c0829b7a86c6d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-a7d5616fac0adec7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-e6b92f5c6c8c50d4.png">
+<meta property="article:published_time" content="2019-05-09T07:30:12.000Z">
+<meta property="article:modified_time" content="2019-05-10T07:48:04.000Z">
+<meta property="article:author" content="XTZhu">
+<meta property="article:tag" content="XTZhu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-3afda32a13a68c6b.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>在浏览器中输入url后发生了什么? | PPPig's TreeHole</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PPPig's TreeHole</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">在人生这条道路上，人是自由的</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="cn">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="Learningless">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在浏览器中输入url后发生了什么?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-09 15:30:12" itemprop="dateCreated datePublished" datetime="2019-05-09T15:30:12+08:00">2019-05-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-05-10 15:48:04" itemprop="dateModified" datetime="2019-05-10T15:48:04+08:00">2019-05-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>参考资料：<a href="https://www.jianshu.com/p/c1dfc6caa520" target="_blank" rel="noopener">https://www.jianshu.com/p/c1dfc6caa520</a><br>推荐阅读：<a href="https://www.zhihu.com/question/34873227" target="_blank" rel="noopener">https://www.zhihu.com/question/34873227</a><br>深度阅读：<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="noopener">https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/</a><br><a href="https://kb.cnblogs.com/page/129756/" target="_blank" rel="noopener">https://kb.cnblogs.com/page/129756/</a><br><a href="https://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9666.html</a><br><a href="https://www.cnblogs.com/tisikcci/p/5866753.html" target="_blank" rel="noopener">https://www.cnblogs.com/tisikcci/p/5866753.html</a><br><a href="https://blog.csdn.net/xifeijian/article/details/10813339" target="_blank" rel="noopener">https://blog.csdn.net/xifeijian/article/details/10813339</a><br>非常详细： <a href="http://blog.jobbole.com/84870/" target="_blank" rel="noopener">http://blog.jobbole.com/84870/</a></p>
+</blockquote>
+<h1 id="what-happend？"><a href="#what-happend？" class="headerlink" title="what happend？"></a>what happend？</h1><p>上脑图！<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/2075673-3afda32a13a68c6b.png" alt="lei了lei了"></p>
+<h2 id="解析URL"><a href="#解析URL" class="headerlink" title="解析URL"></a>解析URL</h2><p>关于URL：<br><code>URL（Universal Resource Locator）</code>：统一资源定位符。俗称网页地址或者网址。<br>URL用来表示某个资源的地址。（通过俗称就能看出来）<br>URL主要由以下几个部分组成：</p>
+<ul>
+<li>传输协议</li>
+<li>服务器</li>
+<li>域名</li>
+<li>端口</li>
+<li>虚拟目录</li>
+<li>文件名</li>
+<li>锚</li>
+<li>参数</li>
+</ul>
+<p>也就是说，通常一个URL是像下面这样<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/fuoSKIi4fj.png" alt="URL"></p>
+<p>连起来就是：<code>http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name</code></p>
+<blockquote>
+<p>上面的链接有几个要注意的地方：<code>;</code> 和<code>/</code>的使用，<code>80</code>端口默认不显示，<code>?</code> 到<code>#</code>之间跟着参数，多个参数使用<code>&amp;</code>连接，<code>#</code>后面跟着锚。 </p>
+</blockquote>
+<hr>
+<p>现在来讨论URL解析，当在浏览器中输入URL后，浏览器首先对拿到的URL进行识别，抽取出域名字段。</p>
+<h2 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h2><p><strong>DNS解析（域名解析）</strong>，DNS实际上是一个域名和IP对应的数据库。</p>
+<p>IP地址往都难以记住，但机器间互相只认IP地址，于是人们发明了域名，让域名与IP地址之间一一对应，它们之间的转换工作称为<code>域名解析</code>，域名解析需要由专门的域名解析服务器来完成，整个过程是自动进行的。</p>
+<p>可以在浏览器中输入IP地址浏览网站，也可以输入域名查询网站，虽然得出的内容是一样的但是调用的过程不一样，输入IP地址是直接从主机上调用内容，输入域名是通过域名解析服务器指向对应的主机的IP地址，再从主机调用网站的内容。</p>
+<p>在进行DNS解析时，会经历以下步骤：</p>
+<ul>
+<li><p><strong>查询浏览器缓存</strong>（浏览器会缓存之前拿到的DNS 2-30分钟时间），如果没有找到，</p>
+</li>
+<li><p><strong>检查系统缓存</strong>，检查hosts文件，这个文件保存了一些以前访问过的网站的域名和IP的数据。它就像是一个本地的数据库。如果找到就可以直接获取目标主机的IP地址了。没有找到的话，需要</p>
+</li>
+<li><p><strong>检查路由器缓存</strong>，路由器有自己的DNS缓存，可能就包括了这在查询的内容；如果没有，要</p>
+</li>
+<li><p><strong>查询ISP DNS 缓存</strong>：ISP服务商DNS缓存（本地服务器缓存）那里可能有相关的内容，如果还不行的话，需要，</p>
+</li>
+<li><p><strong>递归查询</strong>：从根域名服务器到顶级域名服务器再到极限域名服务器依次搜索对应目标域名的IP。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/9383-1210799666.png" alt="URL"><br>通过以上的查找，就可以获取到域名对应的IP了。接下来就是向该IP地址定位的HTTP服务器发起TCP连接。</p>
+<hr>
+<h2 id="浏览器与网站建立TCP连接（三次握手）"><a href="#浏览器与网站建立TCP连接（三次握手）" class="headerlink" title="浏览器与网站建立TCP连接（三次握手）"></a>浏览器与网站建立TCP连接（三次握手）</h2><blockquote>
+<p>参考：<a href="https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B" target="_blank" rel="noopener">https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B</a></p>
+</blockquote>
+<h2 id="请求和传输数据"><a href="#请求和传输数据" class="headerlink" title="请求和传输数据"></a>请求和传输数据</h2><p>发起HTTP请求，请求方法：</p>
+<ul>
+<li>GET: 获取资源</li>
+<li>POST: 传输实体主体</li>
+<li>HEAD: 获取报文首部</li>
+<li>PUT: 传输文件</li>
+<li>DELETE: 删除文件</li>
+<li>OPTIONS: 询问支持的方法</li>
+<li>TRACE: 追踪路径</li>
+</ul>
+<p>请求报文：<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/2075673-1f2c0829b7a86c6d.png" alt="请求报文"></p>
+<h2 id="接受响应结果"><a href="#接受响应结果" class="headerlink" title="接受响应结果"></a>接受响应结果</h2><p>状态码：</p>
+<ul>
+<li><p>1**：信息性状态码</p>
+</li>
+<li><p>2**：成功状态码</p>
+<pre><code>200：OK 请求正常处理  
+204：No Content请求处理成功，但没有资源可返回  
+206：Partial Content对资源的某一部分的请求</code></pre></li>
+<li><p>3**：重定向状态码</p>
+<pre><code>301：Moved Permanently 永久重定向  
+302：Found 临时性重定向  
+304：Not Modified 缓存中读取  </code></pre></li>
+<li><p>4**：客户端错误状态码</p>
+<pre><code>400：Bad Request 请求报文中存在语法错误  
+401：Unauthorized需要有通过Http认证的认证信息  
+403：Forbidden访问被拒绝  
+404：Not Found无法找到请求资源  </code></pre></li>
+<li><p>5**：服务器错误状态码</p>
+<pre><code>500：Internal Server Error 服务器端在执行时发生错误  
+503：Service Unavailable 服务器处于超负载或者正在进行停机维护</code></pre></li>
+</ul>
+<p>请求报文：<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/2075673-a7d5616fac0adec7.png" alt="请求报文"></p>
+<h2 id="浏览器解析Html"><a href="#浏览器解析Html" class="headerlink" title="浏览器解析Html"></a>浏览器解析Html</h2><p>浏览器按顺序解析html文件，构建DOM树，在解析到外部的css和js文件时，向服务器发起请求下载资源，若是下载css文件，则解析器会在下载的同时继续解析后面的html来构建DOM树，则在下载js文件和执行它时，解析器会停止对html的解析。这便出现了js阻塞问题。</p>
+<p><strong>预加载器</strong>：<br>当浏览器被脚本文件阻塞时，预加载器（一个轻量级的解析器）会继续解析后面的html，寻找需要下载的资源。如果发现有需要下载的资源，预加载器在开始接收这些资源。预加载器只能检索HTML标签中的URL，无法检测到使用脚本添加的URL，这些资源要等脚本代码执行时才会获取。</p>
+<p>注: 预解析并不改变Dom树，它将这个工作留给主解析过程<br>浏览器解析css，形成CSSOM树，当DOM树构建完成后，浏览器引擎通过DOM树和CSSOM树构造出渲染树。渲染树中包含可视节点的样式信息（不可见节点将不会被添加到渲染树中，如：head元素和display值为none的元素）</p>
+<blockquote>
+<p>值得注意的是，这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完一部分内容就显示一部分内容，同时，可能还在通过网络下载其余内容。</p>
+</blockquote>
+<h2 id="浏览器布局渲染"><a href="#浏览器布局渲染" class="headerlink" title="浏览器布局渲染"></a>浏览器布局渲染</h2><ul>
+<li>布局：通过计算得到每个渲染对象在可视区域中的具体位置信息（大小和位置），这是一个递归的过程。</li>
+<li>绘制：将计算好的每个像素点信息绘制在屏幕上</li>
+</ul>
+<p>在页面显示的过程中会多次进行Reflow和Repaint操作，而Reflow的成本比Repaint的成本高得多的多。因为Repaint只是将某个部分进行重新绘制而不用改变页面的布局，如：改变了某个元素的背景颜色。而如果将元素的display属性由block改为none则需要Reflow。</p>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/2075673-e6b92f5c6c8c50d4.png" alt="rpaint&amp;reflow"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" rel="prev" title="ajax工作原理">
+      <i class="fa fa-chevron-left"></i> ajax工作原理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/05/10/%E8%BD%AC-%E5%A5%87%E5%A6%99%E7%9A%84CSS%E4%B9%8B%E5%B8%83%E5%B1%80%E4%B8%8E%E5%AE%9A%E4%BD%8D/" rel="next" title="[转]奇妙的CSS之布局与定位">
+      [转]奇妙的CSS之布局与定位 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what-happend？"><span class="nav-number">1.</span> <span class="nav-text">what happend？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析URL"><span class="nav-number">1.1.</span> <span class="nav-text">解析URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS解析"><span class="nav-number">1.2.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器与网站建立TCP连接（三次握手）"><span class="nav-number">1.3.</span> <span class="nav-text">浏览器与网站建立TCP连接（三次握手）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求和传输数据"><span class="nav-number">1.4.</span> <span class="nav-text">请求和传输数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接受响应结果"><span class="nav-number">1.5.</span> <span class="nav-text">接受响应结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器解析Html"><span class="nav-number">1.6.</span> <span class="nav-text">浏览器解析Html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器布局渲染"><span class="nav-number">1.7.</span> <span class="nav-text">浏览器布局渲染</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XTZhu</p>
+  <div class="site-description" itemprop="description">Learningless</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XTZhu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.1.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

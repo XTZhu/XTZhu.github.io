@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="参考资料：https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_36629696&#x2F;article&#x2F;details&#x2F;80740678https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38950316&#x2F;article&#x2F;details&#x2F;81087809  TCP协议TCP协议全称: 传输控制协议, 顾名思义, 就是要对数据的传输进行一定的控制.我们来分析分析每部分的含义和作用  源端口号&#x2F;目的端口号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP三次握手与四次挥手">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;04&#x2F;08&#x2F;TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B&#x2F;index.html">
+<meta property="og:site_name" content="PPPig&#39;s TreeHole">
+<meta property="og:description" content="参考资料：https:&#x2F;&#x2F;blog.csdn.net&#x2F;sinat_36629696&#x2F;article&#x2F;details&#x2F;80740678https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38950316&#x2F;article&#x2F;details&#x2F;81087809  TCP协议TCP协议全称: 传输控制协议, 顾名思义, 就是要对数据的传输进行一定的控制.我们来分析分析每部分的含义和作用  源端口号&#x2F;目的端口号">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;20180717201939345.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;20180717202520531.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;20180717204202563.png">
+<meta property="article:published_time" content="2019-04-08T14:06:20.000Z">
+<meta property="article:modified_time" content="2019-05-09T07:37:47.000Z">
+<meta property="article:author" content="XTZhu">
+<meta property="article:tag" content="TCP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;20180717201939345.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>TCP三次握手与四次挥手 | PPPig's TreeHole</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PPPig's TreeHole</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">在人生这条道路上，人是自由的</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="cn">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="Learningless">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TCP三次握手与四次挥手
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-08 22:06:20" itemprop="dateCreated datePublished" datetime="2019-04-08T22:06:20+08:00">2019-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-05-09 15:37:47" itemprop="dateModified" datetime="2019-05-09T15:37:47+08:00">2019-05-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>参考资料：<a href="https://blog.csdn.net/sinat_36629696/article/details/80740678" target="_blank" rel="noopener">https://blog.csdn.net/sinat_36629696/article/details/80740678</a><br><a href="https://blog.csdn.net/qq_38950316/article/details/81087809" target="_blank" rel="noopener">https://blog.csdn.net/qq_38950316/article/details/81087809</a></p>
+</blockquote>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP协议全称: 传输控制协议, 顾名思义, 就是要对数据的传输进行一定的控制.<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20180717201939345.jpg" alt="TCP报头"><br>我们来分析分析每部分的含义和作用</p>
+<ul>
+<li><p>源端口号/目的端口号: 表示数据从哪个进程来, 到哪个进程去.</p>
+</li>
+<li><p>32位序号:</p>
+<blockquote>
+<p> 序列号<code>seq</code>：占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的第一个字节的数据编号</p>
+</blockquote>
+</li>
+<li><p>32位确认号： </p>
+<blockquote>
+<p>确认号<code>ack</code>：占4个字节，期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前报文段最后一个字节的编号+1即为确认号。</p>
+</blockquote>
+</li>
+<li><p>4位首部长度: 表示该tcp报头有多少个4字节(32个bit)</p>
+</li>
+<li><p>6位保留: 顾名思义, 先保留着, 以防万一</p>
+</li>
+<li><p>6位标志位</p>
+<blockquote>
+<ul>
+<li>URG: 标识紧急指针是否有效 </li>
+<li>ACK: 标识确认序号是否有效 </li>
+<li>PSH: 用来提示接收端应用程序立刻将数据从tcp缓冲区读走 </li>
+<li>RST: 要求重新建立连接. 我们把含有RST标识的报文称为复位报文段 </li>
+<li>SYN: 请求建立连接. 我们把含有SYN标识的报文称为同步报文段 </li>
+<li>FIN: 通知对端, 本端即将关闭. 我们把含有FIN标识的报文称为结束报文段</li>
+</ul>
+</blockquote>
+</li>
+<li><p>16位窗口大小:</p>
+</li>
+<li><p>16位检验和: 由发送端填充, 检验形式有CRC校验等. 如果接收端校验不通过, 则认为数据有问题. 此处的校验和不光包含TCP首部, 也包含TCP数据部分.</p>
+</li>
+<li><p>16位紧急指针: 用来标识哪部分数据是紧急数据.<br>选项和数据暂时忽略</p>
+</li>
+</ul>
+<blockquote>
+<p> PS：ACK、SYN和FIN这些大写的单词表示标志位，其值要么是1，要么是0；ack、seq小写的单词表示序号</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>URG</td>
+<td>紧急指针是否有效。为1，表示某一位需要被优先处理</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>确认号是否有效，一般置为1。</td>
+</tr>
+<tr>
+<td>PSH</td>
+<td>提示接收端应用程序立即从TCP缓冲区把数据读走。</td>
+</tr>
+<tr>
+<td>RST</td>
+<td>对方要求重新建立连接，复位。</td>
+</tr>
+<tr>
+<td>SYN</td>
+<td>请求建立连接，并在其序列号的字段进行序列号的初始值设定。建立连接，设置为1</td>
+</tr>
+<tr>
+<td>FIN</td>
+<td>希望断开连接。</td>
+</tr>
+</tbody></table>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p><strong>TCP的连接建立是一个三次握手过程，目的是为了通信双方确认开始序号，以便后续</strong><br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20180717202520531.png" alt="三次握手"><br>主要步骤如下：<br>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</p>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p><strong>TCP终止连接的四次挥手过程如下：</strong><br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20180717204202563.png" alt="四次挥手"></p>
+<ol>
+<li><p>客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，<code>FIN=1</code>，其序列号为<code>seq=u</code>（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入 <code>FIN-WAIT-1</code>（终止等待1）状态。 TCP规定，<code>FIN</code>报文段即使不携带数据，也要消耗一个序号。  </p>
+</li>
+<li><p>服务器收到连接释放报文，发出确认报文，<code>ACK=1，ack=u+1</code>，并且带上自己的序列号<code>seq=v</code>，此时，服务端就进入了 <code>CLOSE-WAIT</code>（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个 <code>CLOSE-WAIT</code> 状态持续的时间。  </p>
+</li>
+<li><p>客户端收到服务器的确认请求后，此时，客户端就进入 <code>FIN-WAIT-2</code>（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。 </p>
+</li>
+<li><p>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，<code>FIN=1，ack=u+1</code>，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为<code>seq=w</code>，此时，服务器就进入了 <code>LAST-ACK</code>（最后确认）状态，等待客户端的确认。  </p>
+</li>
+<li><p>客户端收到服务器的连接释放报文后，必须发出确认，<code>ACK=1，ack=w+1</code>，而自己的序列号是<code>seq=u+1</code>，此时，客户端就进入了<code>TIME-WAIT</code>（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗<code>MSL</code>（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入<code>CLOSED</code>状态。 </p>
+</li>
+<li><p>服务器只要收到了客户端发出的确认，立即进入<code>CLOSED</code>状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，<em>服务器结束TCP连接的时间要比客户端早一些</em>。</p>
+</li>
+</ol>
+<blockquote>
+<p>补充引用链接：<a href="https://www.cnblogs.com/zmlctt/p/3690998.html" target="_blank" rel="noopener">https://www.cnblogs.com/zmlctt/p/3690998.html</a><br><a href="https://mp.weixin.qq.com/s/L-eSLMFQGVmVJzmqHgFHtw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/L-eSLMFQGVmVJzmqHgFHtw</a></p>
+</blockquote>
+<h2 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h2><ol>
+<li><p>为什么连接的时候是三次握手，关闭的时候却是四次握手？</p>
+<blockquote>
+<p>因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，”你发的FIN报文我收到了”。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
+</blockquote>
+</li>
+<li><p>为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</p>
+<blockquote>
+<p>虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可以最后一个ACK丢失。<br>所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。在Client发送出最后的ACK回复，但该ACK可能丢失。Server如果没有收到ACK，将不断重复发送FIN片段。所以Client不能立即关闭，它必须确认Server接收到了该ACK。Client会在发送出ACK之后进入到TIME_WAIT状态。Client会设置一个计时器，等待2MSL的时间。如果在该时间内再次收到FIN，那么Client会重发ACK并再次等待2MSL。<br>所谓的2MSL是两倍的MSL(Maximum Segment Lifetime)。MSL指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+</blockquote>
+</li>
+<li><p>为什么不能用两次握手进行连接？</p>
+<blockquote>
+<p>3次握手完成两个重要的功能，既要双方做好发送数据的准备工作(双方都知道彼此已准备好)，也要允许双方就初始序列号进行协商，这个序列号在握手过程中被发送和确认。<br>现在把三次握手改成仅需要两次握手，死锁是可能发生的。作为例子，考虑计算机S和C之间的通信，假定C给S发送一个连接请求分组，S收到了这个分组，并发 送了确认应答分组。按照两次握手的协定，S认为连接已经成功地建立了，可以开始发送数据分组。可是，C在S的应答分组在传输中被丢失的情况下，将不知道S 是否已准备好，不知道S建立什么样的序列号，C甚至怀疑S是否收到自己的连接请求分组。在这种情况下，C认为连接还未建立成功，将忽略S发来的任何数据分 组，只等待连接确认应答分组。而S在发出的分组超时后，重复发送同样的分组。这样就形成了死锁。</p>
+</blockquote>
+</li>
+<li><p>如果已经建立了连接，但是客户端突然出现故障了怎么办？</p>
+<blockquote>
+<p>TCP还设有一个保活计时器，显然，客户端如果出现故障，服务器不能一直等下去，白白浪费资源。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时，若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔<strong>75秒钟</strong>发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</p>
+</blockquote>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TCP/" rel="tag"># TCP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/20/%E9%9D%A2%E8%AF%95%E9%A2%9870-80/" rel="prev" title="面试题61-80">
+      <i class="fa fa-chevron-left"></i> 面试题61-80
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/" rel="next" title="数据库事务(Transaction)">
+      数据库事务(Transaction) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP协议"><span class="nav-number">1.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三次握手"><span class="nav-number">2.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四次挥手"><span class="nav-number">3.</span> <span class="nav-text">四次挥手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见面试题"><span class="nav-number">4.</span> <span class="nav-text">常见面试题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XTZhu</p>
+  <div class="site-description" itemprop="description">Learningless</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XTZhu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.1.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
