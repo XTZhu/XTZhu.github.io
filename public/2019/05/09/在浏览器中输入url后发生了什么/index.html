@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="zh-cn">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -19,7 +19,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('http://yoursite.com').hostname,
+    hostname: new URL('http://XTZhu.github.io').hostname,
     root: '/',
     scheme: 'Muse',
     version: '7.6.0',
@@ -49,9 +49,10 @@
   <meta name="description" content="参考资料：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c1dfc6caa520推荐阅读：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;34873227深度阅读：https:&#x2F;&#x2F;www.html5rocks.com&#x2F;zh&#x2F;tutorials&#x2F;internals&#x2F;howbrowserswork&#x2F;https:&#x2F;&#x2F;kb.cnblogs.com&#x2F;page&#x2F;129756&#x2F;https:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在浏览器中输入url后发生了什么?">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;05&#x2F;09&#x2F;%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;xtzhu.github.io&#x2F;2019&#x2F;05&#x2F;09&#x2F;%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&#x2F;index.html">
 <meta property="og:site_name" content="PPPig&#39;s TreeHole">
 <meta property="og:description" content="参考资料：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;c1dfc6caa520推荐阅读：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;34873227深度阅读：https:&#x2F;&#x2F;www.html5rocks.com&#x2F;zh&#x2F;tutorials&#x2F;internals&#x2F;howbrowserswork&#x2F;https:&#x2F;&#x2F;kb.cnblogs.com&#x2F;page&#x2F;129756&#x2F;https:">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-3afda32a13a68c6b.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;fuoSKIi4fj.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;9383-1210799666.png">
@@ -65,7 +66,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;XTZhu&#x2F;image&#x2F;master&#x2F;blog&#x2F;2075673-3afda32a13a68c6b.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+<link rel="canonical" href="http://xtzhu.github.io/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
 
 
 <script id="page-configurations">
@@ -125,7 +126,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">在人生这条道路上，人是自由的</p>
+        <p class="site-subtitle">在人生的道路上，人是自由的</p>
   </div>
 
   <div class="site-nav-toggle">
@@ -176,13 +177,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="cn">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-cn">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="XTZhu">
-      <meta itemprop="description" content="Learningless">
+      <meta itemprop="description" content="learnLess">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -262,7 +263,7 @@
 <p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/9383-1210799666.png" alt="URL"><br>通过以上的查找，就可以获取到域名对应的IP了。接下来就是向该IP地址定位的HTTP服务器发起TCP连接。</p>
 <hr>
 <h2 id="浏览器与网站建立TCP连接（三次握手）"><a href="#浏览器与网站建立TCP连接（三次握手）" class="headerlink" title="浏览器与网站建立TCP连接（三次握手）"></a>浏览器与网站建立TCP连接（三次握手）</h2><blockquote>
-<p>参考：<a href="https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B" target="_blank" rel="noopener">https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B</a></p>
+<p>参考：<a href="https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B">https://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B</a></p>
 </blockquote>
 <h2 id="请求和传输数据"><a href="#请求和传输数据" class="headerlink" title="请求和传输数据"></a>请求和传输数据</h2><p>发起HTTP请求，请求方法：</p>
 <ul>
@@ -397,7 +398,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">XTZhu</p>
-  <div class="site-description" itemprop="description">Learningless</div>
+  <div class="site-description" itemprop="description">learnLess</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
