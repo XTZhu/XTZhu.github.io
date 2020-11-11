@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>数据库事务(Transaction) - PPPig&#039;s TreeHole</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="PPPig&#039;s TreeHole"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PPPig&#039;s TreeHole"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="什么是事务？ Transaction   数据库事务(transaction)就是一组SQL语句，这组SQL语句是一个逻辑工作单元(logical unit of work). 可以认为事务就是一组不可分割的SQL语句，其结果应该作为整体永久性地修改数据库的内容，或者作为整体取消对数据库的修改。                      (精通Oracle Database 12c SQL&amp;amp;amp"><meta property="og:type" content="blog"><meta property="og:title" content="数据库事务(Transaction)"><meta property="og:url" content="http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/"><meta property="og:site_name" content="PPPig&#039;s TreeHole"><meta property="og:description" content="什么是事务？ Transaction   数据库事务(transaction)就是一组SQL语句，这组SQL语句是一个逻辑工作单元(logical unit of work). 可以认为事务就是一组不可分割的SQL语句，其结果应该作为整体永久性地修改数据库的内容，或者作为整体取消对数据库的修改。                      (精通Oracle Database 12c SQL&amp;amp;amp"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://xtzhu.github.io/img/og_image.png"><meta property="article:published_time" content="2019-04-14T10:06:20.000Z"><meta property="article:modified_time" content="2020-11-11T11:05:21.399Z"><meta property="article:author" content="XTZhu"><meta property="article:tag" content="数据库"><meta property="article:tag" content="MySQL/Orcale"><meta property="article:tag" content="事务"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/"},"headline":"PPPig's TreeHole","image":["http://xtzhu.github.io/img/og_image.png"],"datePublished":"2019-04-14T10:06:20.000Z","dateModified":"2020-11-11T11:05:21.399Z","author":{"@type":"Person","name":"XTZhu"},"description":"什么是事务？ Transaction   数据库事务(transaction)就是一组SQL语句，这组SQL语句是一个逻辑工作单元(logical unit of work). 可以认为事务就是一组不可分割的SQL语句，其结果应该作为整体永久性地修改数据库的内容，或者作为整体取消对数据库的修改。                      (精通Oracle Database 12c SQL&amp;amp"}</script><link rel="canonical" href="http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/atom.xml" title="PPPig's TreeHole" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-04-14T10:06:20.000Z" title="2019-04-14T10:06:20.000Z">2019-04-14</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.399Z" title="2020-11-11T11:05:21.399Z">2020-11-11</time>更新</span><span class="level-item">25 分钟读完 (大约3703个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">数据库事务(Transaction)</h1><div class="content"><h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><ul>
+<li><p><em>Transaction</em></p>
+</li>
+<li><blockquote>
+<p>数据库事务(transaction)就是一组SQL语句，这组SQL语句是一个<strong>逻辑工作单元</strong>(logical unit of work). 可以认为事务就是一组不可分割的SQL语句，其结果应该作为整体永久性地修改数据库的内容，或者作为整体取消对数据库的修改。                    </p>
+<blockquote>
+<p>(精通Oracle Database 12c SQL&amp;PL/SQL编程 269)</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>数据库事务的一个例子就是将钱从一个银行账户转到另一个银行账户中去。此时通常包含两个操作：一条UPDATE语句负责从一个银行账户的总额中减去一定的钱数，另一条UPDATE语句负责向另一个银行账户中增加相应的钱数。减少和增加这两个操作必须永久性的记录到数据库中，否则钱就会丢失。如果钱的转账有问题，就必须同时取消减少和增加 这两个操作。这个简单的例子只使用了两条UPDATE语句，然而事务可以包含多条INSERT、UPDATE、和DELETE语句。</p>
+</li>
+<li><p>换言之，事务可以概括为：一个最小的不可再分的工作单元；通常一个事务对应一个完整的业务(例如银行账户转账业务，该业务就是一个最小的工作单元)</p>
+</li>
+<li><p>一个完整的业务需要批量的DML(<code>insert</code>、<code>update</code>、<code>delete</code>)语句共同联合完成</p>
+</li>
+<li><p>事务只和DML语句有关，或者说DML语句才有事务。这个和业务逻辑有关，业务逻辑不同，DML语句的个数不同</p>
+</li>
+</ul>
+<h2 id="事务的提交和回滚"><a href="#事务的提交和回滚" class="headerlink" title="事务的提交和回滚"></a>事务的提交和回滚</h2><p>要永久性的记录事务中的SQL语句的结果，需要执行<code>COMMIT</code>语句。<br>要取消SQL语句的结果，需要执行<code>ROLLBACK</code>语句，将所有行重新设置为原始状态。</p>
+<h2 id="事务的开始与结束"><a href="#事务的开始与结束" class="headerlink" title="事务的开始与结束"></a>事务的开始与结束</h2><p>事务是用来分割SQL语句的逻辑工作单元。事务既有起点，也有终点；<br><strong>当下列事件之一发生时，事务就开始了：</strong></p>
+<ul>
+<li>连接到数据库，并执行一条DML语句(INSERT、UPDATE、或DELETE)。注意，<code>MERGE</code>也是DML语句。</li>
+<li>前一个事务结束后，又输入了另一条DML语句。</li>
+</ul>
+<p><strong>当下列事件之一发生时，事务就结束了：</strong></p>
+<ul>
+<li>执行<code>COMMIT</code>或<code>ROLLBACK</code>语句。</li>
+<li>执行一条<code>DDL</code>语句，例如<code>CREATE TABLE</code>语句；在这种情况下，会自动执行COMMIT语句。</li>
+<li>执行一条<code>DCL</code>语句，例如<code>GRANT</code>语句；在这种情况下会自动执行COMMIT语句。<blockquote>
+<p>注意： 自动的<em>COMMIT</em>语句被加在<em>DDL</em>和<em>DCL</em>语句前，因此即使<em>DDL</em>和<em>DCL</em>语句没有成功，也会执行<em>COMMIT</em>语句。</p>
+</blockquote>
+</li>
+<li>断开数据库的连接。断开连接时会执行<code>COMMIT</code>语句，但是当意外中止(如程序崩溃)时，会自动执行<code>ROLLBACK</code>语句。这适用于任何可能访问数据库的程序。例如，如果编写了一个可以访问数据库的Java程序，而这个程序崩溃了，就会自动执行ROLLBACK语句。</li>
+<li>执行了一条<code>DML</code>语句，该语句却失败了；在这种情况下，会自动为这条无效的DML语句执行ROLLBACK语句。</li>
+</ul>
+<p><strong>提示 ：</strong><br>    <em>不显式提交或回滚被认为是不好的编程习惯，因此确保在每个事务后面都要执行COMMIT或者ROLLBACK语句。</em></p>
+<h2 id="保存点"><a href="#保存点" class="headerlink" title="保存点"></a>保存点</h2><p>在事务中的任何地方都可以设置<strong>保存点(savepoint)</strong>，这样可以将修改回滚到保存点处。如果有一个很大的事务，这将非常有用，因为这样如果在保存点后进行了误操作，并不需要将整个事务一直回滚到最开头。但是保存点不能肆意乱用；最好是重新调整一下事务的结构，将其转换为较小的事务。</p>
+<h2 id="事务与数据库底层数据"><a href="#事务与数据库底层数据" class="headerlink" title="事务与数据库底层数据"></a>事务与数据库底层数据</h2><p>在事务进行过程中，未结束之前，DML语句是不会更改底层数据，只是将历史操作记录一下，在内存中完成记录。只有在事物结束的时候，而且是成功的结束的时候，才会修改底层硬盘文件中的数据。</p>
+<h1 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h1><p>在前面我们将事务定义为逻辑工作单元，即一组相关的SQL语句，它们要么作为一个单位被<strong>提交</strong>，要么作为一个单位被<strong>回滚</strong>。数据库理论对事务采用了更严格的定义，说明事务有4个基本的特征，称为ACID特性。</p>
+<ul>
+<li><strong>原子性(Atomic)：</strong>    事务是原子的，这就是说事务中包含的所有SQL语句组成一个工作单元。</li>
+<li><strong>一致性(Consist)：</strong>    事务必须确保数据的状态保持一致，这就是说事务开始时，数据库的状态是一致的；在事务结束后，数据库的状态也必须是一致的。</li>
+<li><strong>隔离性(Isolated)：</strong>  多个事务可以独立运行，而不会彼此产生影响。</li>
+<li><strong>持久性(Durable)：</strong>    一旦事务被提交之后，数据库的变化就会被永久保存下来，即使运行数据库的软件的机器后来崩溃也是如此。</li>
+</ul>
+<h1 id="并发事务"><a href="#并发事务" class="headerlink" title="并发事务"></a>并发事务</h1><p>Oracle数据库软件支持多个用户同时与数据库进行交互，每个用户都可以同时运行自己的事务。这种事务就称为并发事务(concurrent transaction)。</p>
+<p>如果用户同时运行多个事务，而这些事务都对同一个表产生影响，那么这些事务的影响都是独立的，直到执行一条COMMIT语句时才会彼此产生影响。</p>
+<p>下面两个事务T1和T2都会访问customers表，看下面这个例子展示事务的隔离性：</p>
+<pre><code>1. T1和T2分别执行SELECT语句，检索customers表的所有行
+2. T1执行INSERT语句，向customers表中插入数据，但此时T1并不执行COMMIT语句。
+3. T2再执行一条SELECT语句，检索结果和步骤1中相同，T2没有“看到”T1在步骤2中插入的新行。
+4. T1最后执行COMMIT语句，永久性的保存了插入的新行。
+5. T2执行一条SELECT语句，最终看到了T1插入的新行。</code></pre><p>以上过程可以归纳如下： 直到T1提交自己对数据库所做的修改之后，T2才能看得到T1对数据库所做的修改。这是事务间隔离性的默认级别。<strong><em>隔离性级别可以修改</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>事务T1</th>
+<th>事务T2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(1) <strong>SELECT * FROM customers;</strong></td>
+<td>(2) <strong>SELECT * FROM customers;</strong></td>
+</tr>
+<tr>
+<td>(3) <strong>INSERT INTO customers(xx, xx, xx) VALUES (XX, XX, XX);</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>(4)<strong>UPDATE customers SET xx = XX WHERE customer_xx = X;</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>(5) <strong>SELECT * FROM customers;</strong>返回的结果集中包含新插入的行和修改后的行</td>
+<td>(6) <strong>SELECT * FROM customers;</strong>返回的结果集中不包含事务T1插入和修改后的行，而是在步骤2中检索出来的原来的行</td>
+</tr>
+<tr>
+<td>(7) <strong>COMMIT;</strong>提交新行和所做的修改</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(8)<strong>SELECT * FROM customers;</strong> 返回的结果集中包含T1在步骤3和步骤4中插入和修改的行</td>
+</tr>
+</tbody></table>
+<h1 id="事务锁"><a href="#事务锁" class="headerlink" title="事务锁"></a>事务锁</h1><p>要实现并发事务，Oracle 数据库软件必须确保表中的数据一直有效。这可以通过<strong>锁(lock)</strong>来实现。下面这个例子：事务T1和T2都试图修改customers表中的顾客#1：</p>
+<ol>
+<li>T1执行一条UPDATE语句，修改顾客#1,但是T1并没有执行COMMIT语句。此时就称T1对该行“加锁”了。</li>
+<li>T2也试图执行一条UPDATE语句，修改顾客#1，但是由于该行早已被T1加锁了，因此T2现在就不能获得该行的锁。T2的UPDATE语句必须一直等待，直到T1结束并释放该行上的锁为止。</li>
+<li>T1执行COMMIT语句并结束，从而释放该行上的锁。</li>
+<li>T2获得该行上的锁，并执行UPDATE语句。T2在获得该行上的锁后一直持有，直到T2结束为止。</li>
+</ol>
+<p>以上过程概括为： 当一个事务已经拥有某一行上的锁时，另外一个事务不能获得该行上的锁。</p>
+<blockquote>
+<p><strong>注意：</strong><br>理解默认加锁机制的最简单方法如下：<code>读程序(reader)</code>不会阻碍<code>读程序</code>；<code>写程序(writer)</code>不会阻碍<code>读程序</code>；只有在试图对相同的行进行修改时，<code>写程序</code>才会阻碍<code>写程序</code>。</p>
+</blockquote>
+<h1 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h1><p>在SQL的标准中，定义了四种隔离级别。每一种级别都规定了，在一个事务中所做的修改，哪些在事务内和事务间是可见的，哪些是不可见的。低级别的隔离可以执行更高级别的并发，性能好，但是会出现脏读和幻读的现象。首先，我们从三个基础的概念说起：</p>
+<ul>
+<li><p><strong>脏读（dirty read）：</strong>两个事务，一个事务读取到了另一个事务未提交的数据，这便是脏读。</p>
+</li>
+<li><p><strong>幻读（phantom read）：</strong>两个事务，事务A与事务B，事务A在自己执行的过程中，执行了两次相同查询，第一次查询事务B未提交，第二次查询事务B已提交，从而造成两次查询结果不一样，这个其实被称为不可重复读；如果事务B是一个会影响查询结果的insert操作，则好像新多出来的行像幻觉一样，因此被称为幻读。其他事务的提交会影响在同一个事务中的重复查询结果。</p>
+</li>
+<li><p><strong>不可重复读（nonrepeatable read）：</strong>两个事务，事务T1读取一行，紧接着事务T2修改了T1刚才读取的那一行的内容。然后T1又读取了这一行，发现它与刚才读取的结果不同了。这种现象称为“不可重复读”，因为T1原来读取的那一行已经发生了变化。</p>
+</li>
+</ul>
+<p>下面简单描述一下SQL中定义的四种标准隔离级别：</p>
+<ol>
+<li><strong>READ UNCOMMITTED (未提交读) ：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：0. </li>
+<li>事物A和事物B，事物A未提交的数据，事物B可以读取到</li>
+<li>可以读取未提交的记录。</li>
+<li>会出现脏读。</li>
+<li>这种隔离级别最低，这种级别一般是在理论上存在，数据库隔离级别一般都高于该级别</li>
+</ul>
+<ol>
+<li><strong>READ COMMITTED (提交读) ：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：1. </li>
+<li>事物A和事物B，事物A提交的数据，事物B才能读取到</li>
+<li>事务中只能看到已提交的修改。</li>
+<li>不可重复读，会出现幻读。（在InnoDB中，会加行所，但是不会加间隙锁）</li>
+<li>该隔离级别是大多数数据库系统(如Oracle)的默认隔离级别，但是MySQL的则是RR。</li>
+</ul>
+<ol>
+<li><strong>REPEATABLE READ (可重复读) ：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：2. </li>
+<li>事务A和事务B，事务A提交之后的数据，事务B读取不到</li>
+<li>事务B是可重复读取数据</li>
+<li>换句话说，对方提交之后的数据，我还是读取不到</li>
+<li>MySQL默认级别</li>
+<li>在InnoDB中是这样的：RR隔离级别保证对读取到的记录加锁 (记录锁)，同时保证对读取的范围加锁，新的满足查询条件的记录不能够插入 (间隙锁)，因此不存在幻读现象。但是标准的RR只能保证在同一事务中多次读取同样记录的结果是一致的，而无法解决幻读问题。</li>
+<li>InnoDB的幻读解决是依靠MVCC的实现机制做到的。</li>
+</ul>
+<ol>
+<li><strong>SERIALIZABLE （可串行化）：</strong></li>
+</ol>
+<ul>
+<li>隔离级别：3. </li>
+<li>事务A和事务B，事务A在操作数据库时，事务B只能排队等待</li>
+<li>这种隔离级别很少使用，吞吐量太低，用户体验差</li>
+<li>这种级别可以避免“幻像读”，每一次读取的都是数据库中真实存在数据，事务A与事务B串行，而不并发</li>
+<li>该隔离级别会在读取的每一行数据上都加上锁，退化为基于锁的并发控制，即LBCC。
+　　<blockquote>
+<p>需要注意的是，MVCC只在RC和RR两个隔离级别下工作，其他两个隔离级别都和MVCC不兼容。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="设置事务隔离级别"><a href="#设置事务隔离级别" class="headerlink" title="设置事务隔离级别"></a>设置事务隔离级别</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><ul>
+<li><p>可以在my.ini文件中使用transaction-isolation选项来设置服务器的缺省事务隔离级别。</p>
+</li>
+<li><p>该选项值可以是</p>
+<pre><code>– READ-UNCOMMITTED
+– READ-COMMITTED
+– REPEATABLE-READ
+– SERIALIZABLE
+
+•   例如：
+[mysqld]
+transaction-isolation = READ-COMMITTED</code></pre></li>
+</ul>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><ul>
+<li>通过命令动态设置隔离级别<ul>
+<li>隔离级别也可以在运行的服务器中动态设置，应使用SET TRANSACTION ISOLATION LEVEL语句。</li>
+<li>其语法模式为：<pre><code>SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL &lt;isolation-level&gt;
+其中的&lt;isolation-level&gt;可以是：
+–   READ UNCOMMITTED
+–   READ COMMITTED
+–   REPEATABLE READ
+–   SERIALIZABLE
+•   例如： SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="隔离级别的作用范围"><a href="#隔离级别的作用范围" class="headerlink" title="隔离级别的作用范围"></a>隔离级别的作用范围</h2><pre><code>•   事务隔离级别的作用范围分为两种： 
+–   全局级：对所有的会话有效 
+–   会话级：只对当前的会话有效 
+•   例如，设置会话级隔离级别为READ COMMITTED ：
+mysql&gt; SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+或：
+mysql&gt; SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
+•   设置全局级隔离级别为READ COMMITTED ： 
+mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><h2 id="查看隔离级别"><a href="#查看隔离级别" class="headerlink" title="查看隔离级别"></a>查看隔离级别</h2><pre><code>select @@global.tx_isolation, @@tx_isolation 和 show variables like &apos;%isolation%&apos;</code></pre><blockquote>
+<p>关于事务隔离级别，锁，以及并发控制与加锁分析，可参考的技术博客<br>    <a href="https://xtzhu.github.io/2019/03/20/%E9%9D%A2%E8%AF%95%E9%A2%9870-80/#20">事务隔离级别</a><br>    <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yelbosh/p/5813865.html">并发控制与加锁分析</a><br>    <a target="_blank" rel="noopener" href="https://note.youdao.com/ynoteshare1/index.html?id=daad612052801c77458ee3fa5b366e20&type=note&from=timeline&isappinstalled=0#/">MySQL 加锁处理分析</a></p>
+</blockquote>
+<blockquote>
+<p>引用的技术博客<br>    <a target="_blank" rel="noopener" href="https://blog.csdn.net/w_linux/article/details/79666086">MySQL——事务(Transaction)详解</a></p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>数据库事务(Transaction)</p><p><a href="http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/">http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>XTZhu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-04-14</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-11-11</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="link-muted mr-2" rel="tag" href="/tags/MySQL-Orcale/">MySQL/Orcale</a><a class="link-muted mr-2" rel="tag" href="/tags/%E4%BA%8B%E5%8A%A1/">事务</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/04/14/%E4%B8%80%E4%BA%9B%E6%84%9F%E8%A7%A6/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">一些感触</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"><span class="level-item">TCP三次握手与四次挥手</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/Exclusive.jpg" alt="xtzhu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">xtzhu</p><p class="is-size-6 is-block">FE dev</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>❤China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">30</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/xtzhu"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-09T09:29:58.000Z">2020-04-09</time></p><p class="title"><a href="/2020/04/09/px-em-rem%E5%8C%BA%E5%88%AB%E4%BB%8B%E7%BB%8D/">px,em,rem区别介绍</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-08T06:17:25.000Z">2020-04-08</time></p><p class="title"><a href="/2020/04/08/%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3Normalize-css/">初步了解Normalize.css</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:44:16.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/lodash%E7%9A%84-find/">lodash的_.find()</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:39:31.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/%E5%9C%A8%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%E5%92%8C%E5%AD%A6%E4%B9%A0%E6%97%B6%E6%89%BE%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99/">在查找问题和学习时找到的一些网站</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:14:12.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/Git-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">Git 远程分支相关操作</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">三月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ES6/"><span class="tag">ES6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JVM/"><span class="tag">JVM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL-Orcale/"><span class="tag">MySQL/Orcale</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TCP/"><span class="tag">TCP</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ajax/"><span class="tag">ajax</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cookie-session/"><span class="tag">cookie/session</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java8/"><span class="tag">java8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/javaScript/"><span class="tag">javaScript</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lodash/"><span class="tag">lodash</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/momentJS/"><span class="tag">momentJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/website/"><span class="tag">website</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8B%E5%8A%A1/"><span class="tag">事务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/"><span class="tag">深拷贝</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/"><span class="tag">脚本算法</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%AD%E5%8C%85/"><span class="tag">闭包</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/"><span class="tag">闲聊</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a><p class="is-size-7"><span>&copy; 2020 XTZhu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

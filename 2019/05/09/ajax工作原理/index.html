@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>ajax工作原理 - PPPig&#039;s TreeHole</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="PPPig&#039;s TreeHole"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PPPig&#039;s TreeHole"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="ajax工作原理 参考资料：http:&amp;#x2F;&amp;#x2F;www.cnblogs.com&amp;#x2F;mingmingruyuedlut&amp;#x2F;archive&amp;#x2F;2011&amp;#x2F;10&amp;#x2F;18&amp;#x2F;2216553.html  AJAX的名字ajax 的全称是Asynchronous JavaScript and XML，其中，Asynchronous 是异步的意思，它有别于传统web开发中采用的同步的方式。 异步和同步异步 面向字符（单位：比特）"><meta property="og:type" content="blog"><meta property="og:title" content="ajax工作原理"><meta property="og:url" content="http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"><meta property="og:site_name" content="PPPig&#039;s TreeHole"><meta property="og:description" content="ajax工作原理 参考资料：http:&amp;#x2F;&amp;#x2F;www.cnblogs.com&amp;#x2F;mingmingruyuedlut&amp;#x2F;archive&amp;#x2F;2011&amp;#x2F;10&amp;#x2F;18&amp;#x2F;2216553.html  AJAX的名字ajax 的全称是Asynchronous JavaScript and XML，其中，Asynchronous 是异步的意思，它有别于传统web开发中采用的同步的方式。 异步和同步异步 面向字符（单位：比特）"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://raw.githubusercontent.com/XTZhu/image/master/blog/9NiepNyQar.png"><meta property="article:published_time" content="2019-05-09T05:23:56.000Z"><meta property="article:modified_time" content="2020-11-11T11:05:21.396Z"><meta property="article:author" content="XTZhu"><meta property="article:tag" content="ajax"><meta property="article:tag" content="javaScript"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://raw.githubusercontent.com/XTZhu/image/master/blog/9NiepNyQar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"},"headline":"PPPig's TreeHole","image":["https://raw.githubusercontent.com/XTZhu/image/master/blog/9NiepNyQar.png"],"datePublished":"2019-05-09T05:23:56.000Z","dateModified":"2020-11-11T11:05:21.396Z","author":{"@type":"Person","name":"XTZhu"},"description":"ajax工作原理 参考资料：http:&#x2F;&#x2F;www.cnblogs.com&#x2F;mingmingruyuedlut&#x2F;archive&#x2F;2011&#x2F;10&#x2F;18&#x2F;2216553.html  AJAX的名字ajax 的全称是Asynchronous JavaScript and XML，其中，Asynchronous 是异步的意思，它有别于传统web开发中采用的同步的方式。 异步和同步异步 面向字符（单位：比特）"}</script><link rel="canonical" href="http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/atom.xml" title="PPPig's TreeHole" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-05-09T05:23:56.000Z" title="2019-05-09T05:23:56.000Z">2019-05-09</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.396Z" title="2020-11-11T11:05:21.396Z">2020-11-11</time>更新</span><span class="level-item">22 分钟读完 (大约3259个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">ajax工作原理</h1><div class="content"><h1 id="ajax工作原理"><a href="#ajax工作原理" class="headerlink" title="ajax工作原理"></a>ajax工作原理</h1><blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/mingmingruyuedlut/archive/2011/10/18/2216553.html">http://www.cnblogs.com/mingmingruyuedlut/archive/2011/10/18/2216553.html</a></p>
+</blockquote>
+<h2 id="AJAX的名字"><a href="#AJAX的名字" class="headerlink" title="AJAX的名字"></a>AJAX的名字</h2><p>ajax 的全称是<code>Asynchronous JavaScript and XML</code>，其中，<code>Asynchronous</code> 是异步的意思，它有别于传统web开发中采用的同步的方式。</p>
+<h2 id="异步和同步"><a href="#异步和同步" class="headerlink" title="异步和同步"></a>异步和同步</h2><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><ul>
+<li>面向字符（单位：比特）</li>
+<li>将byte分成小组进行传输（一般8个字符)</li>
+<li>小组的（头/尾）分别有（开始位/结束位）</li>
+<li>传输过程中发送方和接收方时钟不要求一致</li>
+<li>发送方可以在任何时刻发送，而接收方并不知道数据什么时候到达</li>
+<li>开始位：它通知接收方数据已经到达了，这就给了接收方响应、接收 和缓存数据比特的时间</li>
+</ul>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><ul>
+<li>面向比特（单位：数据帧/帧）</li>
+<li>要求：接收方和发送方的时钟保持一致</li>
+<li>同步的比特分组要大得多</li>
+<li>不单独发送，而是组合发送（发送帧）</li>
+</ul>
+<p><strong>数据帧</strong>：</p>
+<hr>
+<hr>
+<ul>
+<li><em>开始部分</em>： 一个独特的比特（一组同步字符）</li>
+<li>作用：通知帧到达（相当于起始位），确保接收方的采样速度和比特的到达速度一致，保持同步。</li>
+</ul>
+<hr>
+<ul>
+<li><em>中间部分</em></li>
+</ul>
+<hr>
+<ul>
+<li><em>尾部</em>：帧结束标记</li>
+<li>作用： 表示在下一帧开始之前没有别的数据了</li>
+</ul>
+<hr>
+<hr>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><ol>
+<li><p>同步传输通常要比异步传输快速得多。</p>
+<blockquote>
+<p>接收方不必对每个字符进行开始和停止的操作。一旦检测到帧同步字符，它就在接下来的数据到达时接收它们</p>
+</blockquote>
+</li>
+<li><p>同步传输的开销也比较少</p>
+<blockquote>
+<p>一个典型的帧可能有500字节（即4000比特）的数据，其中可能只包含100比特的开销。这时，增加的比特位使传输的比特总数增加2.5%，这与异步传输中25 %的增值要小得多</p>
+</blockquote>
+</li>
+<li><p>随着数据帧中实际数据比特位的增加，开销比特所占的百分比将相应地减少</p>
+</li>
+<li><p>但是，数据比特位越长，缓存数据所需要的缓冲区也越大，这就限制了一个帧的大小 </p>
+</li>
+<li><p>帧越大，它占据传输媒体的连续时间也越长。在极端的情况下，这将导致其他用户等得太久</p>
+</li>
+</ol>
+<blockquote>
+<p>了解了同步和异步的概念之后，大家应该对ajax为什么可以提升用户体验应该比较清晰了，它是利用<code>异步</code>请求方式的。  </p>
+</blockquote>
+<blockquote>
+<p>打个比方，如果现在你家里所在的小区因 某种情况而面临停水，现在有关部门公布了两种方案，一是完全停水8个小时，在这8个小时内完全停水，8个小时后恢复正常。二是不完全停水10个小时，在这10个小时内水没有完全断，只是流量比原来小了很多，在10个小时后恢复正常流量，那么，如果是你你会选择哪种方式呢？显然是后者。</p>
+</blockquote>
+<h2 id="ajax所包含的技术"><a href="#ajax所包含的技术" class="headerlink" title="ajax所包含的技术"></a>ajax所包含的技术</h2><ol>
+<li><p>使用<code>CSS</code>和<code>XHTML</code>来表示。  </p>
+</li>
+<li><p>使用<code>DOM</code>模型来交互和动态显示。  </p>
+</li>
+<li><p>使用<code>XMLHttpRequest</code>来和<code>服务器</code>进行异步通信。</p>
+</li>
+<li><p>使用<code>javascript</code>来绑定和调用。</p>
+</li>
+</ol>
+<p>在上面几中技术中，除了<code>XmlHttpRequest</code>对象以外，其它所有的技术都是基于web标准并且已经得到了广泛使用的，<code>XMLHttpRequest</code>虽然目前还没有被W3C所采纳，但是它已经是一个事实的标准，因为目前几乎所有的主流浏览器都支持它。</p>
+<h2 id="ajax原理和XmlHttpRequest对象"><a href="#ajax原理和XmlHttpRequest对象" class="headerlink" title="ajax原理和XmlHttpRequest对象"></a>ajax原理和XmlHttpRequest对象</h2><h3 id="Ajax的原理："><a href="#Ajax的原理：" class="headerlink" title="Ajax的原理："></a>Ajax的原理：</h3><ul>
+<li>通过XmlHttpRequest对象来向服务器发异步请求</li>
+<li>从服务器获得数据</li>
+<li>用javascript来操作DOM而更新页面。<blockquote>
+<p>这其中最关键的一步就是从服务器获得请求数据。要清楚这个过程和原理，我们必须对 <code>XMLHttpRequest</code>有所了解。</p>
+</blockquote>
+</li>
+</ul>
+<p><code>XMLHttpRequest</code>是ajax的核心机制，它是在IE5中首先引入的，是一种支持异步请求的技术。<br>简单的说，也就是javascript可以及时向服务器提出请求和处理响应，而不阻塞用户。达到无刷新的效果。</p>
+<h3 id="XMLHttpRequest对象的属性"><a href="#XMLHttpRequest对象的属性" class="headerlink" title="XMLHttpRequest对象的属性"></a>XMLHttpRequest对象的属性</h3><p>它的属性有：</p>
+<ul>
+<li><code>onreadystatechange</code> 每次状态改变所触发事件的事件处理程序。</li>
+<li><code>responseText</code>       从服务器进程返回数据的字符串形式。</li>
+<li><code>responseXML</code>               从服务器进程返回的DOM兼容的文档数据对象。</li>
+<li><code>status</code>                从服务器返回的数字代码，比如常见的404（未找到）和200（已就绪）</li>
+<li><code>status Text</code>              伴随状态码的字符串信息</li>
+<li><code>readyState</code>               对象状态值<blockquote>
+<ul>
+<li>0 (未初始化) 对象已建立，但是尚未初始化（尚未调用open方法）</li>
+<li>1 (初始化) 对象已建立，尚未调用send方法</li>
+<li>2 (发送数据) send方法已调用，但是当前的状态及http头未知</li>
+<li>3 (数据传送中) 已接收部分数据，因为响应及http头不全，这时通过responseBody和responseText获取部分数据会出现错误</li>
+<li>4 (完成) 数据接收完毕,此时可以通过通过responseXml和responseText获取完整的回应数据</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="创建XMLHttpRequest对象的方法"><a href="#创建XMLHttpRequest对象的方法" class="headerlink" title="创建XMLHttpRequest对象的方法"></a>创建XMLHttpRequest对象的方法</h3><p>由于各浏览器之间存在差异，所以创建一个<code>XMLHttpRequest</code>对象可能需要不同的方法。这个差异主要体现在IE和其它浏览器之间。下面是一个比较标准的创建<code>XMLHttpRequest</code>对象的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreateXmlHttp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//非IE浏览器创建XmlHttpRequest对象</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XmlHttpRequest) &#123;</span><br><span class="line">        xmlhttp = <span class="keyword">new</span> XmlHttpRequest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//IE浏览器创建XmlHttpRequest对象</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            xmlhttp = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                xmlhttp = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;msxml2.XMLHTTP&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (ex) &#123; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ustbwuyi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> data = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>).value;</span><br><span class="line">    CreateXmlHttp();</span><br><span class="line">    <span class="keyword">if</span> (!xmlhttp) &#123;</span><br><span class="line">        alert(<span class="string">&quot;创建xmlhttp对象异常！&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    xmlhttp.open(<span class="string">&quot;POST&quot;</span>, url, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    xmlhttp.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;user1&quot;</span>).innerHTML = <span class="string">&quot;数据正在加载...&quot;</span>;</span><br><span class="line">            <span class="keyword">if</span> (xmlhttp.status == <span class="number">200</span>) &#123;</span><br><span class="line">                <span class="built_in">document</span>.write(xmlhttp.responseText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上所示，函数首先检查<code>XMLHttpRequest</code>的整体状态并且保证它已经完成（<code>readyStatus=4</code>），即数据已经发送完毕。然后根据服务器的设定询问请求状态，如果一切已经就绪（<code>status=200</code>），那么就执行下面需要的操作。</p>
+<p>对于XmlHttpRequest的两个方法，<code>open</code>和<code>send</code>，其中<code>open</code>方法指定了：</p>
+<p>a、向服务器提交数据的类型，即<code>post</code>还是<code>get</code>。</p>
+<p>b、请求的url地址和传递的参数。</p>
+<p>c、传输方式，false为同步，true为异步。默认为true。如果是异步通信方式(true)，客户机就不等待服务器的响应；如果是同步方式(false)，客户机就要等到服务器返回消息后才去执行其他操作。我们需要根据实际需要来指定同步方式，在某些页面中，可能会发出多个请求，甚至是有组织有计划有队形大规模的高强度的request，而后一个是会覆盖前一个的，这个时候当然要指定同步方式。</p>
+<p><code>Send</code>方法用来发送请求。</p>
+<h3 id="ajax的原理"><a href="#ajax的原理" class="headerlink" title="ajax的原理"></a>ajax的原理</h3><p>我们可以看出，<code>XMLHttpRequest</code>是完全用来向服务器发出一个请求的，它的作用也局限于此，但它的作用是整个ajax实现的关键，因为ajax无非是两个过程，<strong>发出请求</strong>和<strong>响应请求</strong>。<br>并且它完全是一种客户端的技术。而XMLHttpRequest正是处理了服务器端和客户端通信的问题所以才会如此的重要。</p>
+<blockquote>
+<p>我们可以把服务器端看成一个数据接口，它返回的是一个纯文本流，当然，这个文本流可以是XML格式，可以是Html，可以是Javascript代码，也可以只是一个字符串。这时候，XMLHttpRequest向服务器端请求这个页面，服务器端将文本的结果写入页面，这和普通的web开发流程是一样的，不同的是，客户端在异步获取这个结果后，不是直接显示在页面，而是先由javascript来处理，然后再显示在页面。至于现在流行的很多ajax控件，比如magicajax等，可以返回DataSet等其它数据类型，只是将这个过程封装了的结果，本质上他们并没有什么太大的区别。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/9NiepNyQar.png" alt="图示"></p>
+<h2 id="ajax的优点"><a href="#ajax的优点" class="headerlink" title="ajax的优点"></a>ajax的优点</h2><ul>
+<li><p>最大的一点是页面无刷新，在页面内与服务器通信，给用户的<strong>体验</strong>非常好。</p>
+</li>
+<li><p>使用异步方式与服务器通信，不需要打断用户的操作，具有<strong>更加迅速的响应能力</strong>。</p>
+</li>
+<li><p>可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，<strong>减轻服务器和带宽的负担</strong>，节约空间和宽带租用成本。并且减轻服务器的负担，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求，和响应对服务器造成的负担。</p>
+</li>
+<li><p>基于标准化的并被<strong>广泛支持</strong>的技术，不需要下载插件或者小程序。</p>
+</li>
+</ul>
+<h2 id="ajax的缺点"><a href="#ajax的缺点" class="headerlink" title="ajax的缺点"></a>ajax的缺点</h2><ol>
+<li><p>ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但是它没法和js进行很好的合作。这是ajax所带来的一个比较严重的问题，因为用户往往是希望能够通过后退来取消前一次操作的。解决办法：用过Gmail的知道，Gmail下面采用的ajax技术解决了这个问题，在Gmail下面是可以后退的，但是，它也并不能改变ajax的机制，它只是采用的一个比较笨但是有效的办法，即用户单击后退按钮访问历史记录时，通过创建或使用一个隐藏的IFRAME来重现页面上的变更。</p>
+<blockquote>
+<p>（例如，当用户在Google Maps中单击后退时，它在一个隐藏的IFRAME中进行搜索，然后将搜索结果反映到Ajax元素上，以便将应用程序状态恢复到当时的状态。）<br>但是，虽然说这个问题是可以解决的，但是它所带来的开发成本是非常高的，和ajax框架所要求的快速开发是相背离的。这是ajax所带来的一个非常严重的问题。</p>
+</blockquote>
+</li>
+<li><p><strong>安全问题</strong><br>技术同时也对IT企业带来了新的安全威胁，ajax技术就如同对企业数据建立了一个直接通道。这使得开发者在不经意间会暴露比以前更多的数据和服务器逻辑。ajax的逻辑可以对客户端的安全扫描技术隐藏起来，允许黑客从远端服务器上建立新的攻击。还有ajax也难以避免一些已知的安全弱点，诸如跨站点脚步攻击、SQL注入攻击和基于credentials的安全漏洞等。</p>
+</li>
+<li><p><strong>对搜索引擎的支持比较弱</strong>。</p>
+</li>
+<li><p><strong>破坏</strong>了程序的<strong>异常机制</strong>。至少从目前看来，像ajax.dll，ajaxpro.dll这些ajax框架是会破坏程序的异常机制的。关于这个问题，我曾经在开发过程中遇到过，但是查了一下网上几乎没有相关的介绍。后来我自己做了一次试验，分别采用ajax和传统的form提交的模式来删除一条数据……给我们的调试带来了很大的困难。</p>
+</li>
+<li><p>另外，像其他方面的一些问题，比如说违背了url和资源定位的初衷。例如，我给你一个url地址，如果采用了ajax技术，也许你在该url地址下面看到的和我在这个url地址下看到的内容是不同的。这个和资源定位的初衷是相背离的。</p>
+</li>
+<li><p>一些手持设备（如手机、PDA等）现在还不能很好的支持ajax，比如说我们在手机的浏览器上打开采用ajax技术的网站时，它目前是不支持的，当然，这个问题和我们没太多关系。</p>
+</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>ajax工作原理</p><p><a href="http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>XTZhu</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-05-09</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-11-11</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/ajax/">ajax</a><a class="link-muted mr-2" rel="tag" href="/tags/javaScript/">javaScript</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">在浏览器中输入url后发生了什么?</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/05/08/Rest-%E5%8F%82%E6%95%B0%E4%B8%8E-Spread-%E6%93%8D%E4%BD%9C%E7%AC%A6/"><span class="level-item">Rest 参数与 Spread 操作符</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/Exclusive.jpg" alt="xtzhu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">xtzhu</p><p class="is-size-6 is-block">FE dev</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>❤China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">30</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/xtzhu"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-09T09:29:58.000Z">2020-04-09</time></p><p class="title"><a href="/2020/04/09/px-em-rem%E5%8C%BA%E5%88%AB%E4%BB%8B%E7%BB%8D/">px,em,rem区别介绍</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-08T06:17:25.000Z">2020-04-08</time></p><p class="title"><a href="/2020/04/08/%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3Normalize-css/">初步了解Normalize.css</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:44:16.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/lodash%E7%9A%84-find/">lodash的_.find()</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:39:31.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/%E5%9C%A8%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%E5%92%8C%E5%AD%A6%E4%B9%A0%E6%97%B6%E6%89%BE%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99/">在查找问题和学习时找到的一些网站</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:14:12.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/Git-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">Git 远程分支相关操作</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">三月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ES6/"><span class="tag">ES6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JVM/"><span class="tag">JVM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL-Orcale/"><span class="tag">MySQL/Orcale</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TCP/"><span class="tag">TCP</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ajax/"><span class="tag">ajax</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cookie-session/"><span class="tag">cookie/session</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java8/"><span class="tag">java8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/javaScript/"><span class="tag">javaScript</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lodash/"><span class="tag">lodash</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/momentJS/"><span class="tag">momentJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/website/"><span class="tag">website</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8B%E5%8A%A1/"><span class="tag">事务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/"><span class="tag">深拷贝</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/"><span class="tag">脚本算法</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%AD%E5%8C%85/"><span class="tag">闭包</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/"><span class="tag">闲聊</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a><p class="is-size-7"><span>&copy; 2020 XTZhu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

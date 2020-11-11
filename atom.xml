@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>PPPig&#39;s TreeHole</title>
+  <icon>http://xtzhu.github.io/icon.png</icon>
+  <subtitle>在人生的道路上，人是自由的</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xtzhu.github.io/"/>
+  <updated>2020-11-11T11:05:21.397Z</updated>
+  <id>http://xtzhu.github.io/</id>
+  
+  <author>
+    <name>XTZhu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>px,em,rem区别介绍</title>
+    <link href="http://xtzhu.github.io/2020/04/09/px-em-rem%E5%8C%BA%E5%88%AB%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://xtzhu.github.io/2020/04/09/px-em-rem%E5%8C%BA%E5%88%AB%E4%BB%8B%E7%BB%8D/</id>
+    <published>2020-04-09T09:29:58.000Z</published>
+    <updated>2020-11-11T11:05:21.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://www.runoob.com/w3cnote/px-em-rem-different.html&quot;&gt;菜鸟教程原文&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;px&quot;&gt;&lt;a href=&quot;#px&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="css" scheme="http://XTZhu.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初步了解Normalize.css</title>
+    <link href="http://xtzhu.github.io/2020/04/08/%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3Normalize-css/"/>
+    <id>http://xtzhu.github.io/2020/04/08/%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3Normalize-css/</id>
+    <published>2020-04-08T06:17:25.000Z</published>
+    <updated>2020-11-11T11:05:21.398Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;初步了解Normalize-css&quot;&gt;&lt;a href=&quot;#初步了解Normalize-css&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="css" scheme="http://XTZhu.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>lodash的_.find()</title>
+    <link href="http://xtzhu.github.io/2020/04/07/lodash%E7%9A%84-find/"/>
+    <id>http://xtzhu.github.io/2020/04/07/lodash%E7%9A%84-find/</id>
+    <published>2020-04-07T07:44:16.000Z</published>
+    <updated>2020-11-11T11:05:21.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;find-api文档&quot;&gt;&lt;a href=&quot;#find-api文档&quot; class=&quot;headerlink&quot; title=&quot;_.find() api文档&quot;&gt;&lt;/a&gt;&lt;strong&gt;_.find()&lt;/strong&gt; api文档&lt;/h1&gt;&lt;p&gt;“集合”
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="lodash" scheme="http://XTZhu.github.io/tags/lodash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在查找问题和学习时找到的一些网站</title>
+    <link href="http://xtzhu.github.io/2020/04/07/%E5%9C%A8%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%E5%92%8C%E5%AD%A6%E4%B9%A0%E6%97%B6%E6%89%BE%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99/"/>
+    <id>http://xtzhu.github.io/2020/04/07/%E5%9C%A8%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%E5%92%8C%E5%AD%A6%E4%B9%A0%E6%97%B6%E6%89%BE%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99/</id>
+    <published>2020-04-07T07:39:31.000Z</published>
+    <updated>2020-11-11T11:05:21.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在查找问题和学习时找到的一些网站(待更新..)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="website" scheme="http://XTZhu.github.io/tags/website/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 远程分支相关操作</title>
+    <link href="http://xtzhu.github.io/2020/04/07/Git-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
+    <id>http://xtzhu.github.io/2020/04/07/Git-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</id>
+    <published>2020-04-07T07:14:12.000Z</published>
+    <updated>2020-11-11T11:05:21.395Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;git-拉取远程分支到本地&quot;&gt;&lt;a href=&quot;#git-拉取远程分支到本地&quot; class=&quot;headerlink&quot; title=&quot;git 拉取远程分支到本地&quot;&gt;&lt;/a&gt;git 拉取远程分支到本地&lt;/h1&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="css" scheme="http://XTZhu.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>css文字省略</title>
+    <link href="http://xtzhu.github.io/2020/03/19/css%E6%96%87%E5%AD%97%E7%9C%81%E7%95%A5/"/>
+    <id>http://xtzhu.github.io/2020/03/19/css%E6%96%87%E5%AD%97%E7%9C%81%E7%95%A5/</id>
+    <published>2020-03-19T07:54:32.000Z</published>
+    <updated>2020-11-11T11:05:21.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;单行文字省略&quot;&gt;&lt;a href=&quot;#单行文字省略&quot; class=&quot;headerlink&quot; title=&quot;单行文字省略&quot;&gt;&lt;/a&gt;单行文字省略&lt;/h1&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="css" scheme="http://XTZhu.github.io/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用momentJS获取当天凌晨的时间戳</title>
+    <link href="http://xtzhu.github.io/2019/12/09/%E5%88%A9%E7%94%A8momentJS%E8%8E%B7%E5%8F%96%E5%BD%93%E5%A4%A9%E5%87%8C%E6%99%A8%E7%9A%84%E6%97%B6%E9%97%B4%E6%88%B3/"/>
+    <id>http://xtzhu.github.io/2019/12/09/%E5%88%A9%E7%94%A8momentJS%E8%8E%B7%E5%8F%96%E5%BD%93%E5%A4%A9%E5%87%8C%E6%99%A8%E7%9A%84%E6%97%B6%E9%97%B4%E6%88%B3/</id>
+    <published>2019-12-09T07:31:28.000Z</published>
+    <updated>2020-11-11T11:05:21.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="momentJS" scheme="http://XTZhu.github.io/tags/momentJS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅拷贝与深拷贝</title>
+    <link href="http://xtzhu.github.io/2019/05/10/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/"/>
+    <id>http://xtzhu.github.io/2019/05/10/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/</id>
+    <published>2019-05-10T08:06:32.000Z</published>
+    <updated>2020-11-11T11:05:21.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;引用： &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+      <category term="深拷贝" scheme="http://XTZhu.github.io/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[转]奇妙的CSS之布局与定位</title>
+    <link href="http://xtzhu.github.io/2019/05/10/%E8%BD%AC-%E5%A5%87%E5%A6%99%E7%9A%84CSS%E4%B9%8B%E5%B8%83%E5%B1%80%E4%B8%8E%E5%AE%9A%E4%BD%8D/"/>
+    <id>http://xtzhu.github.io/2019/05/10/%E8%BD%AC-%E5%A5%87%E5%A6%99%E7%9A%84CSS%E4%B9%8B%E5%B8%83%E5%B1%80%E4%B8%8E%E5%AE%9A%E4%BD%8D/</id>
+    <published>2019-05-10T07:48:31.000Z</published>
+    <updated>2020-11-11T11:05:21.400Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;转载自：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="CSS" scheme="http://XTZhu.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在浏览器中输入url后发生了什么?</title>
+    <link href="http://xtzhu.github.io/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"/>
+    <id>http://xtzhu.github.io/2019/05/09/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</id>
+    <published>2019-05-09T07:30:12.000Z</published>
+    <updated>2020-11-11T11:05:21.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;参考资料：&lt;a href=&quot;https://www.jianshu.com/p/c1dfc6caa520&quot;&gt;https://www.jianshu.com/p/c1dfc6caa520&lt;/a&gt;&lt;br&gt;推荐阅读：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ajax工作原理</title>
+    <link href="http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
+    <id>http://xtzhu.github.io/2019/05/09/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</id>
+    <published>2019-05-09T05:23:56.000Z</published>
+    <updated>2020-11-11T11:05:21.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;ajax工作原理&quot;&gt;&lt;a href=&quot;#ajax工作原理&quot; class=&quot;headerlink&quot; title=&quot;ajax工作原理&quot;&gt;&lt;/a&gt;ajax工作原理&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考资料：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="ajax" scheme="http://XTZhu.github.io/tags/ajax/"/>
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rest 参数与 Spread 操作符</title>
+    <link href="http://xtzhu.github.io/2019/05/08/Rest-%E5%8F%82%E6%95%B0%E4%B8%8E-Spread-%E6%93%8D%E4%BD%9C%E7%AC%A6/"/>
+    <id>http://xtzhu.github.io/2019/05/08/Rest-%E5%8F%82%E6%95%B0%E4%B8%8E-Spread-%E6%93%8D%E4%BD%9C%E7%AC%A6/</id>
+    <published>2019-05-08T11:54:59.000Z</published>
+    <updated>2020-11-11T11:05:21.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;参考资料：&lt;a href=&quot;https://zh.javascript.info/rest-parameters-spread-operator#spread-operator&quot;&gt;Rest 参数与 Spread
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>null和undefined与NaN</title>
+    <link href="http://xtzhu.github.io/2019/05/07/null%E5%92%8Cundefined%E4%B8%8ENaN/"/>
+    <id>http://xtzhu.github.io/2019/05/07/null%E5%92%8Cundefined%E4%B8%8ENaN/</id>
+    <published>2019-05-07T07:22:24.000Z</published>
+    <updated>2020-11-11T11:05:21.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;参考资料：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ES6学习笔记</title>
+    <link href="http://xtzhu.github.io/2019/05/06/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://xtzhu.github.io/2019/05/06/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2019-05-06T08:06:15.000Z</published>
+    <updated>2020-11-11T11:05:21.395Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;记录ES6学习过程中的一些内容&quot;&gt;&lt;a href=&quot;#记录ES6学习过程中的一些内容&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+      <category term="ES6" scheme="http://XTZhu.github.io/tags/ES6/"/>
+    
+      <category term="闭包" scheme="http://XTZhu.github.io/tags/%E9%97%AD%E5%8C%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>有关JS的数组方法</title>
+    <link href="http://xtzhu.github.io/2019/05/06/%E6%9C%89%E5%85%B3JS%E7%9A%84%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://xtzhu.github.io/2019/05/06/%E6%9C%89%E5%85%B3JS%E7%9A%84%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</id>
+    <published>2019-05-06T01:06:15.000Z</published>
+    <updated>2020-11-11T11:05:21.399Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;每多学一点知识，就少写一行代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;length-长度属性&quot;&gt;&lt;a href=&quot;#length-长度属性&quot; class=&quot;headerlink&quot; title=&quot;length -
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="javaScript" scheme="http://XTZhu.github.io/tags/javaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react生命周期（转载）</title>
+    <link href="http://xtzhu.github.io/2019/04/18/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>http://xtzhu.github.io/2019/04/18/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</id>
+    <published>2019-04-18T14:13:14.000Z</published>
+    <updated>2020-11-11T11:05:21.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;转载自： &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="react" scheme="http://XTZhu.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ajax跨域（转载）</title>
+    <link href="http://xtzhu.github.io/2019/04/18/Ajax%E8%B7%A8%E5%9F%9F/"/>
+    <id>http://xtzhu.github.io/2019/04/18/Ajax%E8%B7%A8%E5%9F%9F/</id>
+    <published>2019-04-18T14:12:57.000Z</published>
+    <updated>2020-11-11T11:05:21.394Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;转载自&lt;br&gt;    &lt;a href=&quot;https://segmentfault.com/a/1190000012469713&quot;&gt;https://segmentfault.com/a/1190000012469713&lt;/a&gt;&lt;br&gt;    &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="ajax" scheme="http://XTZhu.github.io/tags/ajax/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java到底是解释性语言还是编译型语言？</title>
+    <link href="http://xtzhu.github.io/2019/04/16/java%E5%88%B0%E5%BA%95%E6%98%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E8%AF%AD%E8%A8%80%E8%BF%98%E6%98%AF%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%EF%BC%9F/"/>
+    <id>http://xtzhu.github.io/2019/04/16/java%E5%88%B0%E5%BA%95%E6%98%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E8%AF%AD%E8%A8%80%E8%BF%98%E6%98%AF%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%EF%BC%9F/</id>
+    <published>2019-04-16T14:34:04.000Z</published>
+    <updated>2020-11-11T11:05:21.397Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Java这个语言很非凡。&lt;br&gt;一、你可以说它是编译型的。因为所有的Java代码都是要编译的，.java不经过编译就什么用都没有。
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="java" scheme="http://XTZhu.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(1)--简单工厂模式</title>
+    <link href="http://xtzhu.github.io/2019/04/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://xtzhu.github.io/2019/04/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</id>
+    <published>2019-04-14T14:46:20.000Z</published>
+    <updated>2020-11-11T11:05:21.400Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在Mybatis中比如SqlSessionFactory使用的是工厂模式，该工厂没有那么复杂的逻辑，是一个简单工厂模式。&lt;/p&gt;
+&lt;p&gt;简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="设计模式" scheme="http://XTZhu.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一些感触</title>
+    <link href="http://xtzhu.github.io/2019/04/14/%E4%B8%80%E4%BA%9B%E6%84%9F%E8%A7%A6/"/>
+    <id>http://xtzhu.github.io/2019/04/14/%E4%B8%80%E4%BA%9B%E6%84%9F%E8%A7%A6/</id>
+    <published>2019-04-14T14:44:20.000Z</published>
+    <updated>2020-11-11T11:05:21.398Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;从毕业到现在，工作也快1年半了，这一年来变化真是很大。当初大四最后一学期的补Java基础，看框架视频，做了半本书的笔记，现在也不知道在哪了；从找实习，找工作时的迷茫到现在的可以独立开发一些小项目，从无到有，更让自己觉得要学的东西太多，也在后悔大学没有好好努力，没有早点认识到
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="闲聊" scheme="http://XTZhu.github.io/tags/%E9%97%B2%E8%81%8A/"/>
+    
+  </entry>
+  
+</feed>
