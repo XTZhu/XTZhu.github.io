@@ -564,24 +564,6 @@ Sec-WebSocket-Protocol: chat</code></pre><h2 id="CORS"><a href="#CORS" class="he
       </tags>
   </entry>
   <entry>
-    <title>lodash的_.find()</title>
-    <url>/2020/04/07/lodash%E7%9A%84-find/</url>
-    <content><![CDATA[<h1 id="find-api文档"><a href="#find-api文档" class="headerlink" title="_.find() api文档"></a><strong>_.find()</strong> api文档</h1><p>“集合” 方法(“Collection” Methods)</p>
-<blockquote>
-<p><em>.find(collection, [predicate=</em>.identity], [fromIndex=0])</p>
-</blockquote>
-<p>遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。</p>
-<h2 id="添加版本"><a href="#添加版本" class="headerlink" title="添加版本"></a>添加版本</h2><p>  0.1.0</p>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>  collection (Array|Object): 一个用来迭代的集合。<br>  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>  [fromIndex=0] (number): 开始搜索的索引位置。</p>
-<h2 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h2><p>  (*): 返回匹配元素，否则返回 undefined。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> users = [</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;barney&#x27;</span>,  <span class="string">&#x27;age&#x27;</span>: <span class="number">36</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;fred&#x27;</span>,    <span class="string">&#x27;age&#x27;</span>: <span class="number">40</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;pebbles&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>,  <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">_.find(users, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123; <span class="keyword">return</span> o.age &lt; <span class="number">40</span>; &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matches` iteratee shorthand.</span></span><br><span class="line">_.find(users, &#123; <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;pebbles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matchesProperty` iteratee shorthand.</span></span><br><span class="line">_.find(users, [<span class="string">&#x27;active&#x27;</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;fred&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.property` iteratee shorthand.</span></span><br><span class="line">_.find(users, <span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://codesandbox.io/s/find-demo-teonk?file=/src/App.js">在线demo</a></p>
-]]></content>
-      <tags>
-        <tag>lodash</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>null和undefined与NaN</title>
     <url>/2019/05/07/null%E5%92%8Cundefined%E4%B8%8ENaN/</url>
     <content><![CDATA[<blockquote>
@@ -678,6 +660,24 @@ Sec-WebSocket-Protocol: chat</code></pre><h2 id="CORS"><a href="#CORS" class="he
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">null</span>;</span><br><span class="line"> </span><br><span class="line">a.name = <span class="string">&#x27;realwall&#x27;</span>;</span><br><span class="line">b.name = <span class="string">&#x27;jim&#x27;</span>; <span class="comment">//这里会报错，b为空指针对象，不能像普通对象一样直接添加属性。</span></span><br><span class="line">b = a;</span><br><span class="line">b.name = <span class="string">&#x27;jim&#x27;</span>; <span class="comment">//此时 a 和 b 指向同一个对象。a.name, b.name 均为&#x27;jam&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>javaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lodash的_.find()</title>
+    <url>/2020/04/07/lodash%E7%9A%84-find/</url>
+    <content><![CDATA[<h1 id="find-api文档"><a href="#find-api文档" class="headerlink" title="_.find() api文档"></a><strong>_.find()</strong> api文档</h1><p>“集合” 方法(“Collection” Methods)</p>
+<blockquote>
+<p><em>.find(collection, [predicate=</em>.identity], [fromIndex=0])</p>
+</blockquote>
+<p>遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。</p>
+<h2 id="添加版本"><a href="#添加版本" class="headerlink" title="添加版本"></a>添加版本</h2><p>  0.1.0</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>  collection (Array|Object): 一个用来迭代的集合。<br>  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>  [fromIndex=0] (number): 开始搜索的索引位置。</p>
+<h2 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h2><p>  (*): 返回匹配元素，否则返回 undefined。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> users = [</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;barney&#x27;</span>,  <span class="string">&#x27;age&#x27;</span>: <span class="number">36</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;fred&#x27;</span>,    <span class="string">&#x27;age&#x27;</span>: <span class="number">40</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;pebbles&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>,  <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">_.find(users, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123; <span class="keyword">return</span> o.age &lt; <span class="number">40</span>; &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matches` iteratee shorthand.</span></span><br><span class="line">_.find(users, &#123; <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;pebbles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matchesProperty` iteratee shorthand.</span></span><br><span class="line">_.find(users, [<span class="string">&#x27;active&#x27;</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;fred&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.property` iteratee shorthand.</span></span><br><span class="line">_.find(users, <span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://codesandbox.io/s/find-demo-teonk?file=/src/App.js">在线demo</a></p>
+]]></content>
+      <tags>
+        <tag>lodash</tag>
       </tags>
   </entry>
   <entry>
@@ -1079,25 +1079,6 @@ Sec-WebSocket-Protocol: chat</code></pre><h2 id="CORS"><a href="#CORS" class="he
 ]]></content>
       <tags>
         <tag>momentJS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在查找问题和学习时找到的一些网站</title>
-    <url>/2020/04/07/%E5%9C%A8%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98%E5%92%8C%E5%AD%A6%E4%B9%A0%E6%97%B6%E6%89%BE%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99/</url>
-    <content><![CDATA[<p>在查找问题和学习时找到的一些网站(待更新..)</p>
-<ul>
-<li><p><a href="https://www.itranslater.com/qa/details/2131899986198660096">机翻的stackoverflow</a></p>
-</li>
-<li><p><a href="https://usehooks.com/">学习hooks的网站</a></p>
-</li>
-<li><p><a href="http://www.dang-jian.com/">dang-jian的博客</a></p>
-</li>
-<li><p><a href="https://justjavascript.com/">Dan Abramov 的博客</a></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>website</tag>
       </tags>
   </entry>
   <entry>
@@ -1635,6 +1616,128 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
 ]]></content>
       <tags>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>资源整理 文章|博客|资源</title>
+    <url>/2020/04/07/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86%20%E6%96%87%E7%AB%A0%E3%80%81%E5%8D%9A%E5%AE%A2%E3%80%81%E8%B5%84%E6%BA%90/</url>
+    <content><![CDATA[<p>在查找问题和学习时找到的一些网站(待更新..)</p>
+<h2 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h2><ul>
+<li><a href="https://www.itranslater.com/qa/details/2131899986198660096">机翻的stackoverflow</a></li>
+<li><a href="https://overreacted.io/">dang-jian的博客</a></li>
+<li><a href="https://www.liaoxuefeng.com/">廖雪峰的博客</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/">阮一峰老师的博客</a></li>
+<li><a href="https://davidflanagan.com/">davidflanagan的博客（犀牛书）</a></li>
+<li><a href="https://justjavascript.com/">Dan Abramov 的博客</a></li>
+<li><a href="https://dillinger.io/">在线的markdown编辑器</a></li>
+<li><a href="https://www.markdownguide.org/">markdownGuide</a><!-- - [roy的博客](https://www.hi-roy.com/) --></li>
+<li><a href="https://www.cxyxiaowu.com/">五分钟学算法</a></li>
+<li><a href="https://xiaohesong.gitbook.io/today-i-learn/">xiaohesong的博客(前端总结)</a></li>
+<li><a href="https://www.cnblogs.com/larryzeal/p/5799195.html">larryzeal的博客(spring boot)</a></li>
+<li><a href="https://cyc2018.github.io/CS-Notes/#/README">CS-Notes(前端博客)</a></li>
+<li><a href="http://jartto.wang/">jartto(前端博客)</a></li>
+<li><a href="https://ewind.us/">ewind(有点厉害)</a></li>
+<li><a href="https://bellsprite.com/">认真你就输了</a></li>
+<li><a href="https://zocodev.com/">关注服务器和Linux</a></li>
+<li><a href="https://xiaohuochai.site/">蓝色小火柴</a></li>
+<li><a href="https://www.bfdz.ink/page/2/">BFDZ(资源分享)</a></li>
+<li><a href="https://www.blackglory.me/">blackglory(前端博客)</a></li>
+<li><a href="https://bearbeargo.com/">熊熊咆哮(前端博客)</a></li>
+<li><a href="https://shockerli.net/">格物(资源整合)</a></li>
+<li><a href="https://kamilmysliwiec.com/">kamilmysliwiec.com</a></li>
+<li><a href="https://medium.com/">medium社区</a><!-- - [神三元(前端博客)](https://sanyuan0704.github.io/) -->
+
+</li>
+</ul>
+<h2 id="官方文档或翻译或资源"><a href="#官方文档或翻译或资源" class="headerlink" title="官方文档或翻译或资源"></a>官方文档或翻译或资源</h2><ul>
+<li><a href="http://gdut_yy.gitee.io/doc-csstdg4/">《CSS权威指南4th》中文翻译</a></li>
+<li><a href="https://echarts.apache.org/zh/index.html">Echart</a></li>
+<li><a href="https://docs.nestjs.cn/">nestjs中文</a></li>
+<li><a href="https://graphql.cn/">GraphQL中文</a></li>
+<li><a href="https://www.apollographql.com/docs/apollo-server/getting-started/">apollographql</a></li>
+<li><a href="https://developers.google.com/web">Web  |  Google Developers</a></li>
+<li><a href="https://redux.js.org/">reduxJS</a></li>
+<li><a href="https://codesandbox.io/dashboard/recent">codesandbox</a></li>
+<li><a href="https://www.lodashjs.com/">lodashjs中文</a></li>
+<li><a href="https://www.lodash.com/">lodashjs</a></li>
+<li><a href="http://www.csszengarden.com/tr/zh-cn/">CSS 禅意花园: CSS 设计之美</a></li>
+<li><a href="https://es6.ruanyifeng.com/#README">ES6 入门教程</a></li>
+<li><a href="https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion">ECMAScript® 2020 Language Specification</a></li>
+<li><a href="https://github.com/justjavac/free-programming-books-zh_CN/#%E7%BD%AE%E9%A1%B6">freebook 免费书籍</a></li>
+<li><a href="https://docs.github.com/cn">github 帮助文档</a></li>
+<li><a href="https://caniuse.com/#search=transform">can i use</a></li>
+<li><a href="https://zh.javascript.info/">js Info(值得推荐的js教程)</a></li>
+</ul>
+<h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><ul>
+<li><a href="http://theme-next.iissnan.com/">NexT(hexo 主题)使用文档</a></li>
+<li><a href="https://www.jianshu.com/p/9f0e90cc32c2">NexT主题 小技巧</a></li>
+<li><a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/UPDATE-FROM-5.1.X.md">从 NexT v5.1.x 更新</a></li>
+<li><a href="https://blog.jyusun.com/contents/20190320112238.html">Hexo-Next7.0主题博客优化</a></li>
+</ul>
+<h2 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h2><ul>
+<li><a href="https://electronjs.org/docs">文档 | Electron</a></li>
+<li><a href="https://www.jianshu.com/p/4df1340c5850">Electron学习，从零到一 - 简书</a></li>
+<li><a href="https://blog.51cto.com/wuzishu/1829551">electron 部分常用功能的实现-__无字书-51CTO博客</a></li>
+<li><a href="https://www.w3cschool.cn/electronmanual/">Electron 中文文档_w3cschool</a></li>
+<li><a href="https://medium.com/@impaachu/how-to-build-a-react-based-electron-app-d0f27413f17f">How to build a React based Electron app - paachu - Medium</a></li>
+<li><a href="https://github.com/lyswhut/lx-music-desktop">lx-music-desktop (electron实例)</a></li>
+<li><a href="http://jartto.wang/2019/07/13/use-electron-5/">使用 Electron5.0 构建你的 React 项目 - Jartto’s blog</a></li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li><a href="https://bennettfeely.com/">css技巧</a></li>
+<li><a href="https://tympanus.net/Development/AudioVisualizers/index2.html">CSS Demo展示</a></li>
+<li><a href="http://2014.artsy.net/">CSS 首页效果Demo展示</a></li>
+<li><a href="https://codepen.io/Yakudoo/full/rJjOJx">CSS 色彩效果Demo展示1</a></li>
+<li><a href="https://codepen.io/pissang/full/geajpX">CSS 色彩效果Demo展示2</a></li>
+<li><a href="https://pissang.github.io/papercut-box-art/">CSS 色彩效果Demo展示3</a></li>
+<li><a href="https://codepen.io/tsuhre/full/BYbjyg">CSS 动效Demo展示</a></li>
+<li><a href="https://wangyasai.github.io/Stars-Emmision/">CSS 时空穿梭Demo展示</a></li>
+<li><a href="https://demo.marpi.pl/biomes/">CSS 模型Demo展示1</a></li>
+<li><a href="https://pissang.github.io/voxelize-image/">CSS 模型Demo展示2</a></li>
+</ul>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
+<li><a href="https://edu.aliyun.com/developer">阿里云大学开发者课堂</a></li>
+<li><a href="https://learngitbranching.js.org/?locale=zh_CN">在线git教程</a></li>
+<li><a href="https://www.freecodecamp.org/learn/">freecodecamp 在线的学习网站</a></li>
+<li><a href="https://github.com/TeamStuQ/skill-map">程序员技能图谱</a></li>
+<li><a href="https://usehooks.com/">学习hooks的网站</a></li>
+<li><a href="http://www.cnblogs.com/rocedu/p/6012545.html">基于VirtualBox安装Ubuntu</a></li>
+<li><a href="https://awesomedataengineering.com/">在线DATABASE教程</a></li>
+<li><a href=""></a></li>
+<li><a href="https://livebook.manning.com/book/the-design-of-web-apis/chapter-1?origin=product-toc">freely previewing The Design of Web APIs</a></li>
+<li><a href="https://cs193p.sites.stanford.edu/">Developing Apps for IOS</a></li>
+<li><a href="https://shanyue.tech/frontend-engineering/docker.html">如何使用docker部署前端博客</a></li>
+<li><a href="https://www.cnblogs.com/accordion/p/7207740.html">Nodejs cluster模块深入探究</a></li>
+<li><a href="https://github.com/unruledboy/WebFrontEndStack/blob/master/README.zh-cn.md">WebFrontEndStack 前端技术栈</a></li>
+<li></li>
+</ul>
+<h2 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h2><ul>
+<li><a href="https://zh.wikihow.com/%E9%A6%96%E9%A1%B5">wikiHow 什么都可以问</a></li>
+<li><a href="https://warriorjs.com/">warriorjs</a></li>
+<li><a href="https://screeps.com/a/#!/sim/tutorial">Screeps</a></li>
+<li><a href="https://typecho.org/">博客搭建工具</a></li>
+<li><a href="https://steamdb.info/">Steam 游戏折扣 </a></li>
+<li><a href="http://www.yxdzqb.com/">SteamDB </a></li>
+<li><a href="https://opengameart.org/">open game Art</a></li>
+<li><a href="https://smallpdf.com/cn/result#r=46d64b2aff13f92615de55b82ac9a29f&t=pdf-to-word">PDF转Word转换器 </a></li>
+<li><a href="https://www.macwk.com/">MacWk - mac软件 </a></li>
+<li><a href="https://xclient.info/">xclient - mac软件 </a></li>
+<li><a href="https://clustrmaps.com/">clustrmaps 站点访问IP地图</a></li>
+</ul>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><ul>
+<li><a href="https://blog.csdn.net/qq_21956483/article/details/82758543">图床的选择</a></li>
+<li><a href="https://shockerli.net/post/1000-line-mysql-note/">一千行 MySQL 学习笔记</a></li>
+<li><a href="https://www.runoob.com/w3cnote/windows-finds-port-usage.html">URLSearchParams 对象用法</a></li>
+<li><a href="http://www.softwhy.com/article-8925-1.html">Windows下如何查看某个端口被谁占用</a></li>
+<li><a href="https://blog.csdn.net/fxbin123/article/details/80428216">Postman 使用方法详解</a></li>
+<li><a href="https://www.html5rocks.com/zh/tutorials/webcomponents/imports/#why">HTML import(中文翻译)</a></li>
+</ul>
+<h2 id="项目实操"><a href="#项目实操" class="headerlink" title="项目实操"></a>项目实操</h2><ul>
+<li><a href="https://wiki.jikexueyuan.com/project/express-mongodb-setup-blog/simple-blog.html">使用Express和MongoDB搭建多人博客</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>website</tag>
       </tags>
   </entry>
   <entry>
