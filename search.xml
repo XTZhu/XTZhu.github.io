@@ -1622,6 +1622,81 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
     <title>资源整理 文章|博客|资源</title>
     <url>/2020/04/07/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86%20%E6%96%87%E7%AB%A0%E3%80%81%E5%8D%9A%E5%AE%A2%E3%80%81%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p>在查找问题和学习时找到的一些网站(待更新..)</p>
+<h2 id="官方文档或翻译或资源"><a href="#官方文档或翻译或资源" class="headerlink" title="官方文档或翻译或资源"></a>官方文档或翻译或资源</h2><ul>
+<li><a href="https://zh-hans.reactjs.org/docs/getting-started.html">React中文</a></li>
+<li><a href="http://gdut_yy.gitee.io/doc-csstdg4/">《CSS权威指南4th》中文翻译</a></li>
+<li><a href="https://echarts.apache.org/zh/index.html">Echart</a></li>
+<li><a href="https://docs.nestjs.cn/">nestjs中文</a></li>
+<li><a href="https://www.bootcss.com/">bootstrap</a></li>
+<li><a href="https://www.tslang.cn/docs/home.html">typeScript中文</a></li>
+<li><a href="https://flutterchina.club/">flutter中文网</a></li>
+<li><a href="https://zh.javascript.info/">现代JavaScript教程（非常推荐）</a></li>
+<li><a href="https://html.spec.whatwg.org/">html Living Standard（非常推荐）</a></li>
+<li><a href="https://graphql.cn/">GraphQL中文</a></li>
+<li><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">w3官方文档</a></li>
+<li><a href="https://tc39.es/ecma262/">ES6官方文档</a></li>
+<li><a href="https://docs.microsoft.com/zh-cn/">面向开发人员和技术专业人员的 Microsoft 文档和学习主页。</a></li>
+<li><a href="https://cloud.tencent.com/developer/doc/1257">RxJS 5教程</a></li>
+<li><a href="https://ant-design.gitee.io/index-cn">ant-desing 蚂蚁团队</a></li>
+<li><a href="https://css-tricks.com/">css-tricks css实例与技巧</a></li>
+<li><a href="https://www.apollographql.com/docs/apollo-server/getting-started/">apollographql</a></li>
+<li><a href="https://docs.segmentfault.com/">各类语言API</a></li>
+<li><a href="https://developers.google.com/web">Web  |  Google Developers</a></li>
+<li><a href="https://redux.js.org/">reduxJS</a></li>
+<li><a href="https://codesandbox.io/dashboard/recent">codesandbox</a></li>
+<li><a href="https://www.lodashjs.com/">lodashjs中文</a></li>
+<li><a href="https://www.lodash.com/">lodashjs</a></li>
+<li><a href="http://www.csszengarden.com/tr/zh-cn/">CSS 禅意花园: CSS 设计之美</a></li>
+<li><a href="https://es6.ruanyifeng.com/#README">ES6 入门教程</a></li>
+<li><a href="https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion">ECMAScript® 2020 Language Specification</a></li>
+<li><a href="https://github.com/justjavac/free-programming-books-zh_CN/#%E7%BD%AE%E9%A1%B6">freebook 免费书籍</a></li>
+<li><a href="https://docs.github.com/cn">github 帮助文档</a></li>
+<li><a href="https://caniuse.com/#search=transform">can i use</a></li>
+<li><a href="https://zh.javascript.info/">js Info(值得推荐的js教程)</a></li>
+<li><a href="https://zhangwei.online/fullstack/zh/">深入浅出现代Web变成 全栈公开课2020（非常推荐）</a></li>
+<li><a href="https://github.com/f2e-awesome/knowledge">前端架构图谱</a></li>
+<li><a href="https://developer.android.com/?hl=zh-CN">android developer</a></li>
+<li><a href="https://www.jqhtml.com/down/">pdf 模板资源下载</a></li>
+<li><a href="https://www.w3cschool.cn/html/">w3cschool</a></li>
+<li><a href="https://docshome.gitbook.io/nginx-docs/">Nginx中文文档</a></li>
+<li><a href="https://appcenter.ms/">appcenter app部署平台</a></li>
+</ul>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
+<li><a href="https://edu.aliyun.com/developer">阿里云大学开发者课堂</a></li>
+<li><a href="https://www.yuque.com/fe9/basic">前端九部 语雀</a></li>
+<li><a href="https://learngitbranching.js.org/?locale=zh_CN">在线git教程</a></li>
+<li><a href="https://www.freecodecamp.org/learn/">freecodecamp 在线的学习网站</a></li>
+<li><a href="https://github.com/TeamStuQ/skill-map">程序员技能图谱</a></li>
+<li><a href="https://usehooks.com/">学习hooks的网站</a></li>
+<li><a href="http://www.cnblogs.com/rocedu/p/6012545.html">基于VirtualBox安装Ubuntu</a></li>
+<li><a href="https://awesomedataengineering.com/">在线DATABASE教程</a></li>
+<li><a href="https://jkchao.github.io/typescript-book-chinese/">深入理解TypeScript</a></li>
+<li><a href="https://livebook.manning.com/book/the-design-of-web-apis/chapter-1?origin=product-toc">freely previewing The Design of Web APIs</a></li>
+<li><a href="https://ued.party/">我的职业是前端工程师</a></li>
+<li><a href="https://www.kancloud.cn/xiak/quanduan/300937">前端笔记</a></li>
+<li><a href="https://cs193p.sites.stanford.edu/">Developing Apps for IOS</a></li>
+<li><a href="https://shanyue.tech/frontend-engineering/docker.html">如何使用docker部署前端博客</a></li>
+<li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">函数式编程</a></li>
+<li><a href="https://www.cnblogs.com/accordion/p/7207740.html">Nodejs cluster模块深入探究</a></li>
+<li><a href="https://github.com/unruledboy/WebFrontEndStack/blob/master/README.zh-cn.md">WebFrontEndStack 前端技术栈</a></li>
+<li><a href="https://github.com/qianguyihao/Web?utm_source=gold_browser_extension">web 前端入门到进阶</a></li>
+<li><a href="https://www.codecademy.com/catalog/all">codecademy</a></li>
+<li><a href="https://www.codeavengers.com/">codeavengers</a></li>
+<li><a href="https://dwqs.gitbooks.io/frontenddevhandbook/content/what-is-a-fd.html">前端开发者手册</a></li>
+<li><a href="https://eloquentjavascript.net/">eloquentjavascript 电子书</a></li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li><a href="https://bennettfeely.com/">css技巧</a></li>
+<li><a href="https://tympanus.net/Development/AudioVisualizers/index2.html">CSS Demo展示</a></li>
+<li><a href="http://2014.artsy.net/">CSS 首页效果Demo展示</a></li>
+<li><a href="https://codepen.io/Yakudoo/full/rJjOJx">CSS 色彩效果Demo展示1</a></li>
+<li><a href="https://codepen.io/pissang/full/geajpX">CSS 色彩效果Demo展示2</a></li>
+<li><a href="https://pissang.github.io/papercut-box-art/">CSS 色彩效果Demo展示3</a></li>
+<li><a href="https://codepen.io/tsuhre/full/BYbjyg">CSS 动效Demo展示</a></li>
+<li><a href="https://wangyasai.github.io/Stars-Emmision/">CSS 时空穿梭Demo展示</a></li>
+<li><a href="https://demo.marpi.pl/biomes/">CSS 模型Demo展示1</a></li>
+<li><a href="https://pissang.github.io/voxelize-image/">CSS 模型Demo展示2</a></li>
+</ul>
 <h2 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h2><ul>
 <li><a href="https://www.itranslater.com/qa/details/2131899986198660096">机翻的stackoverflow</a></li>
 <li><a href="https://overreacted.io/">dang-jian的博客</a></li>
@@ -1645,28 +1720,11 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
 <li><a href="https://bearbeargo.com/">熊熊咆哮(前端博客)</a></li>
 <li><a href="https://shockerli.net/">格物(资源整合)</a></li>
 <li><a href="https://kamilmysliwiec.com/">kamilmysliwiec.com</a></li>
-<li><a href="https://medium.com/">medium社区</a><!-- - [神三元(前端博客)](https://sanyuan0704.github.io/) -->
+<li><a href="https://medium.com/">medium社区</a></li>
+<li><a href="http://www.alloyteam.com/">alloyteam腾讯</a></li>
+<li><a href="https://discuss.atom.io/">ATOM社区</a><!-- - [神三元(前端博客)](https://sanyuan0704.github.io/) -->
 
 </li>
-</ul>
-<h2 id="官方文档或翻译或资源"><a href="#官方文档或翻译或资源" class="headerlink" title="官方文档或翻译或资源"></a>官方文档或翻译或资源</h2><ul>
-<li><a href="http://gdut_yy.gitee.io/doc-csstdg4/">《CSS权威指南4th》中文翻译</a></li>
-<li><a href="https://echarts.apache.org/zh/index.html">Echart</a></li>
-<li><a href="https://docs.nestjs.cn/">nestjs中文</a></li>
-<li><a href="https://graphql.cn/">GraphQL中文</a></li>
-<li><a href="https://www.apollographql.com/docs/apollo-server/getting-started/">apollographql</a></li>
-<li><a href="https://developers.google.com/web">Web  |  Google Developers</a></li>
-<li><a href="https://redux.js.org/">reduxJS</a></li>
-<li><a href="https://codesandbox.io/dashboard/recent">codesandbox</a></li>
-<li><a href="https://www.lodashjs.com/">lodashjs中文</a></li>
-<li><a href="https://www.lodash.com/">lodashjs</a></li>
-<li><a href="http://www.csszengarden.com/tr/zh-cn/">CSS 禅意花园: CSS 设计之美</a></li>
-<li><a href="https://es6.ruanyifeng.com/#README">ES6 入门教程</a></li>
-<li><a href="https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion">ECMAScript® 2020 Language Specification</a></li>
-<li><a href="https://github.com/justjavac/free-programming-books-zh_CN/#%E7%BD%AE%E9%A1%B6">freebook 免费书籍</a></li>
-<li><a href="https://docs.github.com/cn">github 帮助文档</a></li>
-<li><a href="https://caniuse.com/#search=transform">can i use</a></li>
-<li><a href="https://zh.javascript.info/">js Info(值得推荐的js教程)</a></li>
 </ul>
 <h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><ul>
 <li><a href="http://theme-next.iissnan.com/">NexT(hexo 主题)使用文档</a></li>
@@ -1683,35 +1741,11 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
 <li><a href="https://github.com/lyswhut/lx-music-desktop">lx-music-desktop (electron实例)</a></li>
 <li><a href="http://jartto.wang/2019/07/13/use-electron-5/">使用 Electron5.0 构建你的 React 项目 - Jartto’s blog</a></li>
 </ul>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
-<li><a href="https://bennettfeely.com/">css技巧</a></li>
-<li><a href="https://tympanus.net/Development/AudioVisualizers/index2.html">CSS Demo展示</a></li>
-<li><a href="http://2014.artsy.net/">CSS 首页效果Demo展示</a></li>
-<li><a href="https://codepen.io/Yakudoo/full/rJjOJx">CSS 色彩效果Demo展示1</a></li>
-<li><a href="https://codepen.io/pissang/full/geajpX">CSS 色彩效果Demo展示2</a></li>
-<li><a href="https://pissang.github.io/papercut-box-art/">CSS 色彩效果Demo展示3</a></li>
-<li><a href="https://codepen.io/tsuhre/full/BYbjyg">CSS 动效Demo展示</a></li>
-<li><a href="https://wangyasai.github.io/Stars-Emmision/">CSS 时空穿梭Demo展示</a></li>
-<li><a href="https://demo.marpi.pl/biomes/">CSS 模型Demo展示1</a></li>
-<li><a href="https://pissang.github.io/voxelize-image/">CSS 模型Demo展示2</a></li>
-</ul>
-<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
-<li><a href="https://edu.aliyun.com/developer">阿里云大学开发者课堂</a></li>
-<li><a href="https://learngitbranching.js.org/?locale=zh_CN">在线git教程</a></li>
-<li><a href="https://www.freecodecamp.org/learn/">freecodecamp 在线的学习网站</a></li>
-<li><a href="https://github.com/TeamStuQ/skill-map">程序员技能图谱</a></li>
-<li><a href="https://usehooks.com/">学习hooks的网站</a></li>
-<li><a href="http://www.cnblogs.com/rocedu/p/6012545.html">基于VirtualBox安装Ubuntu</a></li>
-<li><a href="https://awesomedataengineering.com/">在线DATABASE教程</a></li>
-<li><a href=""></a></li>
-<li><a href="https://livebook.manning.com/book/the-design-of-web-apis/chapter-1?origin=product-toc">freely previewing The Design of Web APIs</a></li>
-<li><a href="https://cs193p.sites.stanford.edu/">Developing Apps for IOS</a></li>
-<li><a href="https://shanyue.tech/frontend-engineering/docker.html">如何使用docker部署前端博客</a></li>
-<li><a href="https://www.cnblogs.com/accordion/p/7207740.html">Nodejs cluster模块深入探究</a></li>
-<li><a href="https://github.com/unruledboy/WebFrontEndStack/blob/master/README.zh-cn.md">WebFrontEndStack 前端技术栈</a></li>
-<li></li>
-</ul>
-<h2 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h2><ul>
+<h2 id="小工具-优秀库"><a href="#小工具-优秀库" class="headerlink" title="小工具 | 优秀库"></a>小工具 | 优秀库</h2><ul>
+<li><a href="https://semver.org/lang/zh-CN/">语义化版本</a></li>
+<li><a href="https://caolan.github.io/async/v3/">async</a></li>
+<li><a href="https://daneden.github.io/animate.css/">animate.style</a></li>
+<li><a href="https://jsonplaceholder.typicode.com/">优质的mock库，{JSON} Placeholder </a></li>
 <li><a href="https://zh.wikihow.com/%E9%A6%96%E9%A1%B5">wikiHow 什么都可以问</a></li>
 <li><a href="https://warriorjs.com/">warriorjs</a></li>
 <li><a href="https://screeps.com/a/#!/sim/tutorial">Screeps</a></li>
@@ -1723,6 +1757,15 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
 <li><a href="https://www.macwk.com/">MacWk - mac软件 </a></li>
 <li><a href="https://xclient.info/">xclient - mac软件 </a></li>
 <li><a href="https://clustrmaps.com/">clustrmaps 站点访问IP地图</a></li>
+<li><a href="https://switch-xci.com/">NS 资源下载站</a></li>
+<li><a href="https://www.guerrillamail.com/zh/inbox">临时邮件系统</a></li>
+<li><a href="https://tool.oschina.net/">在线工具</a></li>
+<li><a href="https://zhishihezi.net/">知识盒子</a></li>
+<li><a href="https://ahrefs.com/blog/zh/">博客营销</a></li>
+<li><a href="https://vercel.com/solutions/react">vercel React部署工具</a></li>
+<li><a href="https://lol.gamepedia.com/League_of_Legends_Esports_Wiki">LOL 赛事网站</a></li>
+<li><a href="https://wangchujiang.com/linux-command/">Linux 命令搜索</a></li>
+<li><a href="https://encycolorpedia.cn/">调色板</a></li>
 </ul>
 <h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><ul>
 <li><a href="https://blog.csdn.net/qq_21956483/article/details/82758543">图床的选择</a></li>
@@ -1731,9 +1774,16 @@ key (index) —— 获取某个索引的key</code></pre>]]></content>
 <li><a href="http://www.softwhy.com/article-8925-1.html">Windows下如何查看某个端口被谁占用</a></li>
 <li><a href="https://blog.csdn.net/fxbin123/article/details/80428216">Postman 使用方法详解</a></li>
 <li><a href="https://www.html5rocks.com/zh/tutorials/webcomponents/imports/#why">HTML import(中文翻译)</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源政策及其规避方法</a></li>
+<li><a href="https://www.hi-roy.com/2016/03/16/%E5%90%8D%E8%AF%8D%E7%8E%8B%E5%9B%BD%E9%87%8C%E7%9A%84%E6%AD%BB%E5%88%91%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89/">名词王国里的死刑（翻译）</a></li>
+</ul>
+<h2 id="资源合集-总结-年度盘点什么的"><a href="#资源合集-总结-年度盘点什么的" class="headerlink" title="资源合集|总结|年度盘点什么的"></a>资源合集|总结|年度盘点什么的</h2><ul>
+<li><a href="https://sspai.com/">少数派</a></li>
+<li><a href="https://sspai.com/page/2019/trend">少数派2019年度盘点</a></li>
 </ul>
 <h2 id="项目实操"><a href="#项目实操" class="headerlink" title="项目实操"></a>项目实操</h2><ul>
 <li><a href="https://wiki.jikexueyuan.com/project/express-mongodb-setup-blog/simple-blog.html">使用Express和MongoDB搭建多人博客</a></li>
+<li><a href="https://www.jqhtml.com/7626.html">webpack练习</a></li>
 </ul>
 ]]></content>
       <tags>
