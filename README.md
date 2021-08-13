@@ -67,6 +67,15 @@ $ hexo generate
 $ git clone https://github.com/theme-next/hexo-theme-next themes/next
 ```
 
+
+**NOTION**
+
+1. next主题  
+https://theme-next.iissnan.com/getting-started.html#validate-next-theme
+
+2. git pro 在线阅读
+http://iissnan.com/progit/
+
 ## More Information
 
 - Read the [documentation](https://hexo.io/)
