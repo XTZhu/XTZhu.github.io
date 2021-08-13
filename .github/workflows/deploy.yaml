@@ -20,7 +20,7 @@ jobs:
         os: [ubuntu-latest]
         node_version: [12.x]
 
-     steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
 
