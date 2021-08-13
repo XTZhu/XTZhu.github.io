@@ -4,12 +4,12 @@
 
 # Site
 title: PPPig's TreeHole
-subtitle: 在人生的道路上，人是自由的
+subtitle: 希望你是我的花
 description: learnLess
 keywords: XTZhu
 author: XTZhu
 language: 'zh-CN'
-timezone: ''
+timezone: 'GMT+8'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
