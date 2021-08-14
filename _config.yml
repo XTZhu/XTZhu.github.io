@@ -5,7 +5,7 @@ keywords: XTZhu
 author: XTZhu
 url: "http://XTZhu.github.io"
 language: 'zh-CN'
-timezone: 'GMT+8'
+timezone: 'Asia/Shanghai'
 
 root: /
 permalink: ":year/:month/:day/:title/"
