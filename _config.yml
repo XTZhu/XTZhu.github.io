@@ -55,7 +55,7 @@ pagination_dir: page
 include: []
 exclude: []
 ignore: null
-theme: icarus
+theme: next
 deploy:
   type: git
   repository: "git@github.com:XTZhu/XTZhu.github.io.git"
