@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules
 .DS_Store
 db.json
@@ -6,3 +7,15 @@ public.*
 
 /public
 
+=======
+node_modules
+.DS_Store
+db.json
+.deploy_git
+public.*
+
+/public
+
+.vscode
+
+>>>>>>> 20985b83fb5688fd4165ad4acea2f272a3e73b7f
