@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2020/11/16 纪事</title>
+    <url>/2010/11/16/2020-11-16-%E7%BA%AA%E4%BA%8B/</url>
+    <content><![CDATA[<h1 id="早晨"><a href="#早晨" class="headerlink" title="早晨"></a>早晨</h1><p>早8点 闹钟响了，但是没有起床，9点起床</p>
+<p>9点半出门 早餐是肠粉，本来要寄东西给毛哥，但是怕迟到 所以打算晚上寄。</p>
+<p>10点到公司，业务业务业务。。。</p>
+<h1 id="中午"><a href="#中午" class="headerlink" title="中午"></a>中午</h1><p>妈妈发消息说爸爸的腰伤犯了，躺在床上起不来，三节腰椎间盘突出，在家休养，妈妈请假照顾。发来视频电话，但是随后挂断了。12点10分，我去消防通道回拨，接通，爸爸在沙发躺着，妈妈在沙发坐着。没有很紧张的神情，见我来电很高兴，问了一下情况，叮嘱我少吃外卖，表示收到后告诉他们晚点再回拨给他们。没有想象中那么严重，暂时松了一口气。沙县的中午饭，1点，午休。。很吵，同事在打csgo，睡到1点半醒了，睡的很难受。到1点50打起精神。上班，业务业务业务。。。</p>
+<h1 id="晚上"><a href="#晚上" class="headerlink" title="晚上"></a>晚上</h1><ul>
+<li>6点15左右下班，一起回家。</li>
+<li>6点34取了快递，健身环大冒险和PONY的橘色高帮，PONY送的短袖是女装，hhh好吧。</li>
+<li>收拾一下出门吃晚饭，在楼下肠粉店吃牛丸面，顺便给毛哥寄回马里奥派对。</li>
+<li>回家是7点10分，给爸爸妈妈视频。爸爸已经坐起来了，看起来状态还可以，闲聊，闲聊。</li>
+<li>8点10分，开始试健身换大冒险，慢跑、深蹲、抬腿、拉扯普拉提环。</li>
+<li>8点50分，结束，第一关boss没有打完，有点虚，还是要加强锻炼。</li>
+<li>打开炉石，下了一把棋，选的乔治，拿了第五，不升不降。</li>
+<li>9点20分，洗澡。</li>
+<li>9点45，洗衣服，烧开水喝。</li>
+<li>9点56分，开始写这篇。</li>
+<li>20点22分，写完。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>纪事</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ajax跨域（转载）</title>
     <url>/2019/04/18/Ajax%E8%B7%A8%E5%9F%9F/</url>
     <content><![CDATA[<blockquote>
@@ -564,6 +589,24 @@ Sec-WebSocket-Protocol: chat</code></pre><h2 id="CORS"><a href="#CORS" class="he
       </tags>
   </entry>
   <entry>
+    <title>lodash的_.find()</title>
+    <url>/2020/04/07/lodash%E7%9A%84-find/</url>
+    <content><![CDATA[<h1 id="find-api文档"><a href="#find-api文档" class="headerlink" title="_.find() api文档"></a><strong>_.find()</strong> api文档</h1><p>“集合” 方法(“Collection” Methods)</p>
+<blockquote>
+<p><em>.find(collection, [predicate=</em>.identity], [fromIndex=0])</p>
+</blockquote>
+<p>遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。</p>
+<h2 id="添加版本"><a href="#添加版本" class="headerlink" title="添加版本"></a>添加版本</h2><p>  0.1.0</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>  collection (Array|Object): 一个用来迭代的集合。<br>  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>  [fromIndex=0] (number): 开始搜索的索引位置。</p>
+<h2 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h2><p>  (*): 返回匹配元素，否则返回 undefined。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> users = [</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;barney&#x27;</span>,  <span class="string">&#x27;age&#x27;</span>: <span class="number">36</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;fred&#x27;</span>,    <span class="string">&#x27;age&#x27;</span>: <span class="number">40</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;pebbles&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>,  <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">_.find(users, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123; <span class="keyword">return</span> o.age &lt; <span class="number">40</span>; &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matches` iteratee shorthand.</span></span><br><span class="line">_.find(users, &#123; <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;pebbles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matchesProperty` iteratee shorthand.</span></span><br><span class="line">_.find(users, [<span class="string">&#x27;active&#x27;</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;fred&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.property` iteratee shorthand.</span></span><br><span class="line">_.find(users, <span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://codesandbox.io/s/find-demo-teonk?file=/src/App.js">在线demo</a></p>
+]]></content>
+      <tags>
+        <tag>lodash</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>null和undefined与NaN</title>
     <url>/2019/05/07/null%E5%92%8Cundefined%E4%B8%8ENaN/</url>
     <content><![CDATA[<blockquote>
@@ -660,24 +703,6 @@ Sec-WebSocket-Protocol: chat</code></pre><h2 id="CORS"><a href="#CORS" class="he
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">null</span>;</span><br><span class="line"> </span><br><span class="line">a.name = <span class="string">&#x27;realwall&#x27;</span>;</span><br><span class="line">b.name = <span class="string">&#x27;jim&#x27;</span>; <span class="comment">//这里会报错，b为空指针对象，不能像普通对象一样直接添加属性。</span></span><br><span class="line">b = a;</span><br><span class="line">b.name = <span class="string">&#x27;jim&#x27;</span>; <span class="comment">//此时 a 和 b 指向同一个对象。a.name, b.name 均为&#x27;jam&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lodash的_.find()</title>
-    <url>/2020/04/07/lodash%E7%9A%84-find/</url>
-    <content><![CDATA[<h1 id="find-api文档"><a href="#find-api文档" class="headerlink" title="_.find() api文档"></a><strong>_.find()</strong> api文档</h1><p>“集合” 方法(“Collection” Methods)</p>
-<blockquote>
-<p><em>.find(collection, [predicate=</em>.identity], [fromIndex=0])</p>
-</blockquote>
-<p>遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。</p>
-<h2 id="添加版本"><a href="#添加版本" class="headerlink" title="添加版本"></a>添加版本</h2><p>  0.1.0</p>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>  collection (Array|Object): 一个用来迭代的集合。<br>  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。<br>  [fromIndex=0] (number): 开始搜索的索引位置。</p>
-<h2 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h2><p>  (*): 返回匹配元素，否则返回 undefined。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> users = [</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;barney&#x27;</span>,  <span class="string">&#x27;age&#x27;</span>: <span class="number">36</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;fred&#x27;</span>,    <span class="string">&#x27;age&#x27;</span>: <span class="number">40</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;pebbles&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>,  <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">_.find(users, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123; <span class="keyword">return</span> o.age &lt; <span class="number">40</span>; &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matches` iteratee shorthand.</span></span><br><span class="line">_.find(users, &#123; <span class="string">&#x27;age&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;active&#x27;</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;pebbles&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.matchesProperty` iteratee shorthand.</span></span><br><span class="line">_.find(users, [<span class="string">&#x27;active&#x27;</span>, <span class="literal">false</span>]);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;fred&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The `_.property` iteratee shorthand.</span></span><br><span class="line">_.find(users, <span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"><span class="comment">// =&gt; object for &#x27;barney&#x27;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://codesandbox.io/s/find-demo-teonk?file=/src/App.js">在线demo</a></p>
-]]></content>
-      <tags>
-        <tag>lodash</tag>
       </tags>
   </entry>
   <entry>
@@ -2031,31 +2056,6 @@ let c = 3;</code></pre><p> ES6 允许写成下面这样。</p>
         <tag>javaScript</tag>
         <tag>ES6</tag>
         <tag>闭包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2020/11/16 纪事</title>
-    <url>/2010/11/16/2020-11-16-%E7%BA%AA%E4%BA%8B/</url>
-    <content><![CDATA[<h1 id="早晨"><a href="#早晨" class="headerlink" title="早晨"></a>早晨</h1><p>早8点 闹钟响了，但是没有起床，9点起床</p>
-<p>9点半出门 早餐是肠粉，本来要寄东西给毛哥，但是怕迟到 所以打算晚上寄。</p>
-<p>10点到公司，业务业务业务。。。</p>
-<h1 id="中午"><a href="#中午" class="headerlink" title="中午"></a>中午</h1><p>妈妈发消息说爸爸的腰伤犯了，躺在床上起不来，三节腰椎间盘突出，在家休养，妈妈请假照顾。发来视频电话，但是随后挂断了。12点10分，我去消防通道回拨，接通，爸爸在沙发躺着，妈妈在沙发坐着。没有很紧张的神情，见我来电很高兴，问了一下情况，叮嘱我少吃外卖，表示收到后告诉他们晚点再回拨给他们。没有想象中那么严重，暂时松了一口气。沙县的中午饭，1点，午休。。很吵，同事在打csgo，睡到1点半醒了，睡的很难受。到1点50打起精神。上班，业务业务业务。。。</p>
-<h1 id="晚上"><a href="#晚上" class="headerlink" title="晚上"></a>晚上</h1><ul>
-<li>6点15左右下班，一起回家。</li>
-<li>6点34取了快递，健身环大冒险和PONY的橘色高帮，PONY送的短袖是女装，hhh好吧。</li>
-<li>收拾一下出门吃晚饭，在楼下肠粉店吃牛丸面，顺便给毛哥寄回马里奥派对。</li>
-<li>回家是7点10分，给爸爸妈妈视频。爸爸已经坐起来了，看起来状态还可以，闲聊，闲聊。</li>
-<li>8点10分，开始试健身换大冒险，慢跑、深蹲、抬腿、拉扯普拉提环。</li>
-<li>8点50分，结束，第一关boss没有打完，有点虚，还是要加强锻炼。</li>
-<li>打开炉石，下了一把棋，选的乔治，拿了第五，不升不降。</li>
-<li>9点20分，洗澡。</li>
-<li>9点45，洗衣服，烧开水喝。</li>
-<li>9点56分，开始写这篇。</li>
-<li>20点22分，写完。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>纪事</tag>
       </tags>
   </entry>
 </search>

@@ -1,6 +1,201 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>PPPig&#039;s TreeHole</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="PPPig&#039;s TreeHole"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="PPPig&#039;s TreeHole"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="learnLess"><meta property="og:type" content="blog"><meta property="og:title" content="PPPig&#039;s TreeHole"><meta property="og:url" content="http://xtzhu.github.io/"><meta property="og:site_name" content="PPPig&#039;s TreeHole"><meta property="og:description" content="learnLess"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://xtzhu.github.io/img/og_image.png"><meta property="article:author" content="XTZhu"><meta property="article:tag" content="XTZhu"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://XTZhu.github.io"},"headline":"PPPig's TreeHole","image":["http://xtzhu.github.io/img/og_image.png"],"author":{"@type":"Person","name":"XTZhu"},"description":"learnLess"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/atom.xml" title="PPPig's TreeHole" type="application/atom+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-04-14T10:06:20.000Z" title="2019-04-14T10:06:20.000Z">2019-04-14</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.399Z" title="2020-11-11T11:05:21.399Z">2020-11-11</time>更新</span><span class="level-item">25 分钟读完 (大约3703个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/">数据库事务(Transaction)</a></h1><div class="content"><h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><ul>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xtzhu.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="learnLess">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PPPig&#39;s TreeHole">
+<meta property="og:url" content="http://xtzhu.github.io/page/3/index.html">
+<meta property="og:site_name" content="PPPig&#39;s TreeHole">
+<meta property="og:description" content="learnLess">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="XTZhu">
+<meta property="article:tag" content="XTZhu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://xtzhu.github.io/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PPPig's TreeHole</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="PPPig's TreeHole" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">PPPig's TreeHole</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">希望你是我的花</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1(Transaction)/" class="post-title-link" itemprop="url">数据库事务(Transaction)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-14 18:06:20" itemprop="dateCreated datePublished" datetime="2019-04-14T18:06:20+08:00">2019-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h1><ul>
 <li><p><em>Transaction</em></p>
 </li>
 <li><blockquote>
@@ -193,7 +388,71 @@ mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><
 <blockquote>
 <p>引用的技术博客<br>    <a target="_blank" rel="noopener" href="https://blog.csdn.net/w_linux/article/details/79666086">MySQL——事务(Transaction)详解</a></p>
 </blockquote>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-04-08T14:06:20.000Z" title="2019-04-08T14:06:20.000Z">2019-04-08</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.396Z" title="2020-11-11T11:05:21.396Z">2020-11-11</time>更新</span><span class="level-item">18 分钟读完 (大约2712个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">TCP三次握手与四次挥手</a></h1><div class="content"><blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/08/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%8E%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="post-title-link" itemprop="url">TCP三次握手与四次挥手</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-08 22:06:20" itemprop="dateCreated datePublished" datetime="2019-04-08T22:06:20+08:00">2019-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
 <p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_36629696/article/details/80740678">https://blog.csdn.net/sinat_36629696/article/details/80740678</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38950316/article/details/81087809">https://blog.csdn.net/qq_38950316/article/details/81087809</a></p>
 </blockquote>
 <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP协议全称: 传输控制协议, 顾名思义, 就是要对数据的传输进行一定的控制.<br><img src="https://raw.githubusercontent.com/XTZhu/image/master/blog/20180717201939345.jpg" alt="TCP报头"><br>我们来分析分析每部分的含义和作用</p>
@@ -311,11 +570,139 @@ mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><
 </blockquote>
 </li>
 </ol>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-25T12:05:58.000Z" title="2019-02-25T12:05:58.000Z">2019-02-25</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.398Z" title="2020-11-11T11:05:21.398Z">2020-11-11</time>更新</span><span class="level-item">1 分钟读完 (大约129个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/25/%E4%B8%AD%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/">中级脚本算法</a></h1><div class="content"><h1 id="中级脚本算法"><a href="#中级脚本算法" class="headerlink" title="中级脚本算法"></a>中级脚本算法</h1><h2 id="1-区间求值算法挑战"><a href="#1-区间求值算法挑战" class="headerlink" title="1. 区间求值算法挑战"></a>1. 区间求值算法挑战</h2><p>我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/25/%E4%B8%AD%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/25/%E4%B8%AD%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">中级脚本算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-25 20:05:58" itemprop="dateCreated datePublished" datetime="2019-02-25T20:05:58+08:00">2019-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="中级脚本算法"><a href="#中级脚本算法" class="headerlink" title="中级脚本算法"></a>中级脚本算法</h1><h2 id="1-区间求值算法挑战"><a href="#1-区间求值算法挑战" class="headerlink" title="1. 区间求值算法挑战"></a>1. 区间求值算法挑战</h2><p>我们会传递给你一个包含两个数字的数组。返回这两个数字和它们之间所有数字的和。</p>
 <p>最小的数字并非总在最前面。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> num1 = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">var</span> num2 = arr[<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">num1&gt;num2</span>)</span>&#123;</span><br><span class="line">        snum = num1-num2;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      snum = num2-num1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (num1+num2)*(snum+<span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">sumAll([<span class="number">1</span>, <span class="number">4</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = <span class="built_in">Math</span>.min(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> newArr = [];</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=max-min;i++</span>)</span>&#123;</span><br><span class="line">newArr[i] = min+i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> newArr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a+b;&#125;);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">sumAll([<span class="number">1</span>, <span class="number">4</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-25T10:05:58.000Z" title="2019-02-25T10:05:58.000Z">2019-02-25</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.398Z" title="2020-11-11T11:05:21.398Z">2020-11-11</time>更新</span><span class="level-item">9 分钟读完 (大约1315个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/25/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-3/">初级脚本算法-3</a></h1><div class="content"><h1 id="初级脚本算法-3"><a href="#初级脚本算法-3" class="headerlink" title="初级脚本算法-3"></a>初级脚本算法-3</h1><h2 id="10-数组分割算法挑战"><a href="#10-数组分割算法挑战" class="headerlink" title="10. 数组分割算法挑战"></a>10. 数组分割算法挑战</h2><p>编写一个函数,把一个数组<code>arr</code>按照指定的数组大小<code>size</code>分割成若干个数组块。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumAll</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = <span class="built_in">Math</span>.min(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max(arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">var</span> newArr = [];</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">var</span> i=<span class="number">0</span>;i&lt;=max-min;i++</span>)</span>&#123;</span><br><span class="line">newArr[i] = min+i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> newArr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a+b;&#125;);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">sumAll([<span class="number">1</span>, <span class="number">4</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/25/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/25/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-3/" class="post-title-link" itemprop="url">初级脚本算法-3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-25 18:05:58" itemprop="dateCreated datePublished" datetime="2019-02-25T18:05:58+08:00">2019-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="初级脚本算法-3"><a href="#初级脚本算法-3" class="headerlink" title="初级脚本算法-3"></a>初级脚本算法-3</h1><h2 id="10-数组分割算法挑战"><a href="#10-数组分割算法挑战" class="headerlink" title="10. 数组分割算法挑战"></a>10. 数组分割算法挑战</h2><p>编写一个函数,把一个数组<code>arr</code>按照指定的数组大小<code>size</code>分割成若干个数组块。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">chunk</span>(<span class="params">arr, size</span>) </span>&#123;</span><br><span class="line"><span class="comment">// Break it up.</span></span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">var</span> i = <span class="number">0</span>;i &lt; arr.length;i = i + size</span>)</span>&#123;</span><br><span class="line">    newArr.push(arr.slice(i,i+size));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line">chunk([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>], <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="11-数组截断算法挑战"><a href="#11-数组截断算法挑战" class="headerlink" title="11. 数组截断算法挑战"></a>11. 数组截断算法挑战</h2><p> 返回一个数组被截断<code>n</code>个元素后还剩余的元素，从索引0开始截断。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">slasher</span>(<span class="params">arr, howMany</span>) </span>&#123;</span><br><span class="line"><span class="comment">// it doesn&#x27;t always pay to be first</span></span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">arr.length&lt;=howMany</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.slice(howMany)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">slasher([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
@@ -373,7 +760,71 @@ mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><
 <p>所有的字母都是大写，不要转化任何非字母形式的字符(例如：空格，标点符号)，遇到这些特殊字符，就跳过它们</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rot13</span>(<span class="params">str</span>) </span>&#123; <span class="comment">// LBH QVQ VG!</span></span><br><span class="line"><span class="keyword">var</span> patt1=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;[A-Z]&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> arr = str.split(<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params">i=<span class="number">0</span>;i&lt;arr.length;i++</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">patt1.test(arr[i])</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> temp = arr[i].charCodeAt();</span><br><span class="line">       temp = temp -<span class="number">13</span>;</span><br><span class="line">       <span class="function"><span class="title">if</span>(<span class="params">temp&lt;<span class="number">65</span></span>)</span>&#123;</span><br><span class="line">           temp = temp+<span class="number">26</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       arr[i] = <span class="built_in">String</span>.fromCharCode(temp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> arr.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Change the inputs below to test</span></span><br><span class="line">rot13(<span class="string">&quot;SERR PBQR PNZC&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rot13</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//定义一个数组，用来存放解密后的字符</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    <span class="comment">//遍历参数字符串</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 非字母形式的字符，直接跳过，存入数组newArr中</span></span><br><span class="line">        <span class="keyword">if</span> (str.charCodeAt(i) &lt; <span class="number">65</span> || str.charCodeAt(i) &gt; <span class="number">90</span>) &#123;</span><br><span class="line">            newArr.push(str.charAt(i));</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str.charCodeAt(i) &gt; <span class="number">77</span>) &#123;</span><br><span class="line">            <span class="comment">// 后13个大写字母，减去13</span></span><br><span class="line">            newArr.push(<span class="built_in">String</span>.fromCharCode(str.charCodeAt(i) - <span class="number">13</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 前13个大写字母，加上13 </span></span><br><span class="line">            newArr.push(<span class="built_in">String</span>.fromCharCode(str.charCodeAt(i) + <span class="number">13</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newArr.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-23T14:05:58.000Z" title="2019-02-23T14:05:58.000Z">2019-02-23</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.397Z" title="2020-11-11T11:05:21.397Z">2020-11-11</time>更新</span><span class="level-item">7 分钟读完 (大约1101个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/23/java8%E7%9A%84JVM%E6%8C%81%E4%B9%85%E4%BB%A3%E2%80%94%E2%80%94%E4%BD%95%E5%8E%BB%E4%BD%95%E4%BB%8E%EF%BC%9F/">java8的JVM持久代--何去何从？</a></h1><div class="content"><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rot13</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//定义一个数组，用来存放解密后的字符</span></span><br><span class="line">    <span class="keyword">var</span> newArr = [];</span><br><span class="line">    <span class="comment">//遍历参数字符串</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 非字母形式的字符，直接跳过，存入数组newArr中</span></span><br><span class="line">        <span class="keyword">if</span> (str.charCodeAt(i) &lt; <span class="number">65</span> || str.charCodeAt(i) &gt; <span class="number">90</span>) &#123;</span><br><span class="line">            newArr.push(str.charAt(i));</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str.charCodeAt(i) &gt; <span class="number">77</span>) &#123;</span><br><span class="line">            <span class="comment">// 后13个大写字母，减去13</span></span><br><span class="line">            newArr.push(<span class="built_in">String</span>.fromCharCode(str.charCodeAt(i) - <span class="number">13</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 前13个大写字母，加上13 </span></span><br><span class="line">            newArr.push(<span class="built_in">String</span>.fromCharCode(str.charCodeAt(i) + <span class="number">13</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newArr.join(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/23/java8%E7%9A%84JVM%E6%8C%81%E4%B9%85%E4%BB%A3%E2%80%94%E2%80%94%E4%BD%95%E5%8E%BB%E4%BD%95%E4%BB%8E%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/23/java8%E7%9A%84JVM%E6%8C%81%E4%B9%85%E4%BB%A3%E2%80%94%E2%80%94%E4%BD%95%E5%8E%BB%E4%BD%95%E4%BB%8E%EF%BC%9F/" class="post-title-link" itemprop="url">java8的JVM持久代--何去何从？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-23 22:05:58" itemprop="dateCreated datePublished" datetime="2019-02-23T22:05:58+08:00">2019-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
 <p>原帖地址： <a target="_blank" rel="noopener" href="https://blog.csdn.net/yechaodechuntian/article/details/40341975">https://blog.csdn.net/yechaodechuntian/article/details/40341975</a></p>
 </blockquote>
 <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>JVM只不过是运行在你系统上的另一个进程而已，这一切的魔法始于一个java命令。正如任何一个操作系统进程那样，JVM也需要内存来完成它的运行时操作。记住——JVM本身是硬件的一层软件抽象，在这之上才能够运行Java程序，也才有了我们所吹嘘的平台独立性以及WORA（一次编写，处处运行）。</p>
@@ -426,7 +877,71 @@ mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><
 <li>和持久代相关的JVM参数-XX:PermSize及-XX:MaxPermSize将会被忽略掉。</li>
 </ul>
 <p>当然了，这只是冰山一角。想要更深入地了解JVM，最好的资料莫过于它自己的虚拟机规范了！</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-20T10:05:58.000Z" title="2019-02-20T10:05:58.000Z">2019-02-20</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.398Z" title="2020-11-11T11:05:21.398Z">2020-11-11</time>更新</span><span class="level-item">2 分钟读完 (大约363个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/20/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-2/">初级脚本算法-2</a></h1><div class="content"><h1 id="初级脚本算法-2"><a href="#初级脚本算法-2" class="headerlink" title="初级脚本算法-2"></a>初级脚本算法-2</h1><h2 id="5-设置首字母大写算法挑战"><a href="#5-设置首字母大写算法挑战" class="headerlink" title="5. 设置首字母大写算法挑战"></a>5. 设置首字母大写算法挑战</h2><p>返回一个字符串,确保字符串的每个单词首字母都大写，其余部分小写。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/20/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/20/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95-2/" class="post-title-link" itemprop="url">初级脚本算法-2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-20 18:05:58" itemprop="dateCreated datePublished" datetime="2019-02-20T18:05:58+08:00">2019-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="初级脚本算法-2"><a href="#初级脚本算法-2" class="headerlink" title="初级脚本算法-2"></a>初级脚本算法-2</h1><h2 id="5-设置首字母大写算法挑战"><a href="#5-设置首字母大写算法挑战" class="headerlink" title="5. 设置首字母大写算法挑战"></a>5. 设置首字母大写算法挑战</h2><p>返回一个字符串,确保字符串的每个单词首字母都大写，其余部分小写。</p>
 <p>像’the’和’of’这样的连接符同理。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> arr = str.toLowerCase().split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">  <span class="function"><span class="title">for</span>(<span class="params">i=<span class="number">0</span>;i&lt;arr.length;i++</span>)</span>&#123;</span><br><span class="line">    arr[i] = arr[i][<span class="number">0</span>].toUpperCase() + arr[i].substring(<span class="number">1</span>,arr[i].length);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr.join(<span class="string">&quot; &quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">titleCase(<span class="string">&quot;I&#x27;m a little tea pot&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -447,7 +962,71 @@ mysql&gt; SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；</code></pre><
 <h2 id="9-字符串截取算法挑战"><a href="#9-字符串截取算法挑战" class="headerlink" title="9.字符串截取算法挑战"></a>9.字符串截取算法挑战</h2><p>如果字符串的长度比给定的参数num长，则把多余的部分用…来表示。</p>
 <p>切记，插入到字符串尾部的三个点号也会计入字符串的长度。</p>
 <p>然而，如果指定的参数num小于或等于3，则添加的三个点号不会计入字符串的长度。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">str, num</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">var</span> newStr=<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">str.length&gt;num</span>)</span>&#123;</span><br><span class="line">      <span class="function"><span class="title">if</span>(<span class="params">num&lt;=<span class="number">3</span></span>)</span>&#123;</span><br><span class="line">          newStr = str.slice(<span class="number">0</span>,num)+<span class="string">&quot;...&quot;</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            newStr = str.slice(<span class="number">0</span>,num-<span class="number">3</span>)+<span class="string">&quot;...&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        newStr=str;</span><br><span class="line">  &#125;</span><br><span class="line">      <span class="keyword">return</span> newStr;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">truncate(<span class="string">&quot;A-tisket a-tasket A green and yellow basket&quot;</span>, <span class="number">11</span>);</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-19T12:04:31.000Z" title="2019-02-19T12:04:31.000Z">2019-02-19</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.400Z" title="2020-11-11T11:05:21.400Z">2020-11-11</time>更新</span><span class="level-item">14 分钟读完 (大约2077个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/19/%E6%B5%85%E6%9E%90session-cookie-sessionStorage-localStorage%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">浅析session,cookie,sessionStorage,localStorage的区别及应用场景</a></h1><div class="content"><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">str, num</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">var</span> newStr=<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">str.length&gt;num</span>)</span>&#123;</span><br><span class="line">      <span class="function"><span class="title">if</span>(<span class="params">num&lt;=<span class="number">3</span></span>)</span>&#123;</span><br><span class="line">          newStr = str.slice(<span class="number">0</span>,num)+<span class="string">&quot;...&quot;</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            newStr = str.slice(<span class="number">0</span>,num-<span class="number">3</span>)+<span class="string">&quot;...&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        newStr=str;</span><br><span class="line">  &#125;</span><br><span class="line">      <span class="keyword">return</span> newStr;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">truncate(<span class="string">&quot;A-tisket a-tasket A green and yellow basket&quot;</span>, <span class="number">11</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/19/%E6%B5%85%E6%9E%90session-cookie-sessionStorage-localStorage%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/19/%E6%B5%85%E6%9E%90session-cookie-sessionStorage-localStorage%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="post-title-link" itemprop="url">浅析session,cookie,sessionStorage,localStorage的区别及应用场景</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-19 20:04:31" itemprop="dateCreated datePublished" datetime="2019-02-19T20:04:31+08:00">2019-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cencenyue/p/7604651.html">原帖地址</a></p>
 </blockquote>
 <p>浏览器的缓存机制提供了可以将用户数据存储在客户端上的方式，可以利用cookie,session等跟服务端进行数据交互。</p>
@@ -516,7 +1095,71 @@ removeItem (key) ——  删除单个数据，根据键值移除对应的信息�
 
 clear () ——  删除所有的数据
 
-key (index) —— 获取某个索引的key</code></pre></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-19T10:05:58.000Z" title="2019-02-19T10:05:58.000Z">2019-02-19</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.398Z" title="2020-11-11T11:05:21.398Z">2020-11-11</time>更新</span><span class="level-item">3 分钟读完 (大约440个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/19/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/">初级脚本算法</a></h1><div class="content"><h1 id="初级脚本算法"><a href="#初级脚本算法" class="headerlink" title="初级脚本算法"></a>初级脚本算法</h1><h2 id="1-实战翻转字符串算法"><a href="#1-实战翻转字符串算法" class="headerlink" title="1. 实战翻转字符串算法"></a>1. 实战翻转字符串算法</h2><blockquote>
+key (index) —— 获取某个索引的key</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/19/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/19/%E5%88%9D%E7%BA%A7%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">初级脚本算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-19 18:05:58" itemprop="dateCreated datePublished" datetime="2019-02-19T18:05:58+08:00">2019-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="初级脚本算法"><a href="#初级脚本算法" class="headerlink" title="初级脚本算法"></a>初级脚本算法</h1><h2 id="1-实战翻转字符串算法"><a href="#1-实战翻转字符串算法" class="headerlink" title="1. 实战翻转字符串算法"></a>1. 实战翻转字符串算法</h2><blockquote>
 <p>你可以先把字符串转化成数组，再借助数组的<code>reverse</code>方法翻转数组顺序，然后把数组转化成字符串。</p>
 </blockquote>
 <blockquote>
@@ -547,7 +1190,71 @@ key (index) —— 获取某个索引的key</code></pre></div></article></div><d
 </blockquote>
 <h2 id="4-寻找最长的单词算法挑战"><a href="#4-寻找最长的单词算法挑战" class="headerlink" title="4.寻找最长的单词算法挑战"></a>4.寻找最长的单词算法挑战</h2><p>返回提供的句子中最长的单词的长度。</p>
 <p>返回值应该是一个数字。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLongestWord</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> arr = str.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line"><span class="keyword">var</span> maxLength = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">var</span> i =<span class="number">0</span>;i&lt;arr.length;i++</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">arr[i].length &gt; maxLength</span>)</span>&#123;</span><br><span class="line">         maxLength = arr[i].length;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> maxLength;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLongestWord(<span class="string">&quot;The quick brown fox jumped over the lazy dog&quot;</span>);</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-13T11:05:58.000Z" title="2019-02-13T11:05:58.000Z">2019-02-13</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.398Z" title="2020-11-11T11:05:21.398Z">2020-11-11</time>更新</span><span class="level-item">3 分钟读完 (大约504个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/13/%E5%85%B3%E4%BA%8Ejunit%E5%8F%91%E7%8E%B0%E7%9A%84jar%E5%8C%85%E9%97%AE%E9%A2%98/">关于junit发现的jar包问题</a></h1><div class="content"><h1 id="关于junit发现的jar包问题"><a href="#关于junit发现的jar包问题" class="headerlink" title="关于junit发现的jar包问题"></a>关于junit发现的jar包问题</h1><p>首先需要引入junit的jar包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLongestWord</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> arr = str.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line"><span class="keyword">var</span> maxLength = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params"><span class="keyword">var</span> i =<span class="number">0</span>;i&lt;arr.length;i++</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="title">if</span>(<span class="params">arr[i].length &gt; maxLength</span>)</span>&#123;</span><br><span class="line">         maxLength = arr[i].length;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> maxLength;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLongestWord(<span class="string">&quot;The quick brown fox jumped over the lazy dog&quot;</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/13/%E5%85%B3%E4%BA%8Ejunit%E5%8F%91%E7%8E%B0%E7%9A%84jar%E5%8C%85%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/13/%E5%85%B3%E4%BA%8Ejunit%E5%8F%91%E7%8E%B0%E7%9A%84jar%E5%8C%85%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">关于junit发现的jar包问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-13 19:05:58" itemprop="dateCreated datePublished" datetime="2019-02-13T19:05:58+08:00">2019-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于junit发现的jar包问题"><a href="#关于junit发现的jar包问题" class="headerlink" title="关于junit发现的jar包问题"></a>关于junit发现的jar包问题</h1><p>首先需要引入junit的jar包</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test; </span><br></pre></td></tr></table></figure>
 <p>然后在需要进行单元测试的方法上加上注解 <strong><code>@Test</code></strong></p>
 <p>但是在Run junit的时候，却报了以下异常</p>
@@ -568,54 +1275,252 @@ key (index) —— 获取某个索引的key</code></pre></div></article></div><d
 </ul>
 <p>原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/castle07/article/details/8553704">https://blog.csdn.net/castle07/article/details/8553704</a> </p>
 <p>jar包下载地址：<a target="_blank" rel="noopener" href="http://www.java2s.com/Code/Jar/h/Catalogh.htm">http://www.java2s.com/Code/Jar/h/Catalogh.htm</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-10T11:05:58.000Z" title="2019-02-10T11:05:58.000Z">2019-02-10</time>发表</span><span class="level-item"><time dateTime="2020-11-11T11:05:21.395Z" title="2020-11-11T11:05:21.395Z">2020-11-11</time>更新</span><span class="level-item">几秒读完 (大约32个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/02/10/Hello%20world/">Hello world</a></h1><div class="content"><p><strong>Hello world</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xtzhu.github.io/2019/02/10/Hello%20world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XTZhu">
+      <meta itemprop="description" content="learnLess">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PPPig's TreeHole">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/10/Hello%20world/" class="post-title-link" itemprop="url">Hello world</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-10 19:05:58" itemprop="dateCreated datePublished" datetime="2019-02-10T19:05:58+08:00">2019-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-11 19:05:21" itemprop="dateModified" datetime="2020-11-11T19:05:21+08:00">2020-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Hello world</strong></p>
 <p>stay hungry， stay foolish.</p>
 <blockquote>
 <p><em>求知若饥 虚心若愚</em></p>
 </blockquote>
 <p>这里是pipipig的无名小站！谢谢你来这里。</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">上一页</a></div><div class="pagination-next"><a href="/page/4/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/Exclusive.jpg" alt="xtzhu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">xtzhu</p><p class="is-size-6 is-block">FE dev</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>❤China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">31</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">23</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/xtzhu"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-09T09:29:58.000Z">2020-04-09</time></p><p class="title"><a href="/2020/04/09/px-em-rem%E5%8C%BA%E5%88%AB%E4%BB%8B%E7%BB%8D/">px,em,rem区别介绍</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-08T06:17:25.000Z">2020-04-08</time></p><p class="title"><a href="/2020/04/08/%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3Normalize-css/">初步了解Normalize.css</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:44:16.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/lodash%E7%9A%84-find/">lodash的_.find()</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:39:31.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86%20%E6%96%87%E7%AB%A0%E3%80%81%E5%8D%9A%E5%AE%A2%E3%80%81%E8%B5%84%E6%BA%90/">资源整理 文章|博客|资源</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-04-07T07:14:12.000Z">2020-04-07</time></p><p class="title"><a href="/2020/04/07/Git-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">Git 远程分支相关操作</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/03/"><span class="level-start"><span class="level-item">三月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2010/11/"><span class="level-start"><span class="level-item">十一月 2010</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ES6/"><span class="tag">ES6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JVM/"><span class="tag">JVM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL-Orcale/"><span class="tag">MySQL/Orcale</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TCP/"><span class="tag">TCP</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ajax/"><span class="tag">ajax</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cookie-session/"><span class="tag">cookie/session</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/css/"><span class="tag">css</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java8/"><span class="tag">java8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/javaScript/"><span class="tag">javaScript</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lodash/"><span class="tag">lodash</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/momentJS/"><span class="tag">momentJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/website/"><span class="tag">website</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%8B%E5%8A%A1/"><span class="tag">事务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/"><span class="tag">深拷贝</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%AA%E4%BA%8B/"><span class="tag">纪事</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%84%9A%E6%9C%AC%E7%AE%97%E6%B3%95/"><span class="tag">脚本算法</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%AD%E5%8C%85/"><span class="tag">闭包</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%97%B2%E8%81%8A/"><span class="tag">闲聊</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="PPPig&#039;s TreeHole" height="28"></a><p class="is-size-7"><span>&copy; 2020 XTZhu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XTZhu</p>
+  <div class="site-description" itemprop="description">learnLess</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XTZhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
