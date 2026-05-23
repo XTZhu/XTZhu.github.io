@@ -1,92 +1,36 @@
-<img src="https://raw.githubusercontent.com/hexojs/logo/master/hexo-logo-avatar.png" alt="Hexo logo" width="100" height="100" align="right" />
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# Hexo
+## Getting Started
 
-> A fast, simple & powerful blog framework, powered by [Node.js](https://nodejs.org).
-[Website](https://hexo.io) |
-[Documentation](https://hexo.io/docs/) |
-[Installation Guide](https://hexo.io/docs/#Installation) |
-[Contribution Guide](https://hexo.io/docs/contributing) |
-[Code of Conduct](CODE_OF_CONDUCT.md) |
-[API](https://hexo.io/api/) |
-[Twitter](https://twitter.com/hexojs)
+First, run the development server:
 
-[![NPM version](https://badge.fury.io/js/hexo.svg)](https://www.npmjs.com/package/hexo)
-![Required Node version](https://img.shields.io/node/v/hexo)
-[![Build Status](https://github.com/hexojs/hexo/workflows/Tester/badge.svg)](https://github.com/hexojs/hexo/actions?query=workflow%3ATester)
-[![dependencies Status](https://img.shields.io/librariesio/release/npm/hexo)](https://libraries.io/npm/hexo)
-[![Coverage Status](https://coveralls.io/repos/hexojs/hexo/badge.svg?branch=master)](https://coveralls.io/r/hexojs/hexo?branch=master)
-[![Gitter](https://badges.gitter.im/hexojs/hexo.svg)](https://gitter.im/hexojs/hexo)
-[![Discord Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/teM2Anj)
-[![Telegram Chat](https://img.shields.io/badge/chat-on%20telegram-32afed.svg)](https://t.me/hexojs)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhexojs%2Fhexo.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhexojs%2Fhexo?ref=badge_shield)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-
-## Features
-
-- Blazing fast generating
-- Support for GitHub Flavored Markdown and most Octopress plugins
-- One-command deploy to GitHub Pages, Heroku, etc.
-- Powerful API for limitless extensibility
-- Hundreds of [themes](https://hexo.io/themes/) & [plugins](https://hexo.io/plugins/)
-
-## Quick Start
-
-**Install Hexo**
-
-``` bash
-$ npm install hexo-cli -g
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-**Setup your blog**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-``` bash
-$ hexo init blog
-$ cd blog
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-**Start the server**
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-``` bash
-$ hexo server
-```
+## Learn More
 
-**Create a new post**
+To learn more about Next.js, take a look at the following resources:
 
-``` bash
-$ hexo new "Hello Hexo"
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-**Generate static files**
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-``` bash
-$ hexo generate
-```
-**create themes dir**
-``` Bash
-$ git clone https://github.com/theme-next/hexo-theme-next themes/next
-```
+## Deploy on Vercel
 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-**NOTION**
-
-1. next主题  
-https://theme-next.iissnan.com/getting-started.html#validate-next-theme
-
-2. git pro 在线阅读
-http://iissnan.com/progit/
-
-## More Information
-
-- Read the [documentation](https://hexo.io/)
-- Visit the [Awesome Hexo](https://github.com/hexojs/awesome-hexo) list
-- Find solutions in [troubleshooting](https://hexo.io/docs/troubleshooting.html)
-- Join discussion on [Google Group](https://groups.google.com/group/hexo), [Discord](https://discord.gg/teM2Anj), [Gitter](https://gitter.im/hexojs/hexo) or [Telegram](https://t.me/hexojs)
-- See the [plugin list](https://hexo.io/plugins/) and the [theme list](https://hexo.io/themes/) on wiki
-- Follow [@hexojs](https://twitter.com/hexojs) for latest news
-
-## Contributing
-
-We welcome you to join the development of Hexo. Please see [contributing document](https://hexo.io/docs/contributing). 🤗
-
-Also, we welcome PR or issue to [official-plugins](https://github.com/hexojs).
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
