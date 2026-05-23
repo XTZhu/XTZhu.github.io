@@ -26,8 +26,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           </Link>
 
           <FadeInUp>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">{project.title}</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">{project.description}</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">{project.title}</h1>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8">{project.description}</p>
 
             <div className="flex flex-wrap gap-3 mb-8">
               {project.technologies.map((tech) => (
@@ -67,7 +67,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           {project.challenges.length > 0 && (
             <FadeInUp delay={0.2}>
               <div>
-                <h2 className="text-3xl font-bold mb-6">Challenges</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Challenges</h2>
                 <div className="space-y-4">
                   {project.challenges.map((challenge, idx) => (
                     <div
@@ -86,7 +86,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           {project.solutions.length > 0 && (
             <FadeInUp delay={0.3}>
               <div>
-                <h2 className="text-3xl font-bold mb-6">Solutions</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Solutions</h2>
                 <div className="space-y-4">
                   {project.solutions.map((solution, idx) => (
                     <div
@@ -105,7 +105,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           {project.keyLearnings.length > 0 && (
             <FadeInUp delay={0.4}>
               <div>
-                <h2 className="text-3xl font-bold mb-6">Key Learnings</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Key Learnings</h2>
                 <div className="space-y-4">
                   {project.keyLearnings.map((learning, idx) => (
                     <div
@@ -124,7 +124,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           {project.metrics && project.metrics.length > 0 && (
             <FadeInUp delay={0.5}>
               <div>
-                <h2 className="text-3xl font-bold mb-6">Project Metrics</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Project Metrics</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {project.metrics.map((metric, idx) => (
                     <motion.div
@@ -151,7 +151,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       {/* Related Projects CTA */}
       <section className="section-padding bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <div className="container-custom text-center">
-          <h2 className="text-3xl font-bold mb-6">Explore More Projects</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Explore More Projects</h2>
           <ScaleOnHover>
             <Link href="/#projects" className="btn-primary inline-block">
               Back to All Projects

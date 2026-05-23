@@ -10,26 +10,26 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-        <div className="container-custom text-center">
+        <div className="container-custom text-center" id="main-content">
           <FadeInUp>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6">
               <span className="text-gray-900 dark:text-white">Hi, I'm </span>
               <span className="text-gradient">XTZhu</span>
             </h1>
           </FadeInUp>
 
           <FadeInUp delay={0.1}>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8">
               Full-stack developer & creator. I build digital experiences that solve real problems and delight users.
             </p>
           </FadeInUp>
 
           <FadeInUp delay={0.2}>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <a href="#projects" className="btn-primary">
+            <div className="flex gap-3 sm:gap-4 justify-center flex-wrap">
+              <a href="#projects" className="btn-primary text-sm sm:text-base">
                 View My Work
               </a>
-              <a href="#contact" className="btn-secondary">
+              <a href="#contact" className="btn-secondary text-sm sm:text-base">
                 Get in Touch
               </a>
             </div>
@@ -41,7 +41,7 @@ export default function Home() {
       <section id="projects" className="section-padding bg-white dark:bg-gray-950">
         <div className="container-custom">
           <FadeInUp>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-3 sm:mb-4">
               Featured Projects
             </h2>
           </FadeInUp>
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="section-padding bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <FadeInUp>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-3 sm:mb-4">
               Skills & Technologies
             </h2>
           </FadeInUp>
@@ -97,7 +97,7 @@ export default function Home() {
       <section id="about" className="section-padding bg-white dark:bg-gray-950">
         <div className="container-custom max-w-3xl">
           <FadeInUp>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">About Me</h2>
           </FadeInUp>
 
           <div className="space-y-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -132,11 +132,11 @@ export default function Home() {
       <section id="contact" className="section-padding bg-gray-50 dark:bg-gray-900">
         <div className="container-custom max-w-2xl text-center">
           <FadeInUp>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Let's Connect</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Let's Connect</h2>
           </FadeInUp>
 
           <FadeInUp delay={0.1}>
-            <p className="text-gray-600 dark:text-gray-400 text-lg mb-12">
+            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-8 sm:mb-12">
               I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
             </p>
           </FadeInUp>

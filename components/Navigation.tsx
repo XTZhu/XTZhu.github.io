@@ -62,6 +62,7 @@ export default function Navigation() {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={() => setIsOpen(false)}
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
               >
                 {item.label}
