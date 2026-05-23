@@ -109,7 +109,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: "Email",
-    url: "mailto:contact@example.com",
+    url: "mailto:contact@xtzhu.cc",
     icon: "mail",
   },
 ];

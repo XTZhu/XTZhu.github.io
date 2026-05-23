@@ -3,15 +3,20 @@ import ProjectDetail from "@/components/ProjectDetail";
 import { projects } from "@/lib/data";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { routing, type Locale } from "@/i18n/routing";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.id,
-  }));
+  const paths: Array<{ locale: string; slug: string }> = [];
+  for (const locale of routing.locales) {
+    for (const project of projects) {
+      paths.push({ locale, slug: project.id });
+    }
+  }
+  return paths;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -19,9 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.id === slug);
 
   if (!project) {
-    return {
-      title: "Project Not Found",
-    };
+    return { title: "Project Not Found" };
   }
 
   return {
@@ -36,9 +39,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = await params;
-  const project = projects.find((p) => p.id === slug);
+  const { locale, slug } = await params;
+  if (!routing.locales.includes(locale as Locale)) {
+    notFound();
+  }
 
+  const project = projects.find((p) => p.id === slug);
   if (!project) {
     notFound();
   }

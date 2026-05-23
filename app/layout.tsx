@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,14 +25,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://xtzhou.com",
+    locale: "zh_CN",
+    url: "https://xtzhu.cc",
     title: "XTZhu | Full-Stack Developer & Creator",
     description: "Full-stack developer showcasing modern web projects",
     siteName: "XTZhu Portfolio",
     images: [
       {
-        url: "https://xtzhou.com/og-image.jpg",
+        url: "https://xtzhu.cc/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "XTZhu Portfolio",
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "XTZhu | Full-Stack Developer & Creator",
     description: "Full-stack developer showcasing modern web projects",
-    creator: "@xtzhou",
+    creator: "@xtzhu_cc",
   },
   robots: {
     index: true,
@@ -58,7 +57,11 @@ export const metadata: Metadata = {
     },
   },
   referrer: "strict-origin-when-cross-origin",
-  viewport: "width=device-width, initial-scale=1.0",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
 };
 
 export default function RootLayout({
@@ -67,27 +70,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <link rel="canonical" href="https://xtzhou.com" />
+        <link rel="canonical" href="https://xtzhu.cc" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50 transition-colors`}>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-500 focus:text-white focus:rounded-lg focus:outline-none"
-        >
-          Skip to main content
-        </a>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
 }
+
 

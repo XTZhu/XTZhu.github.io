@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [],
     },
-    sitemap: "https://xtzhou.com/sitemap.xml",
+    sitemap: "https://xtzhu.cc/sitemap.xml",
   };
 }

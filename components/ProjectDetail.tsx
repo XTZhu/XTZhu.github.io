@@ -4,12 +4,15 @@ import { Project } from "@/lib/types";
 import { FadeInUp, ScaleOnHover } from "@/components/Motion";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface ProjectDetailProps {
   project: Project;
 }
 
 export default function ProjectDetail({ project }: ProjectDetailProps) {
+  const t = useTranslations();
+
   return (
     <article className="min-h-screen bg-white dark:bg-gray-950">
       {/* Hero Section */}
@@ -22,7 +25,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back to Projects
+            {t("projects.back_to_projects")}
           </Link>
 
           <FadeInUp>
@@ -44,14 +47,14 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               {project.demoUrl && (
                 <ScaleOnHover>
                   <a href={project.demoUrl} className="btn-primary">
-                    View Demo
+                    {t("projects.view_demo")}
                   </a>
                 </ScaleOnHover>
               )}
               {project.githubUrl && (
                 <ScaleOnHover>
                   <a href={project.githubUrl} className="btn-secondary">
-                    GitHub Repository
+                    {t("projects.github_repo")}
                   </a>
                 </ScaleOnHover>
               )}
@@ -63,17 +66,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       {/* Content Sections */}
       <section className="section-padding">
         <div className="container-custom max-w-4xl space-y-16">
-          {/* Challenges */}
           {project.challenges.length > 0 && (
             <FadeInUp delay={0.2}>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Challenges</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t("projects.challenges")}</h2>
                 <div className="space-y-4">
                   {project.challenges.map((challenge, idx) => (
-                    <div
-                      key={idx}
-                      className="card p-4 border-l-4 border-blue-500 dark:border-blue-400"
-                    >
+                    <div key={idx} className="card p-4 border-l-4 border-blue-500 dark:border-blue-400">
                       <p className="text-gray-700 dark:text-gray-300">{challenge}</p>
                     </div>
                   ))}
@@ -82,17 +81,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </FadeInUp>
           )}
 
-          {/* Solutions */}
           {project.solutions.length > 0 && (
             <FadeInUp delay={0.3}>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Solutions</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t("projects.solutions")}</h2>
                 <div className="space-y-4">
                   {project.solutions.map((solution, idx) => (
-                    <div
-                      key={idx}
-                      className="card p-4 border-l-4 border-green-500 dark:border-green-400"
-                    >
+                    <div key={idx} className="card p-4 border-l-4 border-green-500 dark:border-green-400">
                       <p className="text-gray-700 dark:text-gray-300">{solution}</p>
                     </div>
                   ))}
@@ -101,17 +96,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </FadeInUp>
           )}
 
-          {/* Key Learnings */}
           {project.keyLearnings.length > 0 && (
             <FadeInUp delay={0.4}>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Key Learnings</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t("projects.key_learnings")}</h2>
                 <div className="space-y-4">
                   {project.keyLearnings.map((learning, idx) => (
-                    <div
-                      key={idx}
-                      className="card p-4 border-l-4 border-purple-500 dark:border-purple-400"
-                    >
+                    <div key={idx} className="card p-4 border-l-4 border-purple-500 dark:border-purple-400">
                       <p className="text-gray-700 dark:text-gray-300">{learning}</p>
                     </div>
                   ))}
@@ -120,11 +111,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </FadeInUp>
           )}
 
-          {/* Metrics */}
           {project.metrics && project.metrics.length > 0 && (
             <FadeInUp delay={0.5}>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Project Metrics</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t("projects.project_metrics")}</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {project.metrics.map((metric, idx) => (
                     <motion.div
@@ -133,12 +123,8 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                        {metric.label}
-                      </p>
-                      <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                        {metric.value}
-                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{metric.label}</p>
+                      <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">{metric.value}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -148,13 +134,12 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         </div>
       </section>
 
-      {/* Related Projects CTA */}
       <section className="section-padding bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <div className="container-custom text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Explore More Projects</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t("projects.explore_more")}</h2>
           <ScaleOnHover>
             <Link href="/#projects" className="btn-primary inline-block">
-              Back to All Projects
+              {t("projects.back_to_all")}
             </Link>
           </ScaleOnHover>
         </div>

@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "tagline": "Full-stack developer & creator. I build digital experiences that solve real problems and delight users.",
+    "cta_work": "View My Work",
+    "cta_contact": "Get in Touch"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "A selection of projects showcasing my skills in full-stack development, design, and problem-solving.",
+    "demo": "Demo",
+    "code": "Code",
+    "more": "more",
+    "back_to_projects": "Back to Projects",
+    "view_demo": "View Demo",
+    "github_repo": "GitHub Repository",
+    "challenges": "Challenges",
+    "solutions": "Solutions",
+    "key_learnings": "Key Learnings",
+    "project_metrics": "Project Metrics",
+    "explore_more": "Explore More Projects",
+    "back_to_all": "Back to All Projects"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "Here's a collection of technologies and tools I work with regularly."
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "I'm a passionate software engineer with a focus on creating elegant solutions to complex problems. With experience across the full stack, I combine technical expertise with an eye for design and user experience.",
+    "p2": "My journey into tech started with a curiosity about how things work. Today, I'm driven by the opportunity to build products that make a real impact on people's lives.",
+    "p3": "When I'm not coding, you can find me exploring new technologies, contributing to open source, or sharing what I've learned with the community.",
+    "p4": "Let's build something amazing together."
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "subtitle": "I'm always interested in hearing about new projects and opportunities. Feel free to reach out!"
+  },
+  "footer": {
+    "text": "Built with Next.js, React, and Tailwind CSS."
+  },
+  "not_found": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you're looking for doesn't exist. But there's plenty more to explore.",
+    "back_home": "Back Home"
+  },
+  "skip_to_content": "Skip to main content",
+  "toggle_theme": "Toggle theme",
+  "toggle_menu": "Toggle menu",
+  "toggle_lang": "Switch language"
+}

@@ -1,5 +1,8 @@
+"use client";
+
 import { Project } from "@/lib/types";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ScaleOnHover } from "./Motion";
 
 interface ProjectCardProps {
@@ -7,6 +10,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const t = useTranslations();
+
   return (
     <ScaleOnHover>
       <Link href={`/projects/${project.id}`} className="block h-full">
@@ -40,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             ))}
             {project.technologies.length > 3 && (
               <span className="px-2 py-1 text-xs text-gray-600 dark:text-gray-400">
-                +{project.technologies.length - 3} more
+                +{project.technologies.length - 3} {t("projects.more")}
               </span>
             )}
           </div>
@@ -51,7 +56,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.demoUrl}
                 className="btn-secondary text-sm flex-1"
               >
-                Demo
+                {t("projects.demo")}
               </a>
             )}
             {project.githubUrl && (
@@ -59,7 +64,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.githubUrl}
                 className="btn-secondary text-sm flex-1"
               >
-                Code
+                {t("projects.code")}
               </a>
             )}
           </div>
