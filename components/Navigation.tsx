@@ -35,6 +35,7 @@ export default function Navigation() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+            aria-label="Toggle menu"
           >
             <svg
               className="w-6 h-6"
@@ -62,7 +63,6 @@ export default function Navigation() {
                 key={item.label}
                 href={item.href}
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </a>
@@ -73,3 +73,4 @@ export default function Navigation() {
     </nav>
   );
 }
+
