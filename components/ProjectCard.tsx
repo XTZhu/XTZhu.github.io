@@ -57,6 +57,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <a
               href={project.demoUrl}
               className="btn-secondary text-sm flex-1"
+              {...(project.demoUrl.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
             >
               {t("projects.demo")}
             </a>

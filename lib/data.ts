@@ -11,7 +11,7 @@ export const projects: Project[] = [
     featured: true,
     year: 2024,
     technologies: ["Next.js", "React", "Firebase", "Tailwind CSS", "TypeScript"],
-    demoUrl: "todo.xtzhu.cc",
+    demoUrl: "https://todo.xtzhu.cc",
     githubUrl: "https://github.com/XTZhu/todo-app",
     challenges: [
       "Implementing real-time data synchronization across tabs",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     featured: true,
     year: 2024,
     technologies: ["Next.js", "React", "GitHub API", "Recharts", "SWR"],
-    demoUrl: "dashboard.xtzhu.cc",
+    demoUrl: "https://dashboard.xtzhu.cc",
     githubUrl: "#",
     challenges: [
       "Efficiently handling large datasets and API rate limits",

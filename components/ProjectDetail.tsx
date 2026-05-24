@@ -46,7 +46,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             <div className="flex gap-4 flex-wrap">
               {project.demoUrl && (
                 <ScaleOnHover>
-                  <a href={project.demoUrl} className="btn-primary">
+                  <a
+                    href={project.demoUrl}
+                    className="btn-primary"
+                    {...(project.demoUrl.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
                     {t("projects.view_demo")}
                   </a>
                 </ScaleOnHover>
