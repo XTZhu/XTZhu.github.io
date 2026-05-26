@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { projects } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://xtzhu.cc";
@@ -15,9 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     });
 
-    for (const project of ["todo-app", "github-dashboard", "ai-code-explainer"]) {
+    for (const project of projects) {
       entries.push({
-        url: `${baseUrl}${prefix}/projects/${project}`,
+        url: `${baseUrl}${prefix}/projects/${project.id}`,
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.8,
