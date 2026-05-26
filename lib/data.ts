@@ -42,9 +42,9 @@ export const projects: Project[] = [
     category: "frontend",
     featured: true,
     year: 2024,
-    technologies: ["Next.js", "React", "GitHub API", "Recharts", "SWR"],
-    demoUrl: "https://dashboard.xtzhu.cc",
-    githubUrl: "#",
+    technologies: ["Nuxt.js", "React", "GitHub API", "Recharts", "SWR"],
+    demoUrl: "https://repolens.xtzhu.cc",
+    githubUrl: "https://github.com/XTZhu/atomAI_harness",
     challenges: [
       "Efficiently handling large datasets and API rate limits",
       "Complex data transformations for visualization",
@@ -61,34 +61,7 @@ export const projects: Project[] = [
       "Performance metrics analysis",
     ],
   },
-  {
-    id: "ai-code-explainer",
-    title: "AI Code Explainer Tool",
-    shortDescription: "Stream-based AI tool that explains code snippets with real-time output",
-    description:
-      "Built an AI-powered code analysis tool featuring streamed responses, syntax highlighting, and complexity analysis. Demonstrates secure API integration patterns and prompt engineering optimization.",
-    category: "ai",
-    featured: true,
-    year: 2024,
-    technologies: ["Next.js", "OpenAI API", "TypeScript", "Prism.js", "React"],
-    demoUrl: "#",
-    githubUrl: "#",
-    challenges: [
-      "Handling streaming responses efficiently",
-      "Securely managing API keys server-side",
-      "Parsing and formatting LLM output",
-    ],
-    solutions: [
-      "Implemented ReadableStream processing for real-time updates",
-      "Used Next.js API Routes as secure proxy",
-      "Optimized prompts for consistent structured output",
-    ],
-    keyLearnings: [
-      "LLM integration and prompt engineering",
-      "Server-side API security",
-      "Stream processing in web applications",
-    ],
-  },
+  // create a 3d music viewer project
 ];
 
 export const socialLinks: SocialLink[] = [
